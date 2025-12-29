@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://6cahxn11dr4l"
+path="res://.godot/imported/road-dirt-straight.obj-9de8317e9160158a251f775e417f3b7d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/road-dirt-straight.obj-9de8317e9160158a251f775e417f3b7d.mesh"]
+
+source_file="res://assets/objects/road-dirt-straight.obj"
+dest_files=["res://.godot/imported/road-dirt-straight.obj-9de8317e9160158a251f775e417f3b7d.mesh", "res://.godot/imported/road-dirt-straight.obj-9de8317e9160158a251f775e417f3b7d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
