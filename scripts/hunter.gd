@@ -66,15 +66,14 @@ func _choose_new_target():
 			return
 
 func _on_detection_area_body_entered(body: Node3D) -> void:
-	print(body.name)
 	if body.name == "Player":
 		player_target = body
 		current_state = State.CHASING
-		print("Jogador detectado pela lanterna!")
+		print("Player detected!")
 
 func _on_detection_area_body_exited(body: Node3D) -> void:
 	if body.name == "Player":
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(5.0).timeout
 		
 		if current_state == State.CHASING:
 			current_state = State.WANDERING

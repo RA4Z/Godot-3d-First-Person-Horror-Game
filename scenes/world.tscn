@@ -101,10 +101,10 @@ open_angle = -90.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6517892)
 mesh = SubResource("BoxMesh_jhx03")
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("9_7r4gi")]
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_o8fc1")
 volume_db = -20.0
 autoplay = true
 bus = &"Music"
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("9_7r4gi")]
