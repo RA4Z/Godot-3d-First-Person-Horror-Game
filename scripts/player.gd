@@ -24,21 +24,23 @@ var lights_on := true
 var direction = Vector3.ZERO
 var head_y_axis = 0.0
 var camera_x_axis = 0.0
+var sway_amount = 0.01
+var sway_lerp_speed = 5.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
 	if event is InputEventMouseMotion:
+		# Movimentação da Câmera (mantido)
 		head_y_axis += event.relative.x * cameraSensitivity
 		camera_x_axis += event.relative.y * cameraSensitivity
 		camera_x_axis = clamp(camera_x_axis, -90.0, 90.0)
 		
-		hand.rotation.y -= deg_to_rad(event.relative.x * 0.01)
-		hand.rotation.x -= deg_to_rad(event.relative.y * 0.01)
-		
-		hand.rotation.y = clamp(hand.rotation.y, deg_to_rad(-10), deg_to_rad(10))
-		hand.rotation.x = clamp(hand.rotation.x, deg_to_rad(-10), deg_to_rad(10))
+		# Aplicar o deslocamento inicial na mão baseado no movimento do mouse
+		# Multiplicamos por sway_amount para controlar o quão longe a mão vai
+		hand.rotation.y -= event.relative.x * sway_amount
+		hand.rotation.x -= event.relative.y * sway_amount
 		
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()
@@ -59,8 +61,12 @@ func _process(delta):
 	head.rotation.y = -deg_to_rad(head_y_axis)
 	camera.rotation.x = -deg_to_rad(camera_x_axis)
 	
-	hand.rotation.y = lerp_angle(hand.rotation.y, 0.0, cameraAcceleration * delta)
-	hand.rotation.x = lerp_angle(hand.rotation.x, 0.0, cameraAcceleration * delta)
+	hand.rotation.x = lerp_angle(hand.rotation.x, 0.0, sway_lerp_speed * delta)
+	hand.rotation.y = lerp_angle(hand.rotation.y, 0.0, sway_lerp_speed * delta)
+	
+	# Opcional: Limitar o quanto a mão pode rotacionar para não "quebrar" o braço
+	hand.rotation.x = clamp(hand.rotation.x, deg_to_rad(-15), deg_to_rad(15))
+	hand.rotation.y = clamp(hand.rotation.y, deg_to_rad(-15), deg_to_rad(15))
 	
 	actions(delta)
 	move_and_slide()
