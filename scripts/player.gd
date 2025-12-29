@@ -13,9 +13,12 @@ extends CharacterBody3D
 @onready var camera = $Head/Camera3D
 @onready var hand: Node3D = $Head/Camera3D/Hand
 @onready var flashlight: SpotLight3D = $Head/Camera3D/Hand/Flashlight
+@onready var footstep_sound: AudioStreamPlayer3D = $FootstepSound
 
 var battery_timer := 0.0
 var batteries := 100
+var step_timer = 0.0
+var step_interval = 0.75
 
 var lights_on := true
 var direction = Vector3.ZERO
@@ -39,6 +42,15 @@ func _input(event):
 		
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()
+
+func _physics_process(delta):
+	if is_on_floor() and velocity.length() > 0.1:
+		step_timer += delta
+		if step_timer >= step_interval:
+			play_footstep()
+			step_timer = 0.0
+	else:
+		step_timer = 0.0
 
 func _process(delta):
 	direction = Input.get_axis("left", "right") * head.basis.x + Input.get_axis("forward", "backward") * head.basis.z
@@ -83,3 +95,7 @@ func actions(delta):
 		velocity.y += jumpForce
 	else:
 		velocity.y -= gravity * delta
+
+func play_footstep():
+	footstep_sound.pitch_scale = randf_range(0.8, 1.2) 
+	footstep_sound.play()

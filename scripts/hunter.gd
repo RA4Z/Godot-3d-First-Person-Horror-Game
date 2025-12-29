@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var chase_speed := 1.2
 @onready var anim = $AnimationPlayer
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var chase_music: AudioStreamPlayer = $ChaseMusic
 
 enum State { WANDERING, CHASING }
 var current_state = State.WANDERING
@@ -23,7 +24,13 @@ func _physics_process(delta):
 	if current_state == State.CHASING and player_target:
 		nav_agent.target_position = player_target.global_position
 		move_towards_target(chase_speed, delta)
+		
+		if not chase_music.playing:
+			chase_music.play()
 	else:
+		if chase_music.playing:
+			chase_music.stop()
+			
 		if nav_agent.is_navigation_finished():
 			_choose_new_target()
 		move_towards_target(walk_speed, delta)

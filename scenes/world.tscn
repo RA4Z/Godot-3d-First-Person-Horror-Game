@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=19 format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
 [ext_resource type="MeshLibrary" uid="uid://bupwg0ulrwftn" path="res://assets/meshes/buildings.tres" id="2_rwgxs"]
@@ -9,9 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://d1ffpfu6yu4u6" path="res://assets/objects/creeper/the_suffering_ties_that_bind_the_creeper.glb" id="7_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://bxtuu6bcmklpc" path="res://prefabs/door_metal.tscn" id="7_i7141"]
 [ext_resource type="PackedScene" uid="uid://dgmtjao77k173" path="res://actors/hunter.tscn" id="8_4mrxx"]
-[ext_resource type="Script" uid="uid://nmj8xfye56j8" path="res://scripts/vfx_bloodwith_stains.gd" id="10_q5onr"]
+[ext_resource type="PackedScene" uid="uid://cgv03d7qvrnkd" path="res://scenes/world_environment.tscn" id="9_7r4gi"]
 [ext_resource type="Texture2D" uid="uid://8llbpi26d3y8" path="res://assets/textures/T_Decal_Blood651aas.png" id="10_w7kh3"]
 [ext_resource type="Texture2D" uid="uid://icjq1j2yyr1f" path="res://assets/textures/T_Decal_Blood651aas_N.png" id="11_e3hyu"]
+[ext_resource type="AudioStream" uid="uid://ide0os5k06e" path="res://audio/musics/chase.mp3" id="11_jhx03"]
+[ext_resource type="AudioStream" uid="uid://ke8piro8hw2" path="res://audio/musics/normal_sound1.mp3" id="14_o8fc1"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_4mrxx"]
 vertices = PackedVector3Array(4.75, 1.5, -13.23645, 4, 1.5, -14.23645, 3, 1.5, -14.23645, 2, 1.5, -13.23645, 7, 1.5, -12.23645, 6, 1.5, -13.23645, 3.25, 1.5, -6.23645, 5, 1.5, -6.23645, 5.75, 1.5, -7.23645, 7, 1.5, -7.23645, -4.75, 1.5, -1.2364502, -4, 1.5, -0.4864502, -4, 1.5, -2.4864502, -6, 1.5, -1.2364502, -7, 1.5, -3.4864502, -7, 1.5, -2.2364502, -6, 1.5, -12.23645, -7, 1.5, -11.23645, -7, 1.5, -9.98645, -0.75, 1.5, -12.23645, -3.25, 1.5, -3.2364502, 2, 1.5, -3.2364502, 2, 1.5, -5.48645, 0, 1.5, -13.23645, -8, 1.5, -9.23645, -8, 1.5, -4.23645, 7, 5.5, 2.7635498, 7, 5.5, -0.2364502, 4.75, 5.5, -0.2364502, 3.75, 5.5, 2.7635498, 3, 5.5, -1.9864502, 3, 5.5, -5.23645, -2, 5.5, -5.23645, 3, 5.5, 3.7635498, -2, 5.5, 3.7635498, -0.75, 1.5, 2.7635498, 2, 1.5, 2.7635498, 2.25, 1.5, 1.5135498, 2, 1.5, 0.013549805, -0.75, 1.5, 0.013549805, -1, 1.5, 1.0135498, 4.75, 1.5, 0.2635498, 4.75, 1.5, 1.2635498, 5.75, 1.5, 0.2635498)
@@ -25,165 +27,7 @@ colors = PackedColorArray(0, 0.38109186, 0.3491902, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_q5onr"]
 gradient = SubResource("Gradient_e3hyu")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7r4gi"]
-transparency = 2
-alpha_scissor_threshold = 0.15
-alpha_antialiasing_mode = 0
-vertex_color_use_as_albedo = true
-vertex_color_is_srgb = true
-albedo_texture = ExtResource("10_w7kh3")
-roughness = 0.15
-normal_enabled = true
-normal_scale = 0.5
-normal_texture = ExtResource("11_e3hyu")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_w7kh3"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.08988765, 1), 0.0, 0.0, 0, 0, Vector2(0.23220974, 0.81718755), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_e3hyu"]
-texture_mode = 1
-curve = SubResource("Curve_w7kh3")
-
-[sub_resource type="Gradient" id="Gradient_w7kh3"]
-interpolation_color_space = 1
-offsets = PackedFloat32Array(0.19917013, 0.46887967)
-colors = PackedColorArray(0.28881752, 0.02294407, 0.036824405, 1, 1, 0, 0.06666667, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_e3hyu"]
-gradient = SubResource("Gradient_w7kh3")
-
-[sub_resource type="Curve" id="Curve_7r4gi"]
-_data = [Vector2(0, 0), 0.0, 2.661368, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_w7kh3"]
-curve = SubResource("Curve_7r4gi")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7r4gi"]
-lifetime_randomness = 0.5
-particle_flag_rotate_y = true
-emission_shape = 1
-emission_sphere_radius = 0.3
-angle_min = -179.99998
-angle_max = 180.00002
-direction = Vector3(0, 1, 0)
-spread = 10.0
-initial_velocity_min = -0.5
-initial_velocity_max = 3.0
-radial_velocity_min = -2.2351742e-05
-radial_velocity_max = 0.39997762
-scale_min = 0.5
-scale_max = 1.1999999
-scale_curve = SubResource("CurveTexture_w7kh3")
-color_ramp = SubResource("GradientTexture1D_e3hyu")
-alpha_curve = SubResource("CurveTexture_e3hyu")
-
-[sub_resource type="QuadMesh" id="QuadMesh_w7kh3"]
-
-[sub_resource type="Animation" id="Animation_jhx03"]
-resource_name = "Init"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VFX_BloodwithStains/BloodBurst:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VFX_BloodwithStains/Decal:albedo_mix")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3, 0.7, 3.1666667, 4.3333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 1.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VFX_BloodwithStains/Decal:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.3, 0.7, 3.1666667, 4.3333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 0.17558163, 0.12835406, 0), Color(0.99999994, 0.174173, 0.12721539, 1), Color(0.99999994, 0.174173, 0.12721539, 1), Color(1, 0.17558163, 0.12835406, 0)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("VFX_BloodwithStains")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_delete_myself"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_o8fc1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VFX_BloodwithStains/BloodBurst:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VFX_BloodwithStains/Decal:albedo_mix")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VFX_BloodwithStains/Decal:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.99999994, 0.174173, 0.12721539, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xo05s"]
-_data = {
-&"Init": SubResource("Animation_jhx03"),
-&"RESET": SubResource("Animation_o8fc1")
-}
+[sub_resource type="BoxMesh" id="BoxMesh_jhx03"]
 
 [node name="World" type="Node3D"]
 
@@ -242,39 +86,25 @@ cull_mask = 1048571
 [node name="DoubleDoorClosed" parent="Hunter/NavigationAgent3D/NavigationRegion3D/Decorations" instance=ExtResource("6_4mrxx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5132756, -0.00618279, 2.1886988)
 
+[node name="ChaseMusic" type="AudioStreamPlayer" parent="Hunter"]
+stream = ExtResource("11_jhx03")
+volume_db = -12.0
+bus = &"Music"
+
 [node name="Doors" type="Node3D" parent="."]
 
 [node name="DoorMetal" parent="Doors" instance=ExtResource("7_i7141")]
 transform = Transform3D(1, 0, 0, 0, 0.7315097, 0, 0, 0, 0.75520504, -2.224694, 0.97870207, 1.2662364)
 open_angle = -90.0
 
-[node name="VFX_BloodwithStains" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9928956, 2.0546603, 1.8682925)
-script = ExtResource("10_q5onr")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6517892)
+mesh = SubResource("BoxMesh_jhx03")
 
-[node name="BloodBurst" type="GPUParticles3D" parent="VFX_BloodwithStains"]
-transform = Transform3D(-0.21727446, 0, -0.97611064, 0, 1, 0, 0.97611064, 0, -0.21727446, 0, 0, 0)
-layers = 4
-material_override = SubResource("StandardMaterial3D_7r4gi")
-emitting = false
-amount = 20
-one_shot = true
-explosiveness = 0.8
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_7r4gi")
-draw_pass_1 = SubResource("QuadMesh_w7kh3")
+[node name="WorldEnvironment" parent="." instance=ExtResource("9_7r4gi")]
 
-[node name="Decal" type="Decal" parent="VFX_BloodwithStains"]
-size = Vector3(2, 1, 2)
-texture_albedo = ExtResource("10_w7kh3")
-texture_normal = ExtResource("11_e3hyu")
-texture_orm = SubResource("GradientTexture1D_q5onr")
-modulate = Color(0.99999994, 0.174173, 0.12721539, 1)
-cull_mask = 1048571
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="VFX_BloodwithStains"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_xo05s")
-}
-autoplay = "Init"
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_o8fc1")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
