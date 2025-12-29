@@ -7,10 +7,16 @@ extends CharacterBody3D
 @onready var chase_music: AudioStreamPlayer = $ChaseMusic
 @onready var video_player: VideoStreamPlayer = $JumpscareUI/VideoStreamPlayer
 @onready var audio_stream_player: AudioStreamPlayer = $JumpscareUI/AudioStreamPlayer
+@onready var anim_player: AnimationPlayer = $JumpscareUI/AnimPlayer
+@onready var ray_cast: RayCast3D = $Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/FieldOfView
 
 enum State { WANDERING, CHASING }
 var current_state = State.WANDERING
 var player_target: CharacterBody3D = null
+
+func _process(_delta):
+	if player_target:
+		check_line_of_sight()
 
 func _ready():
 	if anim.has_animation("Take 001"):
@@ -67,33 +73,45 @@ func _choose_new_target():
 			nav_agent.target_position = reachable_point
 			return
 
+func check_line_of_sight():
+	ray_cast.look_at(player_target.global_position + Vector3(0, 1, 0))
+	ray_cast.force_raycast_update()
+	
+	if ray_cast.is_colliding():
+		var collider = ray_cast.get_collider()
+		
+		if collider.name == "Player":
+			if current_state != State.CHASING:
+				current_state = State.CHASING
+				print("Eu vi o jogador!")
+		else:
+			if current_state == State.CHASING:
+				await get_tree().create_timer(5.0).timeout
+				
+				if current_state == State.CHASING:
+					current_state = State.WANDERING
+					player_target = null
+					_choose_new_target()
+					print("Perdi o jogador de vista...")
+
 func _on_detection_area_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
 		player_target = body
-		current_state = State.CHASING
-		print("Player detected!")
 
 func _on_detection_area_body_exited(body: Node3D) -> void:
 	if body.name == "Player":
-		await get_tree().create_timer(5.0).timeout
-		
-		if current_state == State.CHASING:
-			current_state = State.WANDERING
-			player_target = null
-			_choose_new_target()
-			print("Perdi o jogador de vista...")
-
+		player_target = null
 
 func _on_killzone_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
 		trigger_video_jumpscare()
-
 
 func trigger_video_jumpscare():
 	get_tree().paused = true
 	audio_stream_player.play()
 	video_player.show()
 	video_player.play()
+	anim_player.play("shake")
 	await video_player.finished
 	get_tree().paused = false
 	get_tree().reload_current_scene()

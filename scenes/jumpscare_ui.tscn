@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6sshq144sm2t"]
+[gd_scene load_steps=6 format=3 uid="uid://b6sshq144sm2t"]
 
 [ext_resource type="AudioStream" uid="uid://3mit2bi1gh6b" path="res://audio/sounds/jumpscare.mp3" id="1_ibsjb"]
 [ext_resource type="VideoStream" uid="uid://debs0ry0uk7bw" path="res://assets/videos/jumpscare.ogv" id="2_ibsjb"]
+
+[sub_resource type="Animation" id="Animation_ibsjb"]
+resource_name = "shake"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VideoStreamPlayer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(10, -5), Vector2(-12, 8), Vector2(5, 15), Vector2(12, 12), Vector2(2, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_igxsg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VideoStreamPlayer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jjqwh"]
+_data = {
+&"RESET": SubResource("Animation_igxsg"),
+&"shake": SubResource("Animation_ibsjb")
+}
 
 [node name="JumpscareUI" type="CanvasLayer"]
 process_mode = 3
@@ -15,5 +53,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(576, 324)
+size_flags_horizontal = 4
 stream = ExtResource("2_ibsjb")
 expand = true
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jjqwh")
+}
