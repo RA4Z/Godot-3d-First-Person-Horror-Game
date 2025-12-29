@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dxag6y2jp2ayl" path="res://scripts/light.gd" id="2_pmlmq"]
 
 [node name="Lamp" type="Node3D"]
+script = ExtResource("2_pmlmq")
 
 [node name="Lamp" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_tu1ps")
@@ -18,4 +19,3 @@ light_specular = 0.0
 shadow_enabled = true
 spot_range = 10.818
 spot_angle = 62.68
-script = ExtResource("2_pmlmq")

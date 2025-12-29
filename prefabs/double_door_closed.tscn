@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://4rrlil3dfoyl"]
+
+[ext_resource type="PackedScene" uid="uid://nrnm3txvlq4w" path="res://assets/objects/closed_metal_door/door_metal_door_window.glb" id="1_o45xw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qfnet"]
+size = Vector3(0.22912598, 2.500061, 1.996582)
+
+[node name="DoubleDoorClosed" type="StaticBody3D"]
+
+[node name="DoubleDoor" parent="." instance=ExtResource("1_o45xw")]
+transform = Transform3D(-2.3532273e-10, 0, 0.005, 0, 0.0056254845, 0, -0.0053835562, 0, -2.1855694e-10, 0.9832089, 0, -0.5032935)
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9691689, 0.7500305, -0.49145508)
+shape = SubResource("BoxShape3D_qfnet")

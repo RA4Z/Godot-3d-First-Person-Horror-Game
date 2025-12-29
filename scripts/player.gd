@@ -6,8 +6,9 @@ extends CharacterBody3D
 @export var cameraAcceleration = 2.0
 @export var jumpForce = 5.0
 @export var gravity = 10.0
-@export var battery_consumption = 1.0
+@export var battery_consumption = 3.0
 
+@onready var interaction_ray: RayCast3D = $Head/Camera3D/InteractionRay
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var hand: Node3D = $Head/Camera3D/Hand
@@ -64,6 +65,12 @@ func actions(delta):
 				lights_on = false
 				flashlight.visible = false
 
+	if Input.is_action_just_pressed("interact"):
+		if interaction_ray.is_colliding():
+			var object = interaction_ray.get_collider()
+			if object.has_method("interact"):
+				object.interact()
+		
 	if Input.is_action_just_pressed("flashlight"):
 		if lights_on:
 			lights_on = false

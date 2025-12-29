@@ -39,3 +39,7 @@ light_volumetric_fog_energy = 0.2
 light_size = 0.6
 shadow_enabled = true
 spot_angle = 20.0
+
+[node name="InteractionRay" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -1.5)
+collision_mask = 3
