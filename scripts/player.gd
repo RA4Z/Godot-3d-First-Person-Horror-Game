@@ -6,12 +6,17 @@ extends CharacterBody3D
 @export var cameraAcceleration = 2.0
 @export var jumpForce = 5.0
 @export var gravity = 10.0
+@export var battery_consumption = 1.0
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var hand: Node3D = $Head/Camera3D/Hand
 @onready var flashlight: SpotLight3D = $Head/Camera3D/Hand/Flashlight
 
+var battery_timer := 0.0
+var batteries := 100
+
+var lights_on := true
 var direction = Vector3.ZERO
 var head_y_axis = 0.0
 var camera_x_axis = 0.0
@@ -21,19 +26,16 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		# Visão do jogador (imediata)
 		head_y_axis += event.relative.x * cameraSensitivity
 		camera_x_axis += event.relative.y * cameraSensitivity
 		camera_x_axis = clamp(camera_x_axis, -90.0, 90.0)
 		
-		# Faz a lanterna "ficar para trás" um pouco (Efeito Sway)
-		# O valor 0.01 controla o quanto ela se desloca.
 		hand.rotation.y -= deg_to_rad(event.relative.x * 0.01)
 		hand.rotation.x -= deg_to_rad(event.relative.y * 0.01)
 		
-		# Trava a lanterna para ela não fugir da tela (Ex: no máximo 10 graus)
 		hand.rotation.y = clamp(hand.rotation.y, deg_to_rad(-10), deg_to_rad(10))
 		hand.rotation.x = clamp(hand.rotation.x, deg_to_rad(-10), deg_to_rad(10))
+		
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()
 
@@ -47,9 +49,30 @@ func _process(delta):
 	hand.rotation.y = lerp_angle(hand.rotation.y, 0.0, cameraAcceleration * delta)
 	hand.rotation.x = lerp_angle(hand.rotation.x, 0.0, cameraAcceleration * delta)
 	
+	actions(delta)
+	move_and_slide()
+
+func actions(delta):
+	if lights_on and batteries > 0:
+		battery_timer += delta
+		if battery_timer >= battery_consumption:
+			batteries -= 1
+			battery_timer = 0.0
+			print("Bateria restante: ", batteries)
+			
+			if batteries <= 0:
+				lights_on = false
+				flashlight.visible = false
+
+	if Input.is_action_just_pressed("flashlight"):
+		if lights_on:
+			lights_on = false
+			flashlight.visible = false
+		elif batteries > 0:
+			lights_on = true
+			flashlight.visible = true
+			
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y += jumpForce
 	else:
 		velocity.y -= gravity * delta
-	
-	move_and_slide()

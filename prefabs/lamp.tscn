@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj3npfwpuulho"]
+[gd_scene load_steps=3 format=3 uid="uid://bj3npfwpuulho"]
 
 [ext_resource type="ArrayMesh" uid="uid://buw7p1m7ixonr" path="res://assets/objects/Lamp.obj" id="1_tu1ps"]
+[ext_resource type="Script" uid="uid://dxag6y2jp2ayl" path="res://scripts/light.gd" id="2_pmlmq"]
 
 [node name="Lamp" type="Node3D"]
 
@@ -17,3 +18,4 @@ light_specular = 0.0
 shadow_enabled = true
 spot_range = 10.818
 spot_angle = 62.68
+script = ExtResource("2_pmlmq")
