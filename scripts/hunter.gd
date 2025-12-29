@@ -5,6 +5,8 @@ extends CharacterBody3D
 @onready var anim = $AnimationPlayer
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var chase_music: AudioStreamPlayer = $ChaseMusic
+@onready var video_player: VideoStreamPlayer = $JumpscareUI/VideoStreamPlayer
+@onready var audio_stream_player: AudioStreamPlayer = $JumpscareUI/AudioStreamPlayer
 
 enum State { WANDERING, CHASING }
 var current_state = State.WANDERING
@@ -80,3 +82,18 @@ func _on_detection_area_body_exited(body: Node3D) -> void:
 			player_target = null
 			_choose_new_target()
 			print("Perdi o jogador de vista...")
+
+
+func _on_killzone_body_entered(body: Node3D) -> void:
+	if body.name == "Player":
+		trigger_video_jumpscare()
+
+
+func trigger_video_jumpscare():
+	get_tree().paused = true
+	audio_stream_player.play()
+	video_player.show()
+	video_player.play()
+	await video_player.finished
+	get_tree().paused = false
+	get_tree().reload_current_scene()

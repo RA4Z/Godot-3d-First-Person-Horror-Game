@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dgmtjao77k173"]
+[gd_scene load_steps=25 format=4 uid="uid://dgmtjao77k173"]
 
 [ext_resource type="Script" uid="uid://bo57m6uy6qk1m" path="res://scripts/hunter.gd" id="1_hopy3"]
 [ext_resource type="Texture2D" uid="uid://tdcroma0m7h4" path="res://assets/objects/shade_walkin/shade_walking_0.png" id="1_u2bqq"]
@@ -358,6 +358,9 @@ stream_0/stream = ExtResource("6_evhaq")
 stream_1/stream = ExtResource("7_7yjlb")
 stream_2/stream = ExtResource("8_7yjlb")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7yjlb"]
+size = Vector3(1, 1.5430908, 0.6361084)
+
 [node name="Hunter" type="CharacterBody3D"]
 script = ExtResource("1_hopy3")
 
@@ -575,5 +578,13 @@ shape = SubResource("CapsuleShape3D_u2bqq")
 stream = SubResource("AudioStreamRandomizer_qj4bx")
 volume_db = -15.0
 
+[node name="Killzone" type="Area3D" parent="."]
+
+[node name="Collision" type="CollisionShape3D" parent="Killzone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90112895, 0.083694935)
+shape = SubResource("BoxShape3D_7yjlb")
+debug_color = Color(0.743277, 0, 0.11989739, 0.41960785)
+
 [connection signal="body_entered" from="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="Killzone" to="." method="_on_killzone_body_entered"]

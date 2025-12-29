@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6sshq144sm2t"]
+
+[ext_resource type="AudioStream" uid="uid://3mit2bi1gh6b" path="res://audio/sounds/jumpscare.mp3" id="1_ibsjb"]
+[ext_resource type="VideoStream" uid="uid://debs0ry0uk7bw" path="res://assets/videos/jumpscare.ogv" id="2_ibsjb"]
+
+[node name="JumpscareUI" type="CanvasLayer"]
+process_mode = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ibsjb")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_ibsjb")
+expand = true
