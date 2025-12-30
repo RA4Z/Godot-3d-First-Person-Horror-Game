@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
 @export var walk_speed := 1.0
-@export var chase_speed := 1.2
+@export var chase_speed := 1.5
+
 @onready var anim = $AnimationPlayer
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var chase_music: AudioStreamPlayer = $ChaseMusic
@@ -9,14 +10,16 @@ extends CharacterBody3D
 @onready var audio_stream_player: AudioStreamPlayer = $JumpscareUI/AudioStreamPlayer
 @onready var anim_player: AnimationPlayer = $JumpscareUI/AnimPlayer
 @onready var ray_cast: RayCast3D = $Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/FieldOfView
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 enum State { WANDERING, CHASING }
 var current_state = State.WANDERING
 var player_target: CharacterBody3D = null
+var chase_lost_timer: float = 0.0
 
 func _process(_delta):
 	if player_target:
-		check_line_of_sight()
+		check_line_of_sight(_delta)
 
 func _ready():
 	if anim.has_animation("Take 001"):
@@ -32,10 +35,12 @@ func _physics_process(delta):
 	if current_state == State.CHASING and player_target:
 		nav_agent.target_position = player_target.global_position
 		move_towards_target(chase_speed, delta)
+		animation_player.speed_scale = 4.0
 		
 		if not chase_music.playing:
 			chase_music.play()
 	else:
+		animation_player.speed_scale = 3.0
 		if chase_music.playing:
 			chase_music.stop()
 			
@@ -73,36 +78,35 @@ func _choose_new_target():
 			nav_agent.target_position = reachable_point
 			return
 
-func check_line_of_sight():
+func check_line_of_sight(delta):
+	if not player_target:
+		return
+
 	ray_cast.look_at(player_target.global_position + Vector3(0, 1, 0))
 	ray_cast.force_raycast_update()
 	
+	var is_player_visible = false
 	if ray_cast.is_colliding():
 		var collider = ray_cast.get_collider()
-		
 		if collider.name == "Player":
-			if current_state != State.CHASING:
-				current_state = State.CHASING
-		else:
-			if current_state == State.CHASING:
-				await get_tree().create_timer(5.0).timeout
-				
-				if current_state == State.CHASING:
-					current_state = State.WANDERING
-					player_target = null
-					_choose_new_target()
+			is_player_visible = true
+
+	if is_player_visible:
+		chase_lost_timer = 0.0
+		current_state = State.CHASING
+	else:
+		if current_state == State.CHASING:
+			chase_lost_timer += delta
+			
+			if chase_lost_timer >= 5.0:
+				current_state = State.WANDERING
+				player_target = null
+				_choose_new_target()
 
 func _on_detection_area_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
 		player_target = body
 
-func _on_detection_area_body_exited(body: Node3D) -> void:
-	if body.name == "Player":
-		player_target = null
-
 func _on_killzone_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
-		trigger_video_jumpscare()
-
-func trigger_video_jumpscare():
-	utils.jumpscare_video(audio_stream_player, video_player, anim_player)
+		utils.jumpscare_video(audio_stream_player, video_player, anim_player)
