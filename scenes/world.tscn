@@ -1,10 +1,11 @@
-[gd_scene load_steps=34 format=4 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=35 format=4 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://b6sshq144sm2t" path="res://scenes/jumpscare_ui.tscn" id="1_pm21f"]
 [ext_resource type="MeshLibrary" uid="uid://bupwg0ulrwftn" path="res://assets/meshes/buildings.tres" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://bj3npfwpuulho" path="res://prefabs/lamp.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://cgv03d7qvrnkd" path="res://scenes/world_environment.tscn" id="3_kpybi"]
 [ext_resource type="PackedScene" uid="uid://ydq8oeejd7rj" path="res://assets/objects/underwear_woman_statue/In underwear.glb" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://4rrlil3dfoyl" path="res://prefabs/double_door_closed.tscn" id="6_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://cseuoplnm6cqn" path="res://assets/objects/old_wooden_table/simple_old_wooden_table.glb" id="6_i7141"]
@@ -129,13 +130,17 @@ points = PackedVector3Array(2.386612, 65.5446, 37.74615, 11.286694, 65.55806, 37
 
 [node name="World" type="Node3D"]
 
-[node name="Interface" parent="." instance=ExtResource("1_7iits")]
+[node name="GameConfigs" type="Node3D" parent="."]
 
-[node name="MapMusic" type="AudioStreamPlayer" parent="."]
+[node name="Interface" parent="GameConfigs" instance=ExtResource("1_7iits")]
+
+[node name="MapMusic" type="AudioStreamPlayer" parent="GameConfigs"]
 stream = ExtResource("14_o8fc1")
 volume_db = -20.0
 autoplay = true
 bus = &"Music"
+
+[node name="WorldEnvironment" parent="GameConfigs" instance=ExtResource("3_kpybi")]
 
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2205443, 1.9912964, 0.81163967)
@@ -290,7 +295,7 @@ transform = Transform3D(1, 0, 0, 0, 0.7315097, 0, 0, 0, 0.75520504, -2.224694, 0
 open_angle = -90.0
 
 [node name="Radio" parent="." instance=ExtResource("21_7iits")]
-transform = Transform3D(-0.6123691, -0.790572, -3.4557e-08, 0, -4.371139e-08, 1, -0.790572, 0.6123691, 2.6767504e-08, 4.440711, 1.641349, 2.0456734)
+transform = Transform3D(-0.6123691, -0.790572, -3.4557e-08, 0, -4.371139e-08, 1, -0.790572, 0.6123691, 2.6767504e-08, 4.4147253, 1.641349, 2.0456734)
 audio_stream = ExtResource("22_oo54l")
 auto_play = true
 

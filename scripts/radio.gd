@@ -25,14 +25,13 @@ func interact():
 
 func play_radio():
 	if audio_stream:
+		audio_player.pitch_scale = randf_range(0.95, 1.05)
 		audio_player.play()
 		is_playing = true
-		print("Rádio tocando...")
 
 func stop_radio():
 	audio_player.stop()
 	is_playing = false
-	print("Rádio desligado.")
 
 func _on_audio_stream_player_3d_finished():
 	if loop and is_playing:

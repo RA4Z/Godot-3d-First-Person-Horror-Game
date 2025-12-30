@@ -83,7 +83,6 @@ func check_line_of_sight():
 		if collider.name == "Player":
 			if current_state != State.CHASING:
 				current_state = State.CHASING
-				print("Eu vi o jogador!")
 		else:
 			if current_state == State.CHASING:
 				await get_tree().create_timer(5.0).timeout
@@ -92,7 +91,6 @@ func check_line_of_sight():
 					current_state = State.WANDERING
 					player_target = null
 					_choose_new_target()
-					print("Perdi o jogador de vista...")
 
 func _on_detection_area_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
@@ -107,11 +105,4 @@ func _on_killzone_body_entered(body: Node3D) -> void:
 		trigger_video_jumpscare()
 
 func trigger_video_jumpscare():
-	get_tree().paused = true
-	audio_stream_player.play()
-	video_player.show()
-	video_player.play()
-	anim_player.play("shake")
-	await video_player.finished
-	get_tree().paused = false
-	get_tree().reload_current_scene()
+	utils.jumpscare_video(audio_stream_player, video_player, anim_player)
