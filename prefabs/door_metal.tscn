@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bxtuu6bcmklpc"]
+[gd_scene load_steps=14 format=4 uid="uid://bxtuu6bcmklpc"]
 
 [ext_resource type="Texture2D" uid="uid://dhb8qvs3hn4qw" path="res://assets/objects/metal_door/door__prison_door_metal_old_-12mb_0.png" id="1_dyvsd"]
 [ext_resource type="Texture2D" uid="uid://dkp7lofuqd7lg" path="res://assets/objects/metal_door/door__prison_door_metal_old_-12mb_1.png" id="2_c03p8"]
@@ -90,6 +90,9 @@ shadow_mesh = SubResource("ArrayMesh_lb2pp")
 [sub_resource type="BoxShape3D" id="BoxShape3D_fte3h"]
 size = Vector3(0.21533203, 2.7904968, 1.3510132)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8oo42"]
+size = Vector3(2.4475098, 3.2776184, 1.315918)
+
 [node name="DoorMetal" type="AnimatableBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.707, 0, 0, 0, 0.786, 0, 0, 0)
 collision_layer = 3
@@ -124,6 +127,15 @@ skeleton = NodePath("")
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0036621094, 1.3988649, -0.001739502)
 shape = SubResource("BoxShape3D_fte3h")
+
+[node name="Interaction" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="InteractionCollision" type="CollisionShape3D" parent="Interaction"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0345459, 1.1388088, -0.023193354)
+shape = SubResource("BoxShape3D_8oo42")
 
 [node name="OpenDoor" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_8oo42")

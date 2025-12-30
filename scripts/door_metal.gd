@@ -3,13 +3,17 @@ extends AnimatableBody3D
 @onready var open_door: AudioStreamPlayer3D = $OpenDoor
 @onready var close_door: AudioStreamPlayer3D = $CloseDoor
 @onready var prison_door_2_3: Node3D = $"Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null/prison_door_2_3"
+@onready var interaction_collision: CollisionShape3D = $Interaction/InteractionCollision
 
 @export var open_angle := 90.0
-
 var is_open := false
+
+func _ready():
+	interaction_collision.disabled = !is_open
 
 func interact():
 	is_open = !is_open
+	interaction_collision.set_deferred("disabled", !is_open)
 	
 	if is_open:
 		collision_layer = 2

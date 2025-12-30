@@ -14,6 +14,7 @@ extends CharacterBody3D
 @onready var hand: Node3D = $Head/Camera3D/Hand
 @onready var flashlight: SpotLight3D = $Head/Camera3D/Hand/Flashlight
 @onready var footstep_sound: AudioStreamPlayer3D = $FootstepSound
+@onready var flashlight_sound: AudioStreamPlayer3D = $FlashlightSound
 
 var battery_timer := 0.0
 var step_timer = 0.0
@@ -72,7 +73,6 @@ func actions(delta):
 		if battery_timer >= battery_consumption:
 			inventory.player_battery -= 1
 			battery_timer = 0.0
-			print("Bateria restante: ", inventory.player_battery)
 			
 			if inventory.player_battery <= 0:
 				lights_on = false
@@ -83,8 +83,11 @@ func actions(delta):
 			var object = interaction_ray.get_collider()
 			if object.has_method("interact"):
 				object.interact()
+			if object.name == "Interaction":
+				object.get_parent().interact()
 		
 	if Input.is_action_just_pressed("flashlight"):
+		flashlight_sound.play()
 		if lights_on:
 			lights_on = false
 			flashlight.visible = false
