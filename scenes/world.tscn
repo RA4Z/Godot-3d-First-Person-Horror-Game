@@ -1,5 +1,6 @@
-[gd_scene load_steps=33 format=4 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=34 format=4 uid="uid://5kcn3lrub1xc"]
 
+[ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://b6sshq144sm2t" path="res://scenes/jumpscare_ui.tscn" id="1_pm21f"]
 [ext_resource type="MeshLibrary" uid="uid://bupwg0ulrwftn" path="res://assets/meshes/buildings.tres" id="2_rwgxs"]
@@ -128,6 +129,8 @@ points = PackedVector3Array(38.76635, 28.899504, 46.2801, -1.2850266, 44.599327,
 [sub_resource type="BoxMesh" id="BoxMesh_jhx03"]
 
 [node name="World" type="Node3D"]
+
+[node name="Interface" parent="." instance=ExtResource("1_7iits")]
 
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2205443, 1.9912964, 0.81163967)

@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var cameraAcceleration = 2.0
 @export var jumpForce = 5.0
 @export var gravity = 10.0
-@export var battery_consumption = 3.0
+@export var battery_consumption = .5
 
 @onready var interaction_ray: RayCast3D = $Head/Camera3D/InteractionRay
 @onready var head = $Head
@@ -16,7 +16,6 @@ extends CharacterBody3D
 @onready var footstep_sound: AudioStreamPlayer3D = $FootstepSound
 
 var battery_timer := 0.0
-var batteries := 100
 var step_timer = 0.0
 var step_interval = 0.75
 
