@@ -110,3 +110,8 @@ func _on_detection_area_body_entered(body: Node3D) -> void:
 func _on_killzone_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
 		utils.jumpscare_video(audio_stream_player, video_player, anim_player)
+
+func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
+	var global_exit_pos = details.get("link_exit_position")
+	if global_exit_pos:
+		global_position = global_exit_pos

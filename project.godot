@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 inventory="*res://singletons/inventory.gd"
 utils="*res://singletons/utils.gd"
 
+[global_group]
+
+player=""
+
 [input]
 
 left={

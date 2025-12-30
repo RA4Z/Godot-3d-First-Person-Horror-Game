@@ -12,7 +12,7 @@ height = 1.8
 radius = 0.25
 height = 1.0
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_mvpqy")
 metadata/_edit_group_ = true
 

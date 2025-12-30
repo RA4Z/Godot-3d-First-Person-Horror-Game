@@ -142,3 +142,7 @@ stream = ExtResource("5_8oo42")
 
 [node name="CloseDoor" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_w68i5")
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="."]
+transform = Transform3D(0.048971802, 0, 0.99880016, 0, 1.3670357, 0, -1.3225548, 0, 0.0648457, -0.2733829, 0.7015847, -0.052864432)
+end_position = Vector3(0, 0, 0.5)

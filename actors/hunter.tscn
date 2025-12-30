@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dgmtjao77k173"]
+[gd_scene load_steps=28 format=4 uid="uid://dgmtjao77k173"]
 
 [ext_resource type="Script" uid="uid://bo57m6uy6qk1m" path="res://scripts/hunter.gd" id="1_hopy3"]
 [ext_resource type="Texture2D" uid="uid://tdcroma0m7h4" path="res://assets/objects/shade_walkin/shade_walking_0.png" id="1_u2bqq"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://c7pk72km5yqmm" path="res://audio/sounds/monster/monster_footstep1.mp3" id="6_evhaq"]
 [ext_resource type="AudioStream" uid="uid://ccqhhvoyhnc3x" path="res://audio/sounds/monster/monster_footstep2.mp3" id="7_7yjlb"]
 [ext_resource type="AudioStream" uid="uid://d1tsyrhprhmu7" path="res://audio/sounds/monster/monster_footstep3.mp3" id="8_7yjlb"]
+[ext_resource type="AudioStream" uid="uid://ide0os5k06e" path="res://audio/musics/chase.mp3" id="9_cvkgx"]
+[ext_resource type="PackedScene" uid="uid://b6sshq144sm2t" path="res://scenes/jumpscare_ui.tscn" id="10_3os6f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_024c4"]
 resource_name = "cloth_MAT"
@@ -361,6 +363,20 @@ stream_2/stream = ExtResource("8_7yjlb")
 [sub_resource type="BoxShape3D" id="BoxShape3D_7yjlb"]
 size = Vector3(1, 1.5430908, 0.6361084)
 
+[sub_resource type="GDScript" id="GDScript_n24rm"]
+script/source = "extends NavigationAgent3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [node name="Hunter" type="CharacterBody3D"]
 script = ExtResource("1_hopy3")
 
@@ -591,6 +607,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90112895, 0.083694935)
 shape = SubResource("BoxShape3D_7yjlb")
 debug_color = Color(0.743277, 0, 0.11989739, 0.41960785)
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+script = SubResource("GDScript_n24rm")
+
+[node name="ChaseMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_cvkgx")
+volume_db = -12.0
+bus = &"Music"
+
+[node name="JumpscareUI" parent="." instance=ExtResource("10_3os6f")]
+
 [connection signal="body_entered" from="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="Killzone" to="." method="_on_killzone_body_entered"]
+[connection signal="link_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_link_reached"]
