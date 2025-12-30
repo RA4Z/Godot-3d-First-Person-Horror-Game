@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var cameraAcceleration = 2.0
 @export var jumpForce = 5.0
 @export var gravity = 10.0
-@export var battery_consumption = .5
+@export var battery_consumption = .1
 
 @onready var interaction_ray: RayCast3D = $Head/Camera3D/InteractionRay
 @onready var head = $Head

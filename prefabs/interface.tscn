@@ -1,11 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://bstva6vvjr5o2"]
+[gd_scene load_steps=5 format=3 uid="uid://bstva6vvjr5o2"]
 
 [ext_resource type="Script" uid="uid://cb7fqume1geuc" path="res://scripts/interface.gd" id="1_3greb"]
+[ext_resource type="FontFile" uid="uid://2skucwyidu7h" path="res://assets/fonts/shlop rg.otf" id="2_irfrh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3greb"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_irfrh"]
 bg_color = Color(0.27058825, 0.60784316, 0.28235295, 1)
+border_width_right = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.27058825, 0.60784316, 0.28235295, 1)
+shadow_size = 6
 
 [node name="Interface" type="Control"]
+modulate = Color(1, 1, 1, 0.5882353)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,5 +51,10 @@ theme_override_constants/margin_bottom = 20
 [node name="BatteryBar" type="ProgressBar" parent="MarginContainer"]
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_irfrh")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/background = SubResource("StyleBoxFlat_3greb")
 theme_override_styles/fill = SubResource("StyleBoxFlat_irfrh")
 value = 100.0

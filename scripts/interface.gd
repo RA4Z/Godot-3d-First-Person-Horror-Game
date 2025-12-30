@@ -8,11 +8,20 @@ func _process(_delta):
 
 func update_battery_ui(value):
 	battery_bar.value = value
-	var sb = battery_bar.get_theme_stylebox("fill")
+	var tween = create_tween()
+	tween.tween_property(battery_bar, "value", value, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
+	var sb = battery_bar.get_theme_stylebox("fill").duplicate()
+	var main_color : Color
 	if value > 70:
-		sb.bg_color = "#459b48"
+		main_color = Color.DARK_GREEN # Use tons mais escuros/saturados para terror
 	elif value > 30:
-		sb.bg_color = "#968705"
+		main_color = Color.GOLDENROD
 	else:
-		sb.bg_color = "#710005"
+		main_color = Color.DARK_RED
+		
+	sb.bg_color = main_color
+	
+	sb.shadow_color = main_color.darkened(0.1)
+	sb.shadow_size = 6
+	battery_bar.add_theme_stylebox_override("fill", sb)
