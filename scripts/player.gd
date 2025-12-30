@@ -68,14 +68,14 @@ func _process(delta):
 	move_and_slide()
 
 func actions(delta):
-	if lights_on and batteries > 0:
+	if lights_on and inventory.player_battery > 0:
 		battery_timer += delta
 		if battery_timer >= battery_consumption:
-			batteries -= 1
+			inventory.player_battery -= 1
 			battery_timer = 0.0
-			print("Bateria restante: ", batteries)
+			print("Bateria restante: ", inventory.player_battery)
 			
-			if batteries <= 0:
+			if inventory.player_battery <= 0:
 				lights_on = false
 				flashlight.visible = false
 
@@ -89,7 +89,7 @@ func actions(delta):
 		if lights_on:
 			lights_on = false
 			flashlight.visible = false
-		elif batteries > 0:
+		elif inventory.player_battery > 0:
 			lights_on = true
 			flashlight.visible = true
 			
