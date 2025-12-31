@@ -6461,6 +6461,7 @@ func _on_link_reached(details: Dictionary) -> void:
 
 [node name="Decayed" type="CharacterBody3D"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+collision_layer = 4
 script = ExtResource("1_n12pc")
 
 [node name="Sketchfab_model" type="Node3D" parent="."]
@@ -6958,6 +6959,7 @@ volume_db = 10.0
 max_distance = 100.0
 
 [node name="Killzone" type="Area3D" parent="."]
+collision_layer = 0
 
 [node name="Collision" type="CollisionShape3D" parent="Killzone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3053344, 0.2562337)
