@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=42 format=4 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dioa15yga7e73" path="res://prefabs/decorations/desk.tscn" id="17_7iits"]
 [ext_resource type="PackedScene" uid="uid://daf1vmcnyxs72" path="res://prefabs/decorations/remains.tscn" id="17_ctatt"]
 [ext_resource type="PackedScene" uid="uid://brekf1vpriqeu" path="res://prefabs/items/key.tscn" id="18_oo54l"]
+[ext_resource type="PackedScene" uid="uid://cgv03d7qvrnkd" path="res://scenes/world_environment.tscn" id="19_munwf"]
 [ext_resource type="PackedScene" uid="uid://gfycnu5wqinw" path="res://prefabs/radio.tscn" id="21_7iits"]
 [ext_resource type="Script" uid="uid://dcc5ktpwbetqo" path="res://scripts/events/sound_event.gd" id="22_ctatt"]
 [ext_resource type="AudioStream" uid="uid://oni42o3kdyw5" path="res://audio/musics/11. Prison Riot.mp3" id="22_oo54l"]
@@ -376,6 +377,8 @@ transform = Transform3D(0.9670682, 0, 0.2545175, 0, 1, 0, -0.2545175, 0, 0.96706
 transform = Transform3D(-4.371139e-11, 0, 0.001, 0, 0.001, 0, -0.001, 0, -4.371139e-11, -4.460411, 1.634194, 4.229667)
 keyID = "0001"
 
+[node name="WorldEnvironment" parent="GameConfigs" instance=ExtResource("19_munwf")]
+
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.007656, 1.9912964, 1.8176295)
 
@@ -403,11 +406,8 @@ open_angle = -90.0
 [node name="LampHead" parent="Enemies" instance=ExtResource("8_4mrxx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4225636, 0.9570825, -6.1223335)
 
-[node name="LampHead2" parent="Enemies" instance=ExtResource("8_4mrxx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07881069, 0.9570823, -9.8409815)
-
 [node name="Decayed" parent="Enemies" instance=ExtResource("23_xgqkh")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -2.4623182, 0.9967773, -10.104193)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -2.0273094, 0.9019182, -7.341765)
 
 [node name="Events" type="Node3D" parent="."]
 

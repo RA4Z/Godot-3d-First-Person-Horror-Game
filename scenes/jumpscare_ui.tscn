@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6sshq144sm2t"]
+[gd_scene load_steps=5 format=3 uid="uid://b6sshq144sm2t"]
 
-[ext_resource type="AudioStream" uid="uid://3mit2bi1gh6b" path="res://audio/sounds/jumpscare.mp3" id="1_ibsjb"]
-[ext_resource type="VideoStream" uid="uid://debs0ry0uk7bw" path="res://assets/videos/jumpscare.ogv" id="2_ibsjb"]
+[ext_resource type="Script" uid="uid://626a3tljvhl8" path="res://scripts/jumpscare_ui.gd" id="1_igxsg"]
 
 [sub_resource type="Animation" id="Animation_igxsg"]
 length = 0.001
@@ -43,9 +42,9 @@ _data = {
 
 [node name="JumpscareUI" type="CanvasLayer"]
 process_mode = 3
+script = ExtResource("1_igxsg")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_ibsjb")
 volume_db = -12.0
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
@@ -57,7 +56,6 @@ grow_vertical = 2
 scale = Vector2(1.1, 1.1)
 pivot_offset = Vector2(576, 324)
 size_flags_horizontal = 4
-stream = ExtResource("2_ibsjb")
 expand = true
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]

@@ -40,12 +40,15 @@ func interact():
 		if not is_open:
 			close_door_audio.pitch_scale = randf_range(0.8, 1.2)
 			close_door_audio.play()
+			GameEvents.noise_made.emit(global_position, 20.0)
 		else:
 			await get_tree().create_timer(1.5).timeout
 			navigation_link_3d.enabled = is_open
+			GameEvents.noise_made.emit(global_position, 7.0)
 			
 	else:
 		locked_door_audio.pitch_scale = randf_range(0.9, 1.1)
+		GameEvents.noise_made.emit(global_position, 3.0)
 		locked_door_audio.play()
 		
 		var shake_tween = create_tween()

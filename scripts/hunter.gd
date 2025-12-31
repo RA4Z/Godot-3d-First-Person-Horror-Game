@@ -5,11 +5,9 @@ extends CharacterBody3D
 
 @onready var anim = $AnimationPlayer
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var video_player: VideoStreamPlayer = $JumpscareUI/VideoStreamPlayer
-@onready var audio_stream_player: AudioStreamPlayer = $JumpscareUI/AudioStreamPlayer
-@onready var anim_player: AnimationPlayer = $JumpscareUI/AnimPlayer
 @onready var ray_cast: RayCast3D = $Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/FieldOfView
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var jumpscare_ui: CanvasLayer = $JumpscareUI
 
 enum State { WANDERING, CHASING }
 var current_state = State.WANDERING
@@ -104,7 +102,7 @@ func _on_detection_area_body_entered(body: Node3D) -> void:
 
 func _on_killzone_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
-		utils.jumpscare_video(audio_stream_player, video_player, anim_player)
+		utils.jumpscare_video(jumpscare_ui)
 
 func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 	var global_exit_pos = details.get("link_exit_position")
