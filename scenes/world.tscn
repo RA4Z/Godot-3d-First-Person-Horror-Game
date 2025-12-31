@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=41 format=4 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cseuoplnm6cqn" path="res://assets/objects/old_wooden_table/simple_old_wooden_table.glb" id="6_i7141"]
 [ext_resource type="PackedScene" uid="uid://d1ffpfu6yu4u6" path="res://assets/objects/creeper/the_suffering_ties_that_bind_the_creeper.glb" id="7_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://bxtuu6bcmklpc" path="res://prefabs/door_metal.tscn" id="7_i7141"]
-[ext_resource type="PackedScene" uid="uid://dgmtjao77k173" path="res://actors/hunter.tscn" id="8_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://dgmtjao77k173" path="res://actors/lamp_head.tscn" id="8_4mrxx"]
 [ext_resource type="Texture2D" uid="uid://8llbpi26d3y8" path="res://assets/textures/T_Decal_Blood651aas.png" id="10_w7kh3"]
 [ext_resource type="Texture2D" uid="uid://icjq1j2yyr1f" path="res://assets/textures/T_Decal_Blood651aas_N.png" id="11_e3hyu"]
 [ext_resource type="PackedScene" uid="uid://cwfcbw220887d" path="res://prefabs/decorations/old_furnitures.tscn" id="11_o8fc1"]
@@ -18,10 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://hgkmi0xu00s" path="res://assets/objects/furniture/furniture_decor_sculpture_8mb_2.png" id="14_2lf6f"]
 [ext_resource type="Texture2D" uid="uid://b8r8fo0m643yo" path="res://assets/objects/furniture/furniture_decor_sculpture_8mb_3.png" id="15_7iits"]
 [ext_resource type="PackedScene" uid="uid://dioa15yga7e73" path="res://prefabs/decorations/desk.tscn" id="17_7iits"]
-[ext_resource type="PackedScene" uid="uid://cgv03d7qvrnkd" path="res://scenes/world_environment.tscn" id="18_kpybi"]
+[ext_resource type="PackedScene" uid="uid://daf1vmcnyxs72" path="res://prefabs/decorations/remains.tscn" id="17_ctatt"]
 [ext_resource type="PackedScene" uid="uid://brekf1vpriqeu" path="res://prefabs/items/key.tscn" id="18_oo54l"]
 [ext_resource type="PackedScene" uid="uid://gfycnu5wqinw" path="res://prefabs/radio.tscn" id="21_7iits"]
+[ext_resource type="Script" uid="uid://dcc5ktpwbetqo" path="res://scripts/events/sound_event.gd" id="22_ctatt"]
 [ext_resource type="AudioStream" uid="uid://oni42o3kdyw5" path="res://audio/musics/11. Prison Riot.mp3" id="22_oo54l"]
+[ext_resource type="AudioStream" uid="uid://b7g6qc17aiklf" path="res://audio/sounds/SFX/ScaryEcho2.mp3" id="23_kpybi"]
+[ext_resource type="PackedScene" uid="uid://bngdn8mkeb6v1" path="res://actors/decayed.tscn" id="23_xgqkh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_4mrxx"]
 vertices = PackedVector3Array(-8.75, 5.5, -13.48645, -9.25, 5.5, -13.48645, -9.25, 5.5, -4.23645, -8.25, 5.5, -14.48645, 3.75, 5.5, -4.98645, 10.25, 5.5, -14.48645, 10.25, 5.5, -4.98645, 3.25, 5.5, -4.23645, -6.25, 1.5, -11.73645, -6.75, 1.5, -13.23645, -8, 1.5, -13.23645, -8, 1.5, -8.73645, -6.5, 1.5, -8.23645, 1, 1.5, -3.9864502, 2.25, 1.5, -4.48645, 2.75, 1.5, -5.98645, -8, 1.5, -1.7364502, -5.25, 1.5, -1.7364502, -5.25, 1.5, -2.9864502, -4.25, 1.5, -11.73645, -6.5, 1.5, -6.48645, -4.75, 1.5, -3.4864502, 4, 1.5, -13.23645, -3.75, 1.5, -13.23645, -8, 1.5, -5.98645, 1, 1.5, -2.9864502, 4.25, 1.5, -5.98645, 8, 1.5, -11.98645, 7.5, 1.5, -13.23645, 9.25, 1.5, -5.98645, 9.25, 1.5, -11.98645, 3.75, 5.5, 3.0135498, 7.25, 5.5, 3.0135498, 7.25, 5.5, -1.4864502, 3.75, 5.5, -1.4864502, -9.25, 5.5, 6.51355, -2.75, 5.5, 4.51355, -2.25, 5.5, 4.01355, 3.25, 5.5, -1.9864502, 3.25, 5.5, 4.01355, -2.75, 5.5, 6.51355, -3.75, 1.5, 15.01355, -3.75, 1.5, 6.76355, -4, 1.5, 14.01355, -4.75, 1.5, 14.76355, -4.25, 1.5, 15.26355, -8, 1.5, 15.01355, -6.75, 1.5, 14.26355, -6.75, 1.5, 4.51355, -6.25, 1.5, 14.76355, -5.25, 1.5, -0.4864502, -5.75, 1.5, 3.0135498, -3.5, 1.5, 1.5135498, -3.75, 1.5, 0.013549805, -3.75, 1.5, 3.0135498, 6, 1.75, 0.2635498, 7.25, 1.5, 0.7635498, 7.25, 1.5, -0.2364502, 6, 1.5, -0.2364502, 1, 1.5, 2.2635498, 2.5, 1.5, 1.5135498, 2.5, 1.5, 1.0135498, -1.25, 1.5, 1.0135498, -1, 1.5, 3.0135498, 1, 1.5, 3.0135498, -9.25, 5.5, 15.01355, -2.75, 5.5, 15.01355)
@@ -169,6 +172,9 @@ shadow_mesh = SubResource("ArrayMesh_kpybi")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iy7y3"]
 size = Vector3(100, 127.67673, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7iits"]
+size = Vector3(2.9784546, 2.600647, 1)
 
 [node name="World" type="Node3D"]
 
@@ -321,12 +327,12 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 72.16374, 0)
 shape = SubResource("BoxShape3D_iy7y3")
 
-[node name="Hall" type="Node3D" parent="GameConfigs/NavigationRegion3D/Decorations"]
+[node name="LightersHall" type="Node3D" parent="GameConfigs/NavigationRegion3D/Decorations"]
 
-[node name="Desk" parent="GameConfigs/NavigationRegion3D/Decorations/Hall" instance=ExtResource("17_7iits")]
+[node name="Desk" parent="GameConfigs/NavigationRegion3D/Decorations/LightersHall" instance=ExtResource("17_7iits")]
 transform = Transform3D(-4.371139e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.371139e-09, -3.7036142, 0, 5.2174253)
 
-[node name="Decal" type="Decal" parent="GameConfigs/NavigationRegion3D/Decorations/Hall"]
+[node name="Decal" type="Decal" parent="GameConfigs/NavigationRegion3D/Decorations/LightersHall"]
 transform = Transform3D(0.6190665, 0, -0.7853385, 0, 1, 0, 0.7853385, 0, 0.6190665, -4.66755, 0.46642077, 1.9632902)
 texture_albedo = ExtResource("10_w7kh3")
 texture_normal = ExtResource("11_e3hyu")
@@ -334,7 +340,7 @@ texture_orm = SubResource("GradientTexture1D_q5onr")
 modulate = Color(1, 0.17254902, 0.1254902, 1)
 cull_mask = 1048571
 
-[node name="Decal2" type="Decal" parent="GameConfigs/NavigationRegion3D/Decorations/Hall"]
+[node name="Decal2" type="Decal" parent="GameConfigs/NavigationRegion3D/Decorations/LightersHall"]
 transform = Transform3D(0.6190665, 0, -0.7853385, 0, 1, 0, 0.7853385, 0, 0.6190665, -6.858926, 0.4664209, -6.172047)
 texture_albedo = ExtResource("10_w7kh3")
 texture_normal = ExtResource("11_e3hyu")
@@ -342,7 +348,7 @@ texture_orm = SubResource("GradientTexture1D_q5onr")
 modulate = Color(1, 0.17254902, 0.1254902, 1)
 cull_mask = 1048571
 
-[node name="Decal3" type="Decal" parent="GameConfigs/NavigationRegion3D/Decorations/Hall"]
+[node name="Decal3" type="Decal" parent="GameConfigs/NavigationRegion3D/Decorations/LightersHall"]
 transform = Transform3D(0.6190665, 0, -0.7853385, 0, 1, 0, 0.7853385, 0, 0.6190665, -2.4104204, 0.4664209, -4.087421)
 texture_albedo = ExtResource("10_w7kh3")
 texture_normal = ExtResource("11_e3hyu")
@@ -350,7 +356,7 @@ texture_orm = SubResource("GradientTexture1D_q5onr")
 modulate = Color(1, 0.17254902, 0.1254902, 1)
 cull_mask = 1048571
 
-[node name="Decal4" type="Decal" parent="GameConfigs/NavigationRegion3D/Decorations/Hall"]
+[node name="Decal4" type="Decal" parent="GameConfigs/NavigationRegion3D/Decorations/LightersHall"]
 transform = Transform3D(-4.3711385e-08, 1, -4.3711385e-08, 0, -4.371139e-08, -0.99999994, -0.99999994, -4.371139e-08, 1.9106853e-15, 4.407246, 1.4513342, -3.1107812)
 texture_albedo = ExtResource("10_w7kh3")
 texture_normal = ExtResource("11_e3hyu")
@@ -358,13 +364,17 @@ texture_orm = SubResource("GradientTexture1D_q5onr")
 modulate = Color(1, 0.17254902, 0.1254902, 1)
 cull_mask = 1048571
 
+[node name="Remains" parent="GameConfigs/NavigationRegion3D/Decorations/LightersHall" instance=ExtResource("17_ctatt")]
+transform = Transform3D(0.16249943, 0, 0.98670864, 0, 1, 0, -0.98670864, 0, 0.16249943, -7.3653917, -0.16760051, 8.640349)
+
+[node name="Remains2" parent="GameConfigs/NavigationRegion3D/Decorations/LightersHall" instance=ExtResource("17_ctatt")]
+transform = Transform3D(0.9670682, 0, 0.2545175, 0, 1, 0, -0.2545175, 0, 0.9670682, -5.9877963, -0.16760075, 5.9096394)
+
 [node name="Items" type="Node3D" parent="GameConfigs/NavigationRegion3D"]
 
 [node name="Key" parent="GameConfigs/NavigationRegion3D/Items" instance=ExtResource("18_oo54l")]
 transform = Transform3D(-4.371139e-11, 0, 0.001, 0, 0.001, 0, -0.001, 0, -4.371139e-11, -4.460411, 1.634194, 4.229667)
 keyID = "0001"
-
-[node name="WorldEnvironment" parent="GameConfigs" instance=ExtResource("18_kpybi")]
 
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.007656, 1.9912964, 1.8176295)
@@ -390,10 +400,31 @@ open_angle = -90.0
 
 [node name="Enemies" type="Node3D" parent="."]
 
-[node name="Hunter" parent="Enemies" instance=ExtResource("8_4mrxx")]
+[node name="LampHead" parent="Enemies" instance=ExtResource("8_4mrxx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4225636, 0.9570825, -6.1223335)
 
-[node name="Hunter2" parent="Enemies" instance=ExtResource("8_4mrxx")]
+[node name="LampHead2" parent="Enemies" instance=ExtResource("8_4mrxx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07881069, 0.9570823, -9.8409815)
+
+[node name="Decayed" parent="Enemies" instance=ExtResource("23_xgqkh")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -2.4623182, 0.9967773, -10.104193)
+
+[node name="Events" type="Node3D" parent="."]
+
+[node name="ReachSirenPlace" type="Area3D" parent="Events"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7484665, 1.5480568, 13.147696)
+collision_layer = 0
+script = ExtResource("22_ctatt")
+
+[node name="Collision" type="CollisionShape3D" parent="Events/ReachSirenPlace"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25967407, 0.8003235, 0)
+shape = SubResource("BoxShape3D_7iits")
+debug_color = Color(0.7706669, 0.5658458, 0.07669132, 0.41960785)
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="Events/ReachSirenPlace"]
+stream = ExtResource("23_kpybi")
+volume_db = -15.0
+
+[connection signal="body_entered" from="Events/ReachSirenPlace" to="Events/ReachSirenPlace" method="_on_body_entered"]
 
 [editable path="GameConfigs/NavigationRegion3D/Decorations/OldFurnitures"]

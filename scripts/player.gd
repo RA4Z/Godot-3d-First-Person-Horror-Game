@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-@export var playerSpeed = 2.0
+@export var playerSpeed = 2.5
+@export var playerSneak = 1.0
 @export var playerAcceleration = 5.0
 @export var cameraSensitivity = 0.25
 @export var cameraAcceleration = 2.0
@@ -20,6 +21,7 @@ var battery_timer := 0.0
 var step_timer = 0.0
 var step_interval = 0.75
 
+var is_sneaking := false
 var lights_on := true
 var direction = Vector3.ZERO
 var head_y_axis = 0.0
@@ -53,7 +55,17 @@ func _physics_process(delta):
 
 func _process(delta):
 	direction = Input.get_axis("left", "right") * head.basis.x + Input.get_axis("forward", "backward") * head.basis.z
-	velocity = velocity.lerp(direction.normalized() * playerSpeed + velocity.y * Vector3.UP, playerAcceleration * delta)
+	
+	is_sneaking = Input.is_action_pressed("sneak")
+	var target_speed = playerSpeed
+	
+	if is_sneaking:
+		target_speed = playerSneak
+		step_interval = 1.1
+	else:
+		step_interval = 0.75
+		
+	velocity = velocity.lerp(direction.normalized() * target_speed + velocity.y * Vector3.UP, playerAcceleration * delta)
 	
 	head.rotation.y = -deg_to_rad(head_y_axis)
 	camera.rotation.x = -deg_to_rad(camera_x_axis)
@@ -102,4 +114,15 @@ func actions(delta):
 
 func play_footstep():
 	footstep_sound.pitch_scale = randf_range(0.8, 1.2) 
+	
+	var noise_radius = 0.0
+	
+	if is_sneaking:
+		footstep_sound.volume_db = -15.0
+		noise_radius = 2.0
+	else:
+		footstep_sound.volume_db = 0.0
+		noise_radius = 10.0
+		
 	footstep_sound.play()
+	GameEvents.noise_made.emit(global_position, noise_radius)
