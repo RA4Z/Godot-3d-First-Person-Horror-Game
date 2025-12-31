@@ -5,7 +5,6 @@ extends CharacterBody3D
 
 @onready var anim = $AnimationPlayer
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var chase_music: AudioStreamPlayer = $ChaseMusic
 @onready var video_player: VideoStreamPlayer = $JumpscareUI/VideoStreamPlayer
 @onready var audio_stream_player: AudioStreamPlayer = $JumpscareUI/AudioStreamPlayer
 @onready var anim_player: AnimationPlayer = $JumpscareUI/AnimPlayer
@@ -32,18 +31,14 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= 9.8 * delta
 
+	AudioPlayer.update_chase_music()
 	if current_state == State.CHASING and player_target:
 		nav_agent.target_position = player_target.global_position
 		move_towards_target(chase_speed, delta)
 		animation_player.speed_scale = 4.0
 		
-		if not chase_music.playing:
-			chase_music.play()
 	else:
 		animation_player.speed_scale = 3.0
-		if chase_music.playing:
-			chase_music.stop()
-			
 		if nav_agent.is_navigation_finished():
 			_choose_new_target()
 		move_towards_target(walk_speed, delta)

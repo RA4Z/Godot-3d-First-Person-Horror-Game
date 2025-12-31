@@ -19,10 +19,12 @@ config/icon="res://icon.svg"
 
 inventory="*res://singletons/inventory.gd"
 utils="*res://singletons/utils.gd"
+AudioPlayer="*res://singletons/audio_player.tscn"
 
 [global_group]
 
 player=""
+enemy=""
 
 [input]
 

@@ -13,7 +13,7 @@ extends AnimatableBody3D
 	set(value):
 		keyID = value.left(4)
 		$"Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null/prison_door_2_3/prison_door_2_3_prison door_0/Label3D".text = keyID
-			
+		
 @export var open_angle := 90.0
 var is_open := false
 
@@ -24,7 +24,6 @@ func _ready():
 func interact():
 	if keyID in inventory.player_keys:
 		is_open = !is_open
-		navigation_link_3d.enabled = is_open
 		interaction_collision.set_deferred("disabled", !is_open)
 		
 		if is_open:
@@ -41,6 +40,10 @@ func interact():
 		if not is_open:
 			close_door_audio.pitch_scale = randf_range(0.8, 1.2)
 			close_door_audio.play()
+		else:
+			await get_tree().create_timer(1.5).timeout
+			navigation_link_3d.enabled = is_open
+			
 	else:
 		locked_door_audio.pitch_scale = randf_range(0.9, 1.1)
 		locked_door_audio.play()
