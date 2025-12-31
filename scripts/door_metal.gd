@@ -7,8 +7,13 @@ extends AnimatableBody3D
 @onready var prison_door_2_3: Node3D = $"Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null/prison_door_2_3"
 @onready var interaction_collision: CollisionShape3D = $Interaction/InteractionCollision
 @onready var navigation_link_3d: NavigationLink3D = $NavigationLink3D
+@onready var label_3d: Label3D = $"Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null/prison_door_2_3/prison_door_2_3_prison door_0/Label3D"
 
-@export var keyID := ""
+@export var keyID := "":
+	set(value):
+		keyID = value.left(4)
+		$"Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null/prison_door_2_3/prison_door_2_3_prison door_0/Label3D".text = keyID
+			
 @export var open_angle := 90.0
 var is_open := false
 
@@ -48,5 +53,3 @@ func interact():
 		shake_tween.tween_property(prison_door_2_3, "rotation:y", -intensity, duration)
 		shake_tween.tween_property(prison_door_2_3, "rotation:y", intensity * 0.5, duration)
 		shake_tween.tween_property(prison_door_2_3, "rotation:y", 0.0, duration)
-		
-		print("You need a key to open this door")

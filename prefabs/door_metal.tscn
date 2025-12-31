@@ -125,6 +125,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5408096, -0.2474386, 3.0987
 mesh = SubResource("ArrayMesh_i46lo")
 skeleton = NodePath("")
 
+[node name="Label3D" type="Label3D" parent="Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null/prison_door_2_3/prison_door_2_3_prison door_0"]
+transform = Transform3D(-0.53581524, 0, 99.998566, -2.2204144e-14, 99.99999, -1.1897488e-16, -99.99857, -2.2204459e-14, -0.53581524, 4.351513, 124.460464, 61.08448)
+modulate = Color(0.50980395, 0, 0, 1)
+
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0036621094, 1.3988649, -0.001739502)
 shape = SubResource("BoxShape3D_fte3h")
@@ -152,5 +156,5 @@ stream = ExtResource("7_w68i5")
 attenuation_model = 2
 
 [node name="NavigationLink3D" type="NavigationLink3D" parent="."]
-transform = Transform3D(0.048971802, 0, 0.99880016, 0, 1.3670357, 0, -1.3225548, 0, 0.0648457, -0.2733829, 0.7015847, -0.052864432)
-end_position = Vector3(0, 0, 0.5)
+transform = Transform3D(0.048971802, 0, 0.99880016, 0, 1.3670357, 0, -1.3225548, 0, 0.0648457, -0.36527744, 0.7015847, -0.052864432)
+end_position = Vector3(0, 0, 1)

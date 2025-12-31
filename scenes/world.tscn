@@ -324,9 +324,10 @@ transform = Transform3D(-4.371139e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.371139e-09
 
 [node name="Key" parent="GameConfigs/NavigationRegion3D/Items" instance=ExtResource("18_oo54l")]
 transform = Transform3D(-4.371139e-11, 0, 0.001, 0, 0.001, 0, -0.001, 0, -4.371139e-11, -4.460411, 1.634194, 4.229667)
+keyID = "0001"
 
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09698224, 1.9912964, 1.2682933)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.007656, 1.9912964, 1.8176295)
 
 [node name="Lights" type="Node3D" parent="."]
 
@@ -343,7 +344,8 @@ lamp_color = Color(0.44397458, 0.027662836, 0.09099742, 1)
 [node name="Doors" type="Node3D" parent="."]
 
 [node name="DoorMetal" parent="Doors" instance=ExtResource("7_i7141")]
-transform = Transform3D(1, 0, 0, 0, 0.7315097, 0, 0, 0, 0.75520504, -2.224694, 0.97870207, 1.2662364)
+transform = Transform3D(-1, 0, -6.602212e-08, 0, 0.7315097, 0, 8.742278e-08, 0, -0.75520504, -2.5639083, 0.97870207, 1.2662364)
+keyID = "0001"
 open_angle = -90.0
 
 [node name="Enemies" type="Node3D" parent="."]
