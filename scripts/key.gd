@@ -1,5 +1,6 @@
 extends MeshInstance3D
 
+@export var keyID := ""
 
 func _ready() -> void:
 	pass

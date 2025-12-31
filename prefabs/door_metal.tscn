@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bxtuu6bcmklpc"]
+[gd_scene load_steps=15 format=4 uid="uid://bxtuu6bcmklpc"]
 
 [ext_resource type="Texture2D" uid="uid://dhb8qvs3hn4qw" path="res://assets/objects/metal_door/door__prison_door_metal_old_-12mb_0.png" id="1_dyvsd"]
 [ext_resource type="Texture2D" uid="uid://dkp7lofuqd7lg" path="res://assets/objects/metal_door/door__prison_door_metal_old_-12mb_1.png" id="2_c03p8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b2me18i7q1uej" path="res://scripts/door_metal.gd" id="4_w68i5"]
 [ext_resource type="AudioStream" uid="uid://0h7a84ug0lre" path="res://audio/sounds/door_opening.mp3" id="5_8oo42"]
 [ext_resource type="AudioStream" uid="uid://dmp1jjb41bbwf" path="res://audio/sounds/door_closing.mp3" id="6_w68i5"]
+[ext_resource type="AudioStream" uid="uid://rvv5hwbp4g7p" path="res://audio/sounds/door_locked.mp3" id="7_w68i5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rs4yi"]
 resource_name = "prison_door"
@@ -139,9 +140,16 @@ shape = SubResource("BoxShape3D_8oo42")
 
 [node name="OpenDoor" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_8oo42")
+attenuation_model = 2
 
 [node name="CloseDoor" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_w68i5")
+attenuation_model = 2
+
+[node name="LockedDoor" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.414427, 0, 0, 0, 1.2722646, 0, 0, 0)
+stream = ExtResource("7_w68i5")
+attenuation_model = 2
 
 [node name="NavigationLink3D" type="NavigationLink3D" parent="."]
 transform = Transform3D(0.048971802, 0, 0.99880016, 0, 1.3670357, 0, -1.3225548, 0, 0.0648457, -0.2733829, 0.7015847, -0.052864432)
