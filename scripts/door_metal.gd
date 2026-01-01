@@ -23,6 +23,7 @@ func _ready():
 
 func interact():
 	if keyID in inventory.player_keys:
+		label_3d.modulate = Color("008300ff") 
 		is_open = !is_open
 		interaction_collision.set_deferred("disabled", !is_open)
 		

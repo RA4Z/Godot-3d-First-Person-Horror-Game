@@ -3,7 +3,7 @@ extends CharacterBody3D
 enum State { IDLE, WANDERING, ALERTED, RUNNING }
 
 @export_group("Movimentação")
-@export var walk_speed = 2.0
+@export var walk_speed = 1.2
 @export var run_speed = 5.0
 @export var rotation_speed = 5.0
 @export var wander_radius = 10.0
