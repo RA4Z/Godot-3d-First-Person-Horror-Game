@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cobndci8acmyl"]
+[gd_scene load_steps=6 format=3 uid="uid://cobndci8acmyl"]
 
 [ext_resource type="MeshLibrary" uid="uid://bupwg0ulrwftn" path="res://assets/meshes/buildings.tres" id="1_hq2ei"]
 [ext_resource type="PackedScene" uid="uid://k65csm8j2idf" path="res://prefabs/decorations/bed.tscn" id="2_k20pd"]
 [ext_resource type="PackedScene" uid="uid://bj3npfwpuulho" path="res://prefabs/lamp.tscn" id="3_dau1l"]
 [ext_resource type="PackedScene" uid="uid://bxtuu6bcmklpc" path="res://prefabs/door_metal.tscn" id="4_q1bh5"]
+[ext_resource type="Texture2D" uid="uid://ku3tsui7lax5" path="res://assets/graffiti/black_graffiti.png" id="5_k20pd"]
 
 [node name="PrisionCells" type="Node3D"]
 
@@ -38,3 +39,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0723405, -0.87189126, -2.1
 
 [node name="Light" parent="Decorations/PrisonCells" instance=ExtResource("3_dau1l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5613008, 0.4855652, -2.6366482)
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(-4.3711385e-08, 0.99999994, -4.3711385e-08, 0, -4.3711385e-08, -0.99999994, -0.9999999, -4.3711385e-08, 1.9106853e-15, -8.9161, 2.6251645, 13.885593)
+size = Vector3(2.8496094, 2, 2.496582)
+texture_albedo = ExtResource("5_k20pd")
+cull_mask = 1047553

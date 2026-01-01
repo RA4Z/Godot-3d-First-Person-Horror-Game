@@ -1,6 +1,7 @@
 extends Control
 
-@onready var battery_bar: ProgressBar = $MarginContainer/BatteryBar
+@onready var battery_bar: ProgressBar = $MarginContainer/VBoxContainer/BatteryBar
+@onready var battery_quantity: Label = $MarginContainer/VBoxContainer/HBoxContainer/BatteryQuantity
 
 func _process(_delta):
 	var battery_value = inventory.player_battery 
@@ -8,6 +9,7 @@ func _process(_delta):
 
 func update_battery_ui(value):
 	battery_bar.value = value
+	battery_quantity.text = str(inventory.player_items['Battery'])
 	var tween = create_tween()
 	tween.tween_property(battery_bar, "value", value, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	

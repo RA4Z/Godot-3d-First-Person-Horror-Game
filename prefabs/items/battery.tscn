@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://2v5lrlgdnvmh"]
+[gd_scene load_steps=11 format=4 uid="uid://2v5lrlgdnvmh"]
 
 [ext_resource type="Texture2D" uid="uid://cyva4y0nw26ar" path="res://assets/objects/battery/aa_batteries_0.png" id="1_dwid7"]
-[ext_resource type="Script" uid="uid://b8cwfvk82v58k" path="res://scripts/add_invetory_item.gd" id="1_nilvu"]
+[ext_resource type="Script" uid="uid://b8cwfvk82v58k" path="res://scripts/add_inventory_item.gd" id="1_nilvu"]
 [ext_resource type="Texture2D" uid="uid://dkjhe8knd2duy" path="res://assets/objects/battery/aa_batteries_1.png" id="2_nilvu"]
+[ext_resource type="AudioStream" uid="uid://bymu1o160edh8" path="res://audio/sounds/SFX/grab_item.mp3" id="4_hjjws"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y46ye"]
 resource_name = "m_battery"
@@ -113,4 +114,5 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043548606, 1.8822633, -0.4421158)
 shape = SubResource("BoxShape3D_hjjws")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="Collect" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_hjjws")

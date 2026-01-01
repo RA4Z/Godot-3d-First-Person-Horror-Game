@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=11 format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://chao73ltmt631" path="res://prefabs/pause_menu.tscn" id="2_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://dwkvc74nqugyc" path="res://scenes/Rooms/lighters_hall.tscn" id="2_71j4m"]
 [ext_resource type="PackedScene" uid="uid://cobndci8acmyl" path="res://scenes/Rooms/prision_cells.tscn" id="3_qfnet"]
 [ext_resource type="PackedScene" uid="uid://dgmtjao77k173" path="res://actors/lamp_head.tscn" id="8_4mrxx"]
@@ -19,6 +20,8 @@ agent_radius = 0.75
 [node name="GameConfigs" type="Node3D" parent="."]
 
 [node name="Interface" parent="GameConfigs" instance=ExtResource("1_7iits")]
+
+[node name="PauseMenu" parent="GameConfigs" instance=ExtResource("2_7r4gi")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="GameConfigs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)

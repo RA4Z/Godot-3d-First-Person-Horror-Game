@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://d0iabbh4bcopt"]
+
+[ext_resource type="FontFile" uid="uid://2skucwyidu7h" path="res://assets/fonts/shlop rg.otf" id="1_hcb3q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_atv5q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpmee"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bvkqb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ntkjb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yb5o4"]
+
+[resource]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_hover_color = Color(0.9490196, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0.5267932, 1.2153015e-06, 3.85046e-07, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.5254902, 0, 0, 1)
+Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("1_hcb3q")
+Button/styles/disabled = SubResource("StyleBoxEmpty_atv5q")
+Button/styles/focus = SubResource("StyleBoxEmpty_cpmee")
+Button/styles/hover = SubResource("StyleBoxEmpty_bvkqb")
+Button/styles/normal = SubResource("StyleBoxEmpty_ntkjb")
+Button/styles/pressed = SubResource("StyleBoxEmpty_yb5o4")

@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dkp7lofuqd7lg" path="res://assets/objects/metal_door/door__prison_door_metal_old_-12mb_1.png" id="2_c03p8"]
 [ext_resource type="Texture2D" uid="uid://cshp4fa8kvm8c" path="res://assets/objects/metal_door/door__prison_door_metal_old_-12mb_2.png" id="3_8oo42"]
 [ext_resource type="Script" uid="uid://b2me18i7q1uej" path="res://scripts/door_metal.gd" id="4_w68i5"]
-[ext_resource type="AudioStream" uid="uid://0h7a84ug0lre" path="res://audio/sounds/door_opening.mp3" id="5_8oo42"]
-[ext_resource type="AudioStream" uid="uid://dmp1jjb41bbwf" path="res://audio/sounds/door_closing.mp3" id="6_w68i5"]
-[ext_resource type="AudioStream" uid="uid://rvv5hwbp4g7p" path="res://audio/sounds/door_locked.mp3" id="7_w68i5"]
+[ext_resource type="AudioStream" uid="uid://0h7a84ug0lre" path="res://audio/sounds/SFX/door_opening.mp3" id="5_8oo42"]
+[ext_resource type="AudioStream" uid="uid://dmp1jjb41bbwf" path="res://audio/sounds/SFX/door_closing.mp3" id="6_w68i5"]
+[ext_resource type="AudioStream" uid="uid://rvv5hwbp4g7p" path="res://audio/sounds/SFX/door_locked.mp3" id="7_w68i5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rs4yi"]
 resource_name = "prison_door"
