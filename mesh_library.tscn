@@ -1,16 +1,14 @@
 [gd_scene load_steps=9 format=3 uid="uid://fjuakmmwl5ea"]
 
-[ext_resource type="Texture2D" uid="uid://cgu3cyxbghy64" path="res://assets/textures/brick_texture.jpg" id="1_t7hg2"]
+[ext_resource type="Texture2D" uid="uid://bwswu6jqflfwo" path="res://assets/textures/brick_white_texture.jpg" id="1_g2w8g"]
 [ext_resource type="Texture2D" uid="uid://duo3wjebx6nhx" path="res://assets/textures/floor_texture.jpg" id="2_g2w8g"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8hmt"]
-albedo_texture = ExtResource("1_t7hg2")
-uv1_scale = Vector3(2, 2, 2)
-uv2_offset = Vector3(0, 2, 0)
-texture_filter = 0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jo043"]
+albedo_texture = ExtResource("1_g2w8g")
+uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_soo1d"]
-material = SubResource("StandardMaterial3D_t8hmt")
+material = SubResource("StandardMaterial3D_jo043")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_g2w8g"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)

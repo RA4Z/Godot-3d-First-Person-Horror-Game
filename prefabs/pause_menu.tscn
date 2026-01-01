@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://chao73ltmt631"]
+[gd_scene load_steps=11 format=3 uid="uid://chao73ltmt631"]
 
 [ext_resource type="Script" uid="uid://c3jr7jadvygxg" path="res://scripts/pause_menu.gd" id="1_hf53u"]
 [ext_resource type="Theme" uid="uid://d0iabbh4bcopt" path="res://horror_theme.tres" id="2_atv5q"]
 [ext_resource type="Shader" uid="uid://ddv2h4qbt40c5" path="res://shaders/pause_menu.gdshader" id="2_iyb4f"]
 [ext_resource type="FontFile" uid="uid://2skucwyidu7h" path="res://assets/fonts/shlop rg.otf" id="3_ntkjb"]
 [ext_resource type="AudioStream" uid="uid://d3ckforh82ciq" path="res://audio/sounds/SFX/menu_selection.mp3" id="5_cpmee"]
+[ext_resource type="AudioStream" uid="uid://dsql7wqmbk7eq" path="res://audio/musics/menu_background.mp3" id="6_bvkqb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ntkjb"]
 shader = ExtResource("2_iyb4f")
@@ -116,6 +117,10 @@ libraries = {
 
 [node name="SfxHover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_cpmee")
+
+[node name="BGSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_bvkqb")
+volume_db = -30.0
 
 [connection signal="pressed" from="MenuContent/CenterContainer/VBoxContainer/ButtonResume" to="." method="_on_button_resume_pressed"]
 [connection signal="button_down" from="MenuContent/CenterContainer/VBoxContainer/ButtonReset" to="." method="_on_button_reset_button_down"]

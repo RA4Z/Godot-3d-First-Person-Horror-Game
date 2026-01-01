@@ -16,6 +16,7 @@ extends AnimatableBody3D
 		
 @export var open_angle := 90.0
 var is_open := false
+var unlocked := false
 
 func _ready():
 	navigation_link_3d.enabled = is_open
@@ -23,6 +24,7 @@ func _ready():
 
 func interact():
 	if keyID in inventory.player_keys:
+		unlocked = true
 		label_3d.modulate = Color("008300ff") 
 		is_open = !is_open
 		interaction_collision.set_deferred("disabled", !is_open)

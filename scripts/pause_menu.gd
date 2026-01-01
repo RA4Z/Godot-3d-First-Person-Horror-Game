@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var menu_content = $MenuContent
 @onready var anim_player = $AnimationPlayer
 @onready var sfx_hover = $SfxHover
+@onready var bg_song: AudioStreamPlayer = $BGSong
 
 func _ready():
 	menu_content.visible = false
@@ -18,7 +19,7 @@ func _play_hover_sound():
 		sfx_hover.play()
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel") and not utils.being_jumpscared:
 		toggle_pause()
 
 func toggle_pause():
@@ -29,10 +30,13 @@ func toggle_pause():
 		menu_content.visible = true
 		anim_player.play("open")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		bg_song.play()
 	else:
-		if !get_tree().paused: # Checa se ainda está despausado
+		if !get_tree().paused:
 			menu_content.visible = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			bg_song.stop()
+
 func _on_button_resume_pressed() -> void:
 	toggle_pause()
 

@@ -1,8 +1,12 @@
 extends Node
 
+var being_jumpscared := false
+
 func jumpscare_video(jumpscareUI):
+	being_jumpscared = true
 	get_tree().paused = true
 	await jumpscareUI.start_jumpscare()
 	inventory.set_default_values()
 	get_tree().reload_current_scene()
 	get_tree().paused = false
+	being_jumpscared = false

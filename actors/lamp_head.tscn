@@ -379,6 +379,7 @@ func _process(delta: float) -> void:
 
 [node name="LampHead" type="CharacterBody3D" groups=["enemy"]]
 collision_layer = 4
+floor_max_angle = 1.0471976
 script = ExtResource("1_hopy3")
 
 [node name="Sketchfab_model" type="Node3D" parent="."]
