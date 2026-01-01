@@ -103,8 +103,33 @@ func _on_detection_area_body_entered(body: Node3D) -> void:
 func _on_killzone_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
 		utils.jumpscare_video(jumpscare_ui)
-
+#
 func _on_navigation_agent_3d_link_reached(details: Dictionary) -> void:
 	var global_exit_pos = details.get("link_exit_position")
-	if global_exit_pos:
-		global_position = global_exit_pos
+	if not global_exit_pos:
+		return
+
+	var max_wait_time = 1.5
+	var elapsed_time = 0.0
+	
+	# Wait loop: checks if the exit is clear for up to 1.5 seconds
+	while elapsed_time < max_wait_time:
+		if not is_blocked(global_exit_pos):
+			global_position = global_exit_pos
+			return
+		
+		await get_tree().process_frame
+		elapsed_time += get_process_delta_time()
+
+	# If the loop finishes (timeout), teleport anyway
+	global_position = global_exit_pos
+
+func is_blocked(target_position: Vector3) -> bool:
+	var block_radius = 1.5
+	var players = get_tree().get_nodes_in_group("player")
+	
+	for player in players:
+		if player.global_position.distance_to(target_position) < block_radius:
+			return true # Target position is occupied
+			
+	return false # Path is clear

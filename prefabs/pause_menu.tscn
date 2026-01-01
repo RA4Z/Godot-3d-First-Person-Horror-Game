@@ -120,7 +120,7 @@ stream = ExtResource("5_cpmee")
 
 [node name="BGSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_bvkqb")
-volume_db = -30.0
+volume_db = -20.0
 
 [connection signal="pressed" from="MenuContent/CenterContainer/VBoxContainer/ButtonResume" to="." method="_on_button_resume_pressed"]
 [connection signal="button_down" from="MenuContent/CenterContainer/VBoxContainer/ButtonReset" to="." method="_on_button_reset_button_down"]
