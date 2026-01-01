@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://fjuakmmwl5ea"]
 
-[ext_resource type="Texture2D" uid="uid://bwswu6jqflfwo" path="res://assets/textures/brick_white_texture.jpg" id="1_g2w8g"]
-[ext_resource type="Texture2D" uid="uid://duo3wjebx6nhx" path="res://assets/textures/floor_texture.jpg" id="2_g2w8g"]
+[ext_resource type="Texture2D" uid="uid://ceoj1a15q13q2" path="res://assets/textures/brick_white_texture_128.jpg" id="1_g2w8g"]
+[ext_resource type="Texture2D" uid="uid://bkb42pr5edrdk" path="res://assets/textures/floor_texture_128.jpg" id="2_g2w8g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jo043"]
 albedo_texture = ExtResource("1_g2w8g")
@@ -13,12 +13,12 @@ material = SubResource("StandardMaterial3D_jo043")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_g2w8g"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6l8t"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pcong"]
 albedo_texture = ExtResource("2_g2w8g")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_pcong"]
-material = SubResource("StandardMaterial3D_r6l8t")
+material = SubResource("StandardMaterial3D_pcong")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mib21"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
