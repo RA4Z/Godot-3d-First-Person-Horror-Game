@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=10 format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://dwkvc74nqugyc" path="res://scenes/Rooms/lighters_hall.tscn" id="2_71j4m"]
 [ext_resource type="PackedScene" uid="uid://cobndci8acmyl" path="res://scenes/Rooms/prision_cells.tscn" id="3_qfnet"]
 [ext_resource type="PackedScene" uid="uid://dgmtjao77k173" path="res://actors/lamp_head.tscn" id="8_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://2v5lrlgdnvmh" path="res://prefabs/items/battery.tscn" id="8_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://brekf1vpriqeu" path="res://prefabs/items/key.tscn" id="18_oo54l"]
 [ext_resource type="PackedScene" uid="uid://bngdn8mkeb6v1" path="res://actors/decayed.tscn" id="23_xgqkh"]
 
@@ -41,6 +42,13 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -2.0273094, 0.9019182, 
 [node name="Collectables" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)
 
-[node name="Key" parent="Collectables" instance=ExtResource("18_oo54l")]
+[node name="keys" type="Node3D" parent="Collectables"]
+
+[node name="Key" parent="Collectables/keys" instance=ExtResource("18_oo54l")]
 transform = Transform3D(-4.371139e-11, 0, 0.001, 0, 0.001, 0, -0.001, 0, -4.371139e-11, -4.460411, 1.634194, 4.229667)
 keyID = "0001"
+
+[node name="batteries" type="Node3D" parent="Collectables"]
+
+[node name="Battery1" parent="Collectables/batteries" instance=ExtResource("8_7r4gi")]
+transform = Transform3D(0.054900825, 0, 0.08358169, 0, 0.1, 0, -0.08358169, 0, 0.054900825, -14.072871, 1.5246439, 15.137541)
