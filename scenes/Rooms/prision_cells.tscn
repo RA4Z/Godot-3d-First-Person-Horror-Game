@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cobndci8acmyl"]
+[gd_scene load_steps=12 format=3 uid="uid://cobndci8acmyl"]
 
 [ext_resource type="MeshLibrary" uid="uid://bupwg0ulrwftn" path="res://assets/meshes/buildings.tres" id="1_hq2ei"]
 [ext_resource type="PackedScene" uid="uid://k65csm8j2idf" path="res://prefabs/decorations/bed.tscn" id="2_k20pd"]
@@ -6,7 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://bxtuu6bcmklpc" path="res://prefabs/door_metal.tscn" id="4_q1bh5"]
 [ext_resource type="Texture2D" uid="uid://ku3tsui7lax5" path="res://assets/graffiti/black_graffiti.png" id="5_k20pd"]
 [ext_resource type="PackedScene" uid="uid://daf1vmcnyxs72" path="res://prefabs/decorations/remains.tscn" id="5_q1bh5"]
+[ext_resource type="PackedScene" uid="uid://rt6em34kh2y5" path="res://prefabs/decorations/dinner_table.tscn" id="6_786ft"]
 [ext_resource type="PackedScene" uid="uid://ct1h4p1sulmkb" path="res://prefabs/stairs.tscn" id="7_q1bh5"]
+[ext_resource type="Script" uid="uid://dcc5ktpwbetqo" path="res://scripts/events/sound_event.gd" id="9_tn0w6"]
+[ext_resource type="AudioStream" uid="uid://fwir3cprswkv" path="res://audio/sounds/SFX/evil_laugh.mp3" id="10_tn0w6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4qh63"]
+size = Vector3(2.9784546, 2.600647, 1)
 
 [node name="PrisionCells" type="Node3D"]
 
@@ -75,11 +81,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5613008, 0.4855652, -2.636
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5613008, 0.4855652, 4.838234)
 lamp_color = Color(0.52156866, 0, 0, 1)
 
+[node name="Light3" parent="Decorations/PrisonCells" instance=ExtResource("3_dau1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5613008, 4.5529084, -2.5479202)
+lamp_color = Color(0.52156866, 0, 0, 1)
+
 [node name="Remains" parent="Decorations/PrisonCells" instance=ExtResource("5_q1bh5")]
 transform = Transform3D(0.16249943, 0, 0.98670864, 0, 1, 0, -0.98670864, 0, 0.16249943, 5.53032, -1.3956689, -1.82131)
 
 [node name="Remains2" parent="Decorations/PrisonCells" instance=ExtResource("5_q1bh5")]
 transform = Transform3D(-0.46219754, 0, -0.8867769, 0, 1, 0, 0.8867769, 0, -0.46219754, -7.056812, -0.9087889, 4.4582844)
+
+[node name="DinnerTable" parent="Decorations/PrisonCells" instance=ExtResource("6_786ft")]
+transform = Transform3D(-0.002746122, -0.14997485, -6.555609e-09, -3.1763737e-23, -6.5567076e-09, 0.14999999, -0.14997485, 0.002746122, 1.2003681e-10, -5.8340087, 2.9291182, -2.3936653)
 
 [node name="Decal" type="Decal" parent="."]
 transform = Transform3D(-4.3711385e-08, 0.99999994, -4.3711385e-08, 0, -4.3711385e-08, -0.99999994, -0.9999999, -4.3711385e-08, 1.9106853e-15, -8.9161, 2.6251645, 13.885593)
@@ -102,3 +115,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9355683, 2.778747, 10.3296
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.627452, 5.4689026, 27.213129)
 start_position = Vector3(0.923, 0, 1.957)
 end_position = Vector3(-2.041408, -0.30919552, -2.3390274)
+
+[node name="Events" type="Node3D" parent="."]
+
+[node name="Enter666Room" type="Area3D" parent="Events"]
+transform = Transform3D(0.019022888, 0, -0.99981904, 0, 1, 0, 0.99981904, 0, 0.019022888, -10.521962, 1.5480568, 22.984245)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("9_tn0w6")
+
+[node name="Collision" type="CollisionShape3D" parent="Events/Enter666Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25967407, 0.8003235, 0)
+shape = SubResource("BoxShape3D_4qh63")
+debug_color = Color(0.7706669, 0.5658458, 0.07669132, 0.41960785)
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="Events/Enter666Room"]
+stream = ExtResource("10_tn0w6")
+volume_db = -15.0
+
+[connection signal="body_entered" from="Events/Enter666Room" to="Events/Enter666Room" method="_on_body_entered"]

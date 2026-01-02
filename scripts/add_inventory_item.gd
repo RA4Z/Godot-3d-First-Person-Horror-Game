@@ -3,8 +3,11 @@ extends StaticBody3D
 @export var item_name: String = ""
 @export var amount: int = 1
 @onready var collect_sound: AudioStreamPlayer3D = $Collect
+var is_collected := false
 
 func interact():
+	if is_collected: return
+	is_collected = true
 	collect_sound.play()
 	if not inventory.player_items.get(item_name):
 		inventory.player_items[item_name] = amount

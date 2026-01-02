@@ -185,6 +185,7 @@ open_angle = -90.0
 [node name="ReachSirenPlace" type="Area3D" parent="Events"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7484665, 1.5480568, 5.43433)
 collision_layer = 0
+collision_mask = 8
 script = ExtResource("23_3bwbc")
 
 [node name="Collision" type="CollisionShape3D" parent="Events/ReachSirenPlace"]
