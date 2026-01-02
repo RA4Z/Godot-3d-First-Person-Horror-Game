@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=12 format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cobndci8acmyl" path="res://scenes/Rooms/prision_cells.tscn" id="3_qfnet"]
 [ext_resource type="PackedScene" uid="uid://dgmtjao77k173" path="res://actors/lamp_head.tscn" id="8_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://2v5lrlgdnvmh" path="res://prefabs/items/battery.tscn" id="8_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://8qgi3wwwyvls" path="res://actors/mouse.tscn" id="8_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://brekf1vpriqeu" path="res://prefabs/items/key.tscn" id="18_oo54l"]
 [ext_resource type="PackedScene" uid="uid://bngdn8mkeb6v1" path="res://actors/decayed.tscn" id="23_xgqkh"]
 
@@ -59,3 +60,8 @@ keyID = "0001"
 
 [node name="Battery1" parent="Collectables/batteries" instance=ExtResource("8_7r4gi")]
 transform = Transform3D(0.054900825, 0, 0.08358169, 0, 0.1, 0, -0.08358169, 0, 0.054900825, -14.072871, 1.5246439, 15.137541)
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="Mouse" parent="NPCs" instance=ExtResource("8_w7kh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.550155, 1.0155559, 15.684042)
