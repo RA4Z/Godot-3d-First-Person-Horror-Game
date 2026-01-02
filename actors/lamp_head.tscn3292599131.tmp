@@ -352,7 +352,7 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wk3i7"]
-radius = 0.1508789
+radius = 0.28857422
 height = 1.685
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qj4bx"]
@@ -633,3 +633,4 @@ max_distance = 100.0
 [connection signal="body_entered" from="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="Killzone" to="." method="_on_killzone_body_entered"]
+[connection signal="link_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_link_reached"]

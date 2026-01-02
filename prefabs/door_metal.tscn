@@ -156,5 +156,6 @@ stream = ExtResource("7_w68i5")
 attenuation_model = 2
 
 [node name="NavigationLink3D" type="NavigationLink3D" parent="."]
-transform = Transform3D(0.048971802, 0, 0.99880016, 0, 1.3670357, 0, -1.3225548, 0, 0.0648457, -0.36527744, 0.7015847, -0.052864432)
-end_position = Vector3(0, 0, 1)
+transform = Transform3D(0.048971802, 0, 0.99880016, 0, 1.3670357, 0, -1.3225548, 0, 0.0648457, -1.1432472, 0.7015847, -0.13971446)
+navigation_layers = 2
+end_position = Vector3(0, 0, 2.37)

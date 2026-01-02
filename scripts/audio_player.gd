@@ -5,7 +5,7 @@ func update_chase_music():
 	var someone_is_chasing = false
 	
 	for e in enemies:
-		if e.current_state == e.State.CHASING:
+		if e.state == e.EnemyState.CHASING:
 			someone_is_chasing = true
 			break
 	

@@ -18,7 +18,7 @@ extends CharacterBody3D
 
 var battery_timer := 0.0
 var step_timer = 0.0
-var step_interval = 0.75
+var step_interval = 0.5
 
 var reloading := false
 var is_sneaking := false
