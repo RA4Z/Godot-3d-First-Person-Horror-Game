@@ -40,12 +40,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.077018, 1.9912964, 15.919
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="LampHead" parent="Enemies" instance=ExtResource("8_4mrxx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6590304, 0.9570825, 7.704599)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7048, 0.9570825, -2.945188)
 walk_anim_speed = 3.0
 chase_anim_speed = 4.0
 
 [node name="Decayed" parent="Enemies" instance=ExtResource("23_xgqkh")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -2.252287, 1.2317505, -9.056761)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -7.7223773, 1.2317502, 2.5218735)
 
 [node name="Collectables" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)

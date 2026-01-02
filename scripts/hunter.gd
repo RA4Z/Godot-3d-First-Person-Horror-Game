@@ -5,7 +5,8 @@ extends CharacterBody3D
 # =========================
 enum EnemyState {
 	WANDERING,
-	CHASING
+	CHASING,
+	CATCHING
 }
 
 # =========================
@@ -68,6 +69,9 @@ func _ready() -> void:
 # PHYSICS PROCESS
 # =========================
 func _physics_process(delta: float) -> void:
+	if state == EnemyState.CATCHING:
+		return
+		
 	if using_link:
 		_process_navigation_link(delta)
 		return
@@ -88,24 +92,25 @@ func _set_state(new_state: EnemyState) -> void:
 		return
 
 	state = new_state
+	
+	# Se o estado for CATCHING ou WANDERING, o AudioPlayer deve saber desligar a música
 	AudioPlayer.update_chase_music()
 
 	match state:
 		EnemyState.WANDERING:
 			current_speed = walk_speed
 			anim_player.speed_scale = walk_anim_speed
-
-			# ❌ Bloqueia portas
 			nav_agent.navigation_layers = 1
 			_set_random_wander_target()
 
 		EnemyState.CHASING:
 			current_speed = chase_speed
 			anim_player.speed_scale = chase_anim_speed
-
-			# ✅ Libera portas
 			nav_agent.navigation_layers = 1 | 2
-
+			
+		EnemyState.CATCHING:
+			current_speed = 0
+			velocity = Vector3.ZERO
 # =========================
 # WANDERING
 # =========================
@@ -205,7 +210,13 @@ func _on_vision_body_entered(body: Node3D) -> void:
 		_set_state(EnemyState.CHASING)
 
 func _on_killzone_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and state != EnemyState.CATCHING:
+		_set_state(EnemyState.CATCHING) # Muda o estado para parar a lógica
+		
+		if AudioPlayer.has_method("stop_chase_music"):
+			AudioPlayer.stop_chase_music() 
+		
+		velocity = Vector3.ZERO # Para o movimento físico
 		utils.jumpscare_video(jumpscare_ui)
 
 func _on_navigation_link_reached(details: Dictionary) -> void:
