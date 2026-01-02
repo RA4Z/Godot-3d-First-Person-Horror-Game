@@ -584,7 +584,7 @@ shape = SubResource("CylinderShape3D_hopy3")
 
 [node name="FieldOfView" type="RayCast3D" parent="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight"]
 target_position = Vector3(0, 0, -6)
-collision_mask = 3
+collision_mask = 8
 
 [node name="Object_6" type="Node3D" parent="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4"]
 transform = Transform3D(1, -2.4433106e-20, 1.0660462e-18, -1.0660462e-18, 6.123234e-17, 1, -2.4433106e-20, -1, 6.123234e-17, 1.3877788e-17, 0, 0)

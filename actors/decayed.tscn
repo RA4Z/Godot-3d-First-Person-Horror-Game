@@ -6434,9 +6434,9 @@ _data = {
 &"walk": SubResource("Animation_ws0q3")
 }
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5bf0o"]
-radius = 0.28857422
-height = 1.685
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ph6gi"]
+radius = 0.1508789
+height = 1.5519726
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_prty0"]
 size = Vector3(1, 2.3515015, 0.66249084)
@@ -6943,8 +6943,8 @@ libraries = {
 autoplay = "idle"
 
 [node name="Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82739055, 0)
-shape = SubResource("CapsuleShape3D_5bf0o")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8939042, 0)
+shape = SubResource("CapsuleShape3D_ph6gi")
 
 [node name="FootstepSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)

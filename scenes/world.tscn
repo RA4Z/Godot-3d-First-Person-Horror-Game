@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=13 format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://2v5lrlgdnvmh" path="res://prefabs/items/battery.tscn" id="8_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://8qgi3wwwyvls" path="res://actors/mouse.tscn" id="8_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://brekf1vpriqeu" path="res://prefabs/items/key.tscn" id="18_oo54l"]
+[ext_resource type="PackedScene" uid="uid://cgv03d7qvrnkd" path="res://scenes/world_environment.tscn" id="19_munwf"]
 [ext_resource type="PackedScene" uid="uid://bngdn8mkeb6v1" path="res://actors/decayed.tscn" id="23_xgqkh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_4mrxx"]
@@ -34,18 +35,20 @@ navigation_mesh = SubResource("NavigationMesh_4mrxx")
 
 [node name="PrisionCells" parent="GameConfigs/NavigationRegion3D" instance=ExtResource("3_qfnet")]
 
+[node name="WorldEnvironment" parent="GameConfigs" instance=ExtResource("19_munwf")]
+
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.077018, 1.9912964, 15.919905)
 
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="LampHead" parent="Enemies" instance=ExtResource("8_4mrxx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7048, 0.9570825, -2.945188)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7048, 0.9570825, 7.427923)
 walk_anim_speed = 3.0
 chase_anim_speed = 4.0
 
 [node name="Decayed" parent="Enemies" instance=ExtResource("23_xgqkh")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -7.7223773, 1.2317502, 2.5218735)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.9072131, 0.9920902, -6.8082495)
 
 [node name="Collectables" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)

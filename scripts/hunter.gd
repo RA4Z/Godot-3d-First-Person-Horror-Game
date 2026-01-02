@@ -46,7 +46,7 @@ var last_seen_timer := 0.0
 var current_speed := 1.0
 
 var last_known_player_position: Vector3 = Vector3.ZERO
-
+var path_update_timer := 0.0
 var using_link := false
 var link_end_position: Vector3
 
@@ -69,18 +69,18 @@ func _ready() -> void:
 # PHYSICS PROCESS
 # =========================
 func _physics_process(delta: float) -> void:
-	if state == EnemyState.CATCHING:
-		return
-		
+	if state == EnemyState.CATCHING: return
 	if using_link:
 		_process_navigation_link(delta)
 		return
 
-	match state:
-		EnemyState.WANDERING:
-			_process_wandering()
-		EnemyState.CHASING:
-			_process_chasing(delta)
+	# Atualiza o caminho a cada 0.1 segundos em vez de todo frame
+	path_update_timer += delta
+	if path_update_timer >= 0.1:
+		match state:
+			EnemyState.WANDERING: _process_wandering()
+			EnemyState.CHASING: _process_chasing(delta)
+		path_update_timer = 0.0
 
 	_move_and_rotate(delta)
 
@@ -133,18 +133,20 @@ func _process_chasing(delta: float) -> void:
 		return
 
 	if _has_line_of_sight():
+		# Se eu vejo o player, reseto o tempo e atualizo a posição em tempo real
 		last_seen_timer = 0.0
 		last_known_player_position = player.global_position
+		nav_agent.set_target_position(player.global_position) # Perseguição ATIVA
 	else:
+		# Se perdi de vista (parede no meio ou jogador saiu do cone da lanterna)
 		last_seen_timer += delta
+		
+		# Ele continua indo até o último lugar onde viu o jogador
+		nav_agent.set_target_position(last_known_player_position)
+		
+		# Se o tempo acabar e ele não encontrar o player no caminho, volta a vagar
 		if last_seen_timer >= lose_sight_time:
 			_set_state(EnemyState.WANDERING)
-			return
-
-	# 🔥 SEMPRE segue a última posição conhecida
-	var target := last_known_player_position if last_known_player_position != Vector3.ZERO else player.global_position
-	nav_agent.set_target_position(target)
-
 # =========================
 # MOVEMENT & ROTATION
 # =========================
