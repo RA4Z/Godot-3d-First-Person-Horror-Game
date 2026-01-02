@@ -30,9 +30,8 @@ func _physics_process(delta: float) -> void:
 
 	var lanterna_ligada = player.get("lights_on")
 	
-	# Detecta o momento que apaga: Spawn inicial aleatório
 	if lanterna_estava_ligada == true and lanterna_ligada == false:
-		spawn_aleatorio_navegavel(false) # Primeiro spawn pode ser em qualquer lugar
+		spawn_aleatorio_navegavel(false) 
 		cronometro_respawn = 0.0
 	
 	lanterna_estava_ligada = lanterna_ligada
@@ -43,14 +42,14 @@ func _physics_process(delta: float) -> void:
 		segundos_contados += delta
 		distancia_alvo = max(distancia_alvo - delta, 1.5)
 		
-		# LÓGICA DO RESPWAN DE 5 SEGUNDOS (Apenas se NÃO estiver sendo vista)
+		# RESPAWN SE NÃO ESTIVER NA TELA
 		if not esta_na_tela_do_jogador():
 			cronometro_respawn += delta
 			if cronometro_respawn >= intervalo_respawn_escuro:
-				spawn_aleatorio_navegavel(true) # Força spawn NA FRENTE do jogador
-				cronometro_respawn = 0.0
+				# Tenta teleportar. Se conseguir um lugar visível e sem paredes, reseta o tempo.
+				if spawn_aleatorio_navegavel(true):
+					cronometro_respawn = 0.0
 		else:
-			# Se o jogador olhar para ela, o contador de 5s reseta
 			cronometro_respawn = 0.0
 		
 		olhar_para_player()
@@ -65,32 +64,62 @@ func _physics_process(delta: float) -> void:
 	else:
 		cronometro_respawn = 0.0
 
-# --- FUNÇÃO PARA VERIFICAR SE O JOGADOR ESTÁ VENDO ---
 func esta_na_tela_do_jogador() -> bool:
 	var camera = get_viewport().get_camera_3d()
 	if camera == null: return false
 	
-	# Verifica se a posição da Umbra está dentro do frustum (pirâmide de visão) da câmera
-	return camera.is_position_in_frustum(global_position)
+	# Verifica se está no cone de visão
+	if not camera.is_position_in_frustum(global_position):
+		return false
+		
+	# Verifica se tem parede (Camada 1) entre a câmera e a Umbra
+	return tem_linha_de_visao(camera.global_position, global_position)
 
-func spawn_aleatorio_navegavel(na_frente: bool):
-	var angulo: float
+func tem_linha_de_visao(origem: Vector3, destino: Vector3) -> bool:
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(origem, destino)
+	query.collision_mask = 1 # Camada 1 (Cenário)
+	query.exclude = [self, player] # Ignora a si mesma e ao player
 	
-	if na_frente:
-		# Pega a direção que o player está olhando (eixo Y)
-		var rotacao_player = player.global_transform.basis.get_euler().y
-		# Escolhe um ângulo de no máximo 45 graus para a esquerda ou direita da frente dele
-		var desvio = randf_range(-deg_to_rad(45), deg_to_rad(45))
-		angulo = rotacao_player + PI + desvio # +PI porque o Forward no Godot é Z negativo
-	else:
-		angulo = randf_range(0, TAU)
+	var result = space_state.intersect_ray(query)
 	
-	var direcao = Vector3(sin(angulo), 0, cos(angulo))
-	var posicao_teorica = player.global_position + (direcao * distancia_alvo)
-	
+	# Se o resultado estiver vazio, não bateu em nada (visão limpa)
+	return result.is_empty()
+
+func spawn_aleatorio_navegavel(na_frente: bool) -> bool:
 	var mapa_rid = get_world_3d().get_navigation_map()
-	global_position = NavigationServer3D.map_get_closest_point(mapa_rid, posicao_teorica)
-	print("Umbra teleportada. Na frente: ", na_frente)
+	var camera = get_viewport().get_camera_3d()
+	if camera == null: return false
+
+	var tentativas = 20 if na_frente else 1
+	
+	for i in range(tentativas):
+		var angulo: float
+		if na_frente:
+			var direcao_olhar = -player.global_transform.basis.z
+			var angulo_base = atan2(direcao_olhar.x, direcao_olhar.z)
+			var desvio = randf_range(-deg_to_rad(45), deg_to_rad(45))
+			angulo = angulo_base + desvio
+		else:
+			angulo = randf_range(0, TAU)
+		
+		var direcao_final = Vector3(sin(angulo), 0, cos(angulo))
+		var posicao_teorica = player.global_position + (direcao_final * distancia_alvo)
+		var ponto_navmesh = NavigationServer3D.map_get_closest_point(mapa_rid, posicao_teorica)
+		
+		# TESTE DE VALIDAÇÃO:
+		if na_frente:
+			# 1. Está no cone da câmera?
+			if camera.is_position_in_frustum(ponto_navmesh):
+				# 2. Tem parede no meio? (Checa contra a Camada 1)
+				if tem_linha_de_visao(camera.global_position, ponto_navmesh + Vector3(0, 1.5, 0)):
+					global_position = ponto_navmesh
+					return true
+		else:
+			global_position = ponto_navmesh
+			return true
+
+	return false
 
 func processar_movimento_navmesh(delta):
 	var direcao_atual = (global_position - player.global_position).normalized()
@@ -107,13 +136,44 @@ func processar_movimento_navmesh(delta):
 func disparar_morte():
 	if jumpscare_disparado: return
 	jumpscare_disparado = true
+	
+	# 1. Para o som de choro para dar foco ao susto
+	cry_sound.stop()
+	
+	# 2. Localiza a câmera para saber exatamente para onde o jogador olha
+	var camera = get_viewport().get_camera_3d()
+	
+	if camera:
+		# Define uma posição a 1.2 metros à frente da lente da câmera
+		# Usamos o eixo Z negativo da câmera (que é o 'frente' no Godot)
+		var direcao_frente = -camera.global_transform.basis.z
+		var posicao_jumpscare = camera.global_position + (direcao_frente * 1.2)
+		
+		# Teleporta a Umbra para essa posição exata
+		global_position = posicao_jumpscare
+		
+		# Faz ela encarar a câmera perfeitamente
+		look_at(camera.global_position, Vector3.UP)
+		# Se o modelo estiver de costas, mantemos a correção de 180 graus
+		rotate_y(deg_to_rad(180))
+	else:
+		# Fallback caso a câmera não seja encontrada
+		var frente = player.global_transform.basis * Vector3(0, 0, -1.5)
+		global_position = player.global_position + frente
+		olhar_para_player()
+
+	# 3. Força a visibilidade (caso estivesse escondida por algum motivo)
 	self.visible = true
-	var frente = player.global_transform.basis * Vector3(0, 0, -1.5)
-	global_position = player.global_position + frente
-	olhar_para_player()
+	
+	# 4. Executa o vídeo de jumpscare
+	# É importante que o vídeo tenha fundo transparente ou cubra a tela 
+	# enquanto a modelo está posicionada ali atrás.
 	utils.jumpscare_video(jumpscare_ui)
-	await get_tree().create_timer(0.5).timeout
+	
+	# 5. Desativa o comportamento para ela sumir após o susto
+	await get_tree().create_timer(1.0).timeout
 	utils.umbra_active = false 
+	self.visible = false
 
 func olhar_para_player():
 	var pos = player.global_position
@@ -134,7 +194,6 @@ func tornar_modelo_unshaded(node: Node):
 				node.set_surface_override_material(i, novo_mat)
 	for child in node.get_children():
 		tornar_modelo_unshaded(child)
-
 
 func _on_cry_sound_finished() -> void:
 	cry_sound.play()

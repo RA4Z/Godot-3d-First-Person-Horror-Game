@@ -63,7 +63,7 @@ func _physics_process(delta):
 	
 	is_sneaking = Input.is_action_pressed("sneak")
 	var target_speed = playerSneak if is_sneaking else playerSpeed
-	step_interval = 1.1 if is_sneaking else 0.75
+	step_interval = 0.8 if is_sneaking else 0.5
 	
 	if direction:
 		velocity.x = lerp(velocity.x, direction.x * target_speed, playerAcceleration * delta)

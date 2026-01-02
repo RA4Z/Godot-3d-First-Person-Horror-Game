@@ -44,18 +44,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.08033, 1.569288, 25.108667
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="LampHead" parent="Enemies" instance=ExtResource("8_4mrxx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9050565, 0.9570825, 21.207367)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0168924, 0.9570825, -5.282306)
 walk_anim_speed = 3.0
 chase_anim_speed = 4.0
 
 [node name="Decayed" parent="Enemies" instance=ExtResource("23_xgqkh")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.9072131, 0.9920902, -6.8082495)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 2.0356956, 0.9920902, -8.675087)
 
 [node name="Umbra" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("9_q5onr")]
 transform = Transform3D(0.19120304, 0, 0.9815505, 0, 1, 0, -0.9815505, 0, 0.19120304, -24.869452, 1.0000594, 25.862753)
 player = NodePath("../../Player")
-tempo_limite = 30.0
-distancia_minima_spawn = 30.0
+tempo_limite = 20.0
+distancia_minima_spawn = 20.0
 
 [node name="Collectables" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)
