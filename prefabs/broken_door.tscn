@@ -1,24 +1,20 @@
-[gd_scene load_steps=15 format=4 uid="uid://bxtuu6bcmklpc"]
+[gd_scene load_steps=9 format=4 uid="uid://fq2ecdl5fuxj"]
 
-[ext_resource type="Texture2D" uid="uid://dhb8qvs3hn4qw" path="res://assets/objects/metal_door/door__prison_door_metal_old_-12mb_0.png" id="1_dyvsd"]
-[ext_resource type="Texture2D" uid="uid://dkp7lofuqd7lg" path="res://assets/objects/metal_door/door__prison_door_metal_old_-12mb_1.png" id="2_c03p8"]
-[ext_resource type="Texture2D" uid="uid://cshp4fa8kvm8c" path="res://assets/objects/metal_door/door__prison_door_metal_old_-12mb_2.png" id="3_8oo42"]
-[ext_resource type="Script" uid="uid://b2me18i7q1uej" path="res://scripts/door_metal.gd" id="4_w68i5"]
-[ext_resource type="AudioStream" uid="uid://0h7a84ug0lre" path="res://audio/sounds/SFX/door_opening.mp3" id="5_8oo42"]
-[ext_resource type="AudioStream" uid="uid://dmp1jjb41bbwf" path="res://audio/sounds/SFX/door_closing.mp3" id="6_w68i5"]
-[ext_resource type="AudioStream" uid="uid://rvv5hwbp4g7p" path="res://audio/sounds/SFX/door_locked.mp3" id="7_w68i5"]
+[ext_resource type="Texture2D" uid="uid://dhb8qvs3hn4qw" path="res://assets/objects/metal_door/door__prison_door_metal_old_-12mb_0.png" id="1_idtj1"]
+[ext_resource type="Texture2D" uid="uid://dkp7lofuqd7lg" path="res://assets/objects/metal_door/door__prison_door_metal_old_-12mb_1.png" id="2_ro4ah"]
+[ext_resource type="Texture2D" uid="uid://cshp4fa8kvm8c" path="res://assets/objects/metal_door/door__prison_door_metal_old_-12mb_2.png" id="3_vf6r5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rs4yi"]
 resource_name = "prison_door"
 cull_mode = 2
-albedo_texture = ExtResource("1_dyvsd")
+albedo_texture = ExtResource("1_idtj1")
 metallic = 1.0
-metallic_texture = ExtResource("2_c03p8")
+metallic_texture = ExtResource("2_ro4ah")
 metallic_texture_channel = 2
-roughness_texture = ExtResource("2_c03p8")
+roughness_texture = ExtResource("2_ro4ah")
 roughness_texture_channel = 1
 normal_enabled = true
-normal_texture = ExtResource("3_8oo42")
+normal_texture = ExtResource("3_vf6r5")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gkidr"]
 _surfaces = [{
@@ -88,74 +84,39 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lb2pp")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fte3h"]
-size = Vector3(0.21533203, 2.7904968, 1.3510132)
+[node name="BrokenDoor" type="Node3D"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8oo42"]
-size = Vector3(2.4475098, 3.2776184, 1.315918)
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -3.090395e-08, 0.786, 0, -0.707, -3.435715e-08, 0, 0, 0)
 
-[node name="DoorMetal" type="AnimatableBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.67, 0, 0, 0, 0.786, 0, 0, 0)
-collision_layer = 3
-collision_mask = 0
-script = ExtResource("4_w68i5")
-
-[node name="Sketchfab_model" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)
-
-[node name="53f0619e2fd24161a81b09343f56a581_fbx" type="Node3D" parent="Sketchfab_model"]
+[node name="53f0619e2fd24161a81b09343f56a581_fbx" type="Node3D" parent="Model"]
 transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0)
 
-[node name="RootNode" type="Node3D" parent="Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx"]
+[node name="RootNode" type="Node3D" parent="Model/53f0619e2fd24161a81b09343f56a581_fbx"]
 
-[node name="Null" type="Node3D" parent="Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode"]
+[node name="Null" type="Node3D" parent="Model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5664359, -0.2474386, -64.18324)
 
-[node name="prison_door_2_2" type="Node3D" parent="Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null"]
+[node name="prison_door_2_2" type="Node3D" parent="Model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5408096, 0.2474386, -3.098764)
 
-[node name="prison_door_2_2_prison door_0" type="MeshInstance3D" parent="Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null/prison_door_2_2"]
+[node name="prison_door_2_2_prison door_0" type="MeshInstance3D" parent="Model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null/prison_door_2_2"]
 mesh = SubResource("ArrayMesh_0gi07")
 skeleton = NodePath("")
 
-[node name="prison_door_2_3" type="Node3D" parent="Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5408096, -0.2474386, 3.098764)
+[node name="prison_door_2_3" type="Node3D" parent="Model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1.5408098, -0.24743858, 3.0987625)
 
-[node name="prison_door_2_3_prison door_0" type="MeshInstance3D" parent="Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null/prison_door_2_3"]
+[node name="prison_door_2_3_prison door_0" type="MeshInstance3D" parent="Model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null/prison_door_2_3"]
+transform = Transform3D(1, -4.4466226e-09, 1.9208425e-08, -4.446619e-09, 0.89827317, 0.43943754, -1.9208425e-08, -0.43943754, 0.89827317, 0, 0, 0)
 mesh = SubResource("ArrayMesh_i46lo")
 skeleton = NodePath("")
 
-[node name="Label3D" type="Label3D" parent="Sketchfab_model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null/prison_door_2_3/prison_door_2_3_prison door_0"]
+[node name="Label3D" type="Label3D" parent="Model/53f0619e2fd24161a81b09343f56a581_fbx/RootNode/Null/prison_door_2_3/prison_door_2_3_prison door_0"]
 transform = Transform3D(-0.53581524, 0, 99.998566, -2.2204144e-14, 99.99999, -1.1897488e-16, -99.99857, -2.2204459e-14, -0.53581524, 4.351513, 124.460464, 61.08448)
 modulate = Color(0.50980395, 0, 0, 1)
 
-[node name="Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0036621094, 1.3988649, -0.001739502)
-shape = SubResource("BoxShape3D_fte3h")
-
-[node name="Interaction" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
-collision_layer = 2
-collision_mask = 0
-
-[node name="InteractionCollision" type="CollisionShape3D" parent="Interaction"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0345459, 1.1388088, -0.023193354)
-shape = SubResource("BoxShape3D_8oo42")
-
-[node name="OpenDoor" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("5_8oo42")
-attenuation_model = 2
-
-[node name="CloseDoor" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("6_w68i5")
-attenuation_model = 2
-
-[node name="LockedDoor" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.414427, 0, 0, 0, 1.2722646, 0, 0, 0)
-stream = ExtResource("7_w68i5")
-attenuation_model = 2
-
 [node name="NavigationLink3D" type="NavigationLink3D" parent="."]
-transform = Transform3D(-0.040795412, 0, 1.0008984, 0, 1.3670357, 0, -1.3228323, 0, -0.0030110534, -1.477744, 0.7015847, -0.13971446)
+transform = Transform3D(-0.040795412, 0, 1.0008984, 0, 1.3670357, 0, -1.3228323, 0, -0.0030110534, -0.9924523, 0.26212513, 0.3135119)
 navigation_layers = 2
-end_position = Vector3(0, 0, 3)
+end_position = Vector3(0, 0, 2)
