@@ -37,11 +37,6 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.7315097, 0, 0, 0, 0.75520504, -9.
 keyID = "664"
 open_angle = -90.0
 
-[node name="DoorMetal9" parent="Doors" instance=ExtResource("4_q1bh5")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.7315097, 0, 0, 0, 0.75520504, -9.359, 5, 16.265)
-keyID = "670"
-open_angle = -90.0
-
 [node name="DoorMetal5" parent="Doors" instance=ExtResource("4_q1bh5")]
 transform = Transform3D(-0.99999994, 0, -6.602212e-08, 0, 0.7315097, 0, 8.742277e-08, 0, -0.75520504, -4.6930313, 0.97870207, 16.26464)
 keyID = "665"

@@ -12,8 +12,8 @@ enum EnemyState {
 # EXPORTS
 # =========================
 @export_category("Movement")
-@export var walk_speed := 2.0
-@export var chase_speed := 5.0
+@export var walk_speed := 1.0
+@export var chase_speed := 1.5
 @export var rotation_speed := 6.0
 @export var model_y_rotation_fix_deg := 180.0
 
@@ -42,7 +42,7 @@ enum EnemyState {
 var state := EnemyState.WANDERING
 var player: Node3D
 var last_seen_timer := 0.0
-var current_speed := 0.0
+var current_speed := 1.0
 
 var last_known_player_position: Vector3 = Vector3.ZERO
 

@@ -353,7 +353,7 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wk3i7"]
 radius = 0.1508789
-height = 1.685
+height = 1.5519726
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qj4bx"]
 streams_count = 3
@@ -599,7 +599,7 @@ autoplay = "Take 001"
 speed_scale = 3.0
 
 [node name="Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82739055, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8939042, 0)
 shape = SubResource("CapsuleShape3D_wk3i7")
 
 [node name="FootstepSound" type="AudioStreamPlayer3D" parent="."]
