@@ -162,15 +162,8 @@ func disparar_morte():
 		global_position = player.global_position + frente
 		olhar_para_player()
 
-	# 3. Força a visibilidade (caso estivesse escondida por algum motivo)
 	self.visible = true
-	
-	# 4. Executa o vídeo de jumpscare
-	# É importante que o vídeo tenha fundo transparente ou cubra a tela 
-	# enquanto a modelo está posicionada ali atrás.
 	utils.jumpscare_video(jumpscare_ui)
-	
-	# 5. Desativa o comportamento para ela sumir após o susto
 	await get_tree().create_timer(1.0).timeout
 	utils.umbra_active = false 
 	self.visible = false

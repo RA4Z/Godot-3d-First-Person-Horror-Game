@@ -15,6 +15,10 @@ enum State { IDLE, WANDERING, ALERTED, RUNNING }
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
+@export_group("Anti-Stuck")
+@export var stuck_threshold = 0.2
+@export var stuck_time_limit = 1.0
+var stuck_timer = 0.0
 var current_state = State.WANDERING
 var target_pos = Vector3.ZERO
 var reaction_timer: SceneTreeTimer = null
@@ -37,6 +41,7 @@ func _physics_process(delta):
 			move_and_slide()
 		State.WANDERING:
 			_move_to_target(delta, walk_speed, "walk")
+			_check_if_stuck(delta)
 			if nav_agent.is_navigation_finished():
 				setup_wander()
 		State.ALERTED:
@@ -50,6 +55,7 @@ func _physics_process(delta):
 				setup_wander() 
 			else:
 				_move_to_target(delta, run_speed, "run")
+				_check_if_stuck(delta)
 				if nav_agent.is_navigation_finished():
 					chase_timer = 0.0
 					setup_wander()
@@ -127,3 +133,13 @@ func short_angle_dist(from, to):
 func _on_killzone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		utils.jumpscare_video(jumpscare_ui)
+
+func _check_if_stuck(delta):
+	if velocity.length() > 0.5:
+		if get_real_velocity().length() < stuck_threshold:
+			stuck_timer += delta
+			if stuck_timer >= stuck_time_limit:
+				stuck_timer = 0.0
+				setup_wander()
+		else:
+			stuck_timer = 0.0

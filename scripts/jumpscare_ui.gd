@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @export var video_resource: VideoStream
 @export var audio_resource: AudioStream
+@export var duration: int = 5
 
 @onready var video_player: VideoStreamPlayer = $VideoStreamPlayer
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
@@ -28,8 +29,8 @@ func start_jumpscare():
 		anim_player.play("shake")
 	
 	# ESSENCIAL: Espera o vídeo terminar antes de fechar a função
-	await video_player.finished
-	
+	await get_tree().create_timer(duration).timeout
+	video_player.stop()
+	audio_player.stop()
 	hide()
-	# Retorna para quem chamou (o utils.gd) avisando que acabou
 	return

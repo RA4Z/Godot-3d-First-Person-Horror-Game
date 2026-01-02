@@ -45,6 +45,7 @@ func _on_button_reset_button_down() -> void:
 	inventory.set_default_values()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().reload_current_scene()
+	AudioPlayer.update_chase_music()
 
 func _on_button_quit_button_down() -> void:
 	get_tree().quit()
