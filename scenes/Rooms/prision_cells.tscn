@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://rt6em34kh2y5" path="res://prefabs/decorations/dinner_table.tscn" id="6_786ft"]
 [ext_resource type="PackedScene" uid="uid://ct1h4p1sulmkb" path="res://prefabs/stairs.tscn" id="7_q1bh5"]
 [ext_resource type="Script" uid="uid://dcc5ktpwbetqo" path="res://scripts/events/sound_event.gd" id="9_tn0w6"]
-[ext_resource type="AudioStream" uid="uid://fwir3cprswkv" path="res://audio/sounds/SFX/evil_laugh.mp3" id="10_tn0w6"]
+[ext_resource type="AudioStream" uid="uid://bakenqgwe530" path="res://audio/sounds/SFX/girl_laugh.mp3" id="10_tn0w6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4qh63"]
 size = Vector3(2.9784546, 2.600647, 1)
@@ -123,6 +123,7 @@ transform = Transform3D(0.019022888, 0, -0.99981904, 0, 1, 0, 0.99981904, 0, 0.0
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("9_tn0w6")
+activate_utils = "umbra_active"
 
 [node name="Collision" type="CollisionShape3D" parent="Events/Enter666Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25967407, 0.8003235, 0)

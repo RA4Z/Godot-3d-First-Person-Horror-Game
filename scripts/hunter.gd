@@ -74,16 +74,29 @@ func _physics_process(delta: float) -> void:
 		_process_navigation_link(delta)
 		return
 
-	# Atualiza o caminho a cada 0.1 segundos em vez de todo frame
+	# --- LÓGICA DE TIMERS (Roda todo frame) ---
+	if state == EnemyState.CHASING:
+		if _has_line_of_sight():
+			last_seen_timer = 0.0
+			last_known_player_position = player.global_position
+		else:
+			last_seen_timer += delta
+			if last_seen_timer >= lose_sight_time:
+				_set_state(EnemyState.WANDERING)
+
+	# --- LÓGICA DE PATHFINDING (Otimizada para 0.1s) ---
 	path_update_timer += delta
 	if path_update_timer >= 0.1:
 		match state:
-			EnemyState.WANDERING: _process_wandering()
-			EnemyState.CHASING: _process_chasing(delta)
+			EnemyState.WANDERING: 
+				_process_wandering()
+			EnemyState.CHASING:
+				# Atualiza o destino do agente
+				nav_agent.set_target_position(last_known_player_position)
 		path_update_timer = 0.0
 
 	_move_and_rotate(delta)
-
+	
 # =========================
 # STATES
 # =========================
@@ -127,26 +140,9 @@ func _process_wandering() -> void:
 # =========================
 # CHASING (CORRIGIDO)
 # =========================
-func _process_chasing(delta: float) -> void:
+func _process_chasing(_delta: float) -> void:
 	if not is_instance_valid(player):
 		_set_state(EnemyState.WANDERING)
-		return
-
-	if _has_line_of_sight():
-		# Se eu vejo o player, reseto o tempo e atualizo a posição em tempo real
-		last_seen_timer = 0.0
-		last_known_player_position = player.global_position
-		nav_agent.set_target_position(player.global_position) # Perseguição ATIVA
-	else:
-		# Se perdi de vista (parede no meio ou jogador saiu do cone da lanterna)
-		last_seen_timer += delta
-		
-		# Ele continua indo até o último lugar onde viu o jogador
-		nav_agent.set_target_position(last_known_player_position)
-		
-		# Se o tempo acabar e ele não encontrar o player no caminho, volta a vagar
-		if last_seen_timer >= lose_sight_time:
-			_set_state(EnemyState.WANDERING)
 # =========================
 # MOVEMENT & ROTATION
 # =========================

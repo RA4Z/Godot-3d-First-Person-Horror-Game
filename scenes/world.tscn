@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=14 format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dgmtjao77k173" path="res://actors/lamp_head.tscn" id="8_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://2v5lrlgdnvmh" path="res://prefabs/items/battery.tscn" id="8_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://8qgi3wwwyvls" path="res://actors/mouse.tscn" id="8_w7kh3"]
+[ext_resource type="PackedScene" uid="uid://c8152cxr5vhqq" path="res://actors/umbra.tscn" id="9_q5onr"]
 [ext_resource type="PackedScene" uid="uid://brekf1vpriqeu" path="res://prefabs/items/key.tscn" id="18_oo54l"]
 [ext_resource type="PackedScene" uid="uid://cgv03d7qvrnkd" path="res://scenes/world_environment.tscn" id="19_munwf"]
 [ext_resource type="PackedScene" uid="uid://bngdn8mkeb6v1" path="res://actors/decayed.tscn" id="23_xgqkh"]
@@ -38,17 +39,23 @@ navigation_mesh = SubResource("NavigationMesh_4mrxx")
 [node name="WorldEnvironment" parent="GameConfigs" instance=ExtResource("19_munwf")]
 
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.077018, 1.9912964, 15.919905)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.077018, 1.753752, 15.919905)
 
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="LampHead" parent="Enemies" instance=ExtResource("8_4mrxx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7048, 0.9570825, 7.427923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7048, 0.9570825, 2.4577713)
 walk_anim_speed = 3.0
 chase_anim_speed = 4.0
 
 [node name="Decayed" parent="Enemies" instance=ExtResource("23_xgqkh")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.9072131, 0.9920902, -6.8082495)
+
+[node name="Umbra" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("9_q5onr")]
+transform = Transform3D(0.19120304, 0, 0.9815505, 0, 1, 0, -0.9815505, 0, 0.19120304, -24.869452, 1.0000594, 25.862753)
+player = NodePath("../../Player")
+tempo_limite = 30.0
+distancia_minima_spawn = 30.0
 
 [node name="Collectables" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)
