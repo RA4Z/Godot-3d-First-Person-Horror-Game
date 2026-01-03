@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=16 format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://8qgi3wwwyvls" path="res://actors/mouse.tscn" id="8_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://c8152cxr5vhqq" path="res://actors/umbra.tscn" id="9_q5onr"]
 [ext_resource type="PackedScene" uid="uid://btjqgbj1b6ns2" path="res://actors/lume.tscn" id="10_jhx03"]
+[ext_resource type="PackedScene" uid="uid://bcmcmwqg2pfbd" path="res://prefabs/items/explosive_monkey.tscn" id="14_o8fc1"]
 [ext_resource type="PackedScene" uid="uid://brekf1vpriqeu" path="res://prefabs/items/key.tscn" id="18_oo54l"]
 [ext_resource type="PackedScene" uid="uid://cgv03d7qvrnkd" path="res://scenes/world_environment.tscn" id="19_munwf"]
 [ext_resource type="PackedScene" uid="uid://bngdn8mkeb6v1" path="res://actors/decayed.tscn" id="23_xgqkh"]
@@ -94,3 +95,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.825501, 1.0909268, 17.912
 
 [node name="Mouse2" parent="NPCs" instance=ExtResource("8_w7kh3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.899523, 1.0141312, 14.88587)
+
+[node name="ExplosiveMonkey" parent="." instance=ExtResource("14_o8fc1")]
+transform = Transform3D(0.9761939, 0, -0.21689965, 0, 1, 0, 0.21689965, 0, 0.9761939, -11.764896, 1.0375886, 14.438923)
+
+[node name="ExplosiveMonkey2" parent="." instance=ExtResource("14_o8fc1")]
+transform = Transform3D(0.9761939, 0, -0.21689965, 0, 1, 0, 0.21689965, 0, 0.9761939, -12.796546, 1.0375886, 14.984569)

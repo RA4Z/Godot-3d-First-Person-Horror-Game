@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bstva6vvjr5o2"]
+[gd_scene load_steps=8 format=3 uid="uid://bstva6vvjr5o2"]
 
 [ext_resource type="Script" uid="uid://cb7fqume1geuc" path="res://scripts/interface.gd" id="1_3greb"]
 [ext_resource type="Texture2D" uid="uid://cu3epo8umlr70" path="res://assets/icons/battery_icon.png" id="2_6qr8u"]
 [ext_resource type="FontFile" uid="uid://2skucwyidu7h" path="res://assets/fonts/shlop rg.otf" id="2_irfrh"]
+[ext_resource type="PackedScene" uid="uid://dlg4c5ex53232" path="res://prefabs/slot.tscn" id="4_vet5l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vet5l"]
 font = ExtResource("2_irfrh")
@@ -81,3 +82,35 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/background = SubResource("StyleBoxFlat_3greb")
 theme_override_styles/fill = SubResource("StyleBoxFlat_irfrh")
 value = 100.0
+
+[node name="Inventory" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="hotbar" type="HBoxContainer" parent="Inventory"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Slot" parent="Inventory/hotbar" instance=ExtResource("4_vet5l")]
+layout_mode = 2
+
+[node name="Slot2" parent="Inventory/hotbar" instance=ExtResource("4_vet5l")]
+layout_mode = 2
+
+[node name="Slot3" parent="Inventory/hotbar" instance=ExtResource("4_vet5l")]
+layout_mode = 2
+
+[node name="Slot4" parent="Inventory/hotbar" instance=ExtResource("4_vet5l")]
+layout_mode = 2

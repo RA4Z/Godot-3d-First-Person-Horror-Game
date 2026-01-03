@@ -29,6 +29,7 @@ var sway_amount = 0.01
 var sway_lerp_speed = 5.0
 
 func _ready():
+	inventory.current_player = self
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
@@ -46,6 +47,14 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
+	# Kick Obstacles
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is RigidBody3D:
+			var kick_direction = -collision.get_normal()
+			collider.apply_central_impulse(kick_direction * velocity.length() * 0.5)
+			
 	# 2. Pulo
 	var current_snap = 0.5 
 	if is_on_floor():
@@ -120,6 +129,16 @@ func actions(delta):
 			elif object.name == "Interaction":
 				object.get_parent().interact()
 		
+	if Input.is_action_just_pressed("use_item"):
+		if inventory.player_hotbar[inventory.hotbar_current_slot]:
+			inventory.remove_hotbar_item(inventory.hotbar_current_slot)
+	
+	# Drop Item
+	if Input.is_action_just_pressed("drop"):
+		if inventory.player_hotbar[inventory.hotbar_current_slot]:
+			inventory.drop_item(inventory.player_hotbar[inventory.hotbar_current_slot]["id"])
+			inventory.remove_hotbar_item(inventory.hotbar_current_slot)
+	
 	# Lanterna
 	if Input.is_action_just_pressed("flashlight") and not reloading:
 		flashlight_sound.play()

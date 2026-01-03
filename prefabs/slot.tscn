@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dlg4c5ex53232"]
+
+[node name="Slot" type="PanelContainer"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SelectionBorder" type="ReferenceRect" parent="."]
+visible = false
+layout_mode = 2
+border_color = Color(1, 1, 1, 1)
+border_width = 4.0
+editor_only = false
