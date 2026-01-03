@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dcyl6m5c73es8" path="res://audio/sounds/monster/decayed/decayed_clicks.ogg" id="6_prty0"]
 [ext_resource type="PackedScene" uid="uid://b6sshq144sm2t" path="res://scenes/jumpscare_ui.tscn" id="7_ph6gi"]
 [ext_resource type="VideoStream" uid="uid://g2toauumagt4" path="res://assets/videos/jumpscare_decayed.ogv" id="8_ph6gi"]
-[ext_resource type="AudioStream" uid="uid://3mit2bi1gh6b" path="res://audio/sounds/SFX/jumpscare.mp3" id="9_lm0f5"]
+[ext_resource type="AudioStream" uid="uid://3mit2bi1gh6b" path="res://audio/sounds/SFX/jumpscares/jumpscare.mp3" id="9_lm0f5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_euuc8"]
 resource_name = "default"

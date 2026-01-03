@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cobndci8acmyl"]
+[gd_scene load_steps=15 format=3 uid="uid://cobndci8acmyl"]
 
 [ext_resource type="MeshLibrary" uid="uid://bupwg0ulrwftn" path="res://assets/meshes/buildings.tres" id="1_hq2ei"]
 [ext_resource type="PackedScene" uid="uid://fq2ecdl5fuxj" path="res://prefabs/broken_door.tscn" id="2_5bdbf"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://daf1vmcnyxs72" path="res://prefabs/decorations/remains.tscn" id="5_q1bh5"]
 [ext_resource type="PackedScene" uid="uid://rt6em34kh2y5" path="res://prefabs/decorations/dinner_table.tscn" id="6_786ft"]
 [ext_resource type="PackedScene" uid="uid://ct1h4p1sulmkb" path="res://prefabs/stairs.tscn" id="7_q1bh5"]
+[ext_resource type="PackedScene" uid="uid://gfycnu5wqinw" path="res://prefabs/radio.tscn" id="8_dept3"]
+[ext_resource type="AudioStream" uid="uid://nj6e4tb5he6q" path="res://audio/musics/horror_music.mp3" id="9_85crk"]
 [ext_resource type="Script" uid="uid://dcc5ktpwbetqo" path="res://scripts/events/sound_event.gd" id="9_tn0w6"]
 [ext_resource type="AudioStream" uid="uid://bakenqgwe530" path="res://audio/sounds/SFX/girl_laugh.mp3" id="10_tn0w6"]
 
@@ -97,6 +99,13 @@ transform = Transform3D(-0.46219754, 0, -0.8867769, 0, 1, 0, 0.8867769, 0, -0.46
 
 [node name="DinnerTable" parent="Decorations/PrisonCells" instance=ExtResource("6_786ft")]
 transform = Transform3D(-0.002746122, -0.14997485, -6.555609e-09, -3.1763737e-23, -6.5567076e-09, 0.14999999, -0.14997485, 0.002746122, 1.2003681e-10, -6.549461, 2.9291182, -2.3936653)
+
+[node name="Radio" parent="Decorations/PrisonCells" instance=ExtResource("8_dept3")]
+transform = Transform3D(0.21521261, -0.97656727, -4.2687113e-08, -1.404338e-15, -4.371139e-08, 1, -0.97656727, -0.21521261, -9.407245e-09, -6.69986, -0.7656779, 4.8623066)
+skeleton = NodePath("../../..")
+audio_stream = ExtResource("9_85crk")
+auto_play = true
+loop = true
 
 [node name="Decal" type="Decal" parent="."]
 transform = Transform3D(-4.3711385e-08, 0.99999994, -4.3711385e-08, 0, -4.3711385e-08, -0.99999994, -0.9999999, -4.3711385e-08, 1.9106853e-15, -8.9161, 2.6251645, 13.885593)

@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://c7pk72km5yqmm" path="res://audio/sounds/monster/lamp_head/monster_footstep1.mp3" id="6_evhaq"]
 [ext_resource type="AudioStream" uid="uid://ccqhhvoyhnc3x" path="res://audio/sounds/monster/lamp_head/monster_footstep2.mp3" id="7_7yjlb"]
 [ext_resource type="AudioStream" uid="uid://d1tsyrhprhmu7" path="res://audio/sounds/monster/lamp_head/monster_footstep3.mp3" id="8_7yjlb"]
-[ext_resource type="AudioStream" uid="uid://3mit2bi1gh6b" path="res://audio/sounds/SFX/jumpscare.mp3" id="9_0vyki"]
+[ext_resource type="AudioStream" uid="uid://3mit2bi1gh6b" path="res://audio/sounds/SFX/jumpscares/jumpscare.mp3" id="9_0vyki"]
 [ext_resource type="VideoStream" uid="uid://debs0ry0uk7bw" path="res://assets/videos/jumpscare.ogv" id="9_wk3i7"]
 [ext_resource type="PackedScene" uid="uid://b6sshq144sm2t" path="res://scenes/jumpscare_ui.tscn" id="10_3os6f"]
 [ext_resource type="AudioStream" uid="uid://dcyl6m5c73es8" path="res://audio/sounds/monster/decayed/decayed_clicks.ogg" id="11_ami33"]

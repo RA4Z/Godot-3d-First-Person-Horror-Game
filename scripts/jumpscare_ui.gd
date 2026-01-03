@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @export var video_resource: VideoStream
 @export var audio_resource: AudioStream
-@export var duration: int = 5
+@export var duration: float = 5
 
 @onready var video_player: VideoStreamPlayer = $VideoStreamPlayer
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer

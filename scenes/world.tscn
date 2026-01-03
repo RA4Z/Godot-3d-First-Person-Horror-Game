@@ -58,7 +58,7 @@ player = NodePath("../../Player")
 distancia_minima_spawn = 60.0
 
 [node name="Lume" parent="Enemies" instance=ExtResource("10_jhx03")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9062877, 1.535469, 15.711815)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9062877, 5.6616445, 15.711815)
 
 [node name="Collectables" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)

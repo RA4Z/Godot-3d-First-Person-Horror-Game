@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://c0wtasecovpyg" path="res://assets/objects/hanged_ghost/hanged_ghost_-_ma_than_vong_8.jpg" id="9_386be"]
 [ext_resource type="Texture2D" uid="uid://b1s47g4jopcc" path="res://assets/objects/hanged_ghost/hanged_ghost_-_ma_than_vong_9.png" id="10_hpjo5"]
 [ext_resource type="PackedScene" uid="uid://b6sshq144sm2t" path="res://scenes/jumpscare_ui.tscn" id="12_1ubry"]
-[ext_resource type="VideoStream" uid="uid://g2toauumagt4" path="res://assets/videos/jumpscare_decayed.ogv" id="13_h1lm2"]
-[ext_resource type="AudioStream" uid="uid://7jtcioclek35" path="res://audio/sounds/SFX/fnaf-ennard-jumpscare_srRsKIJ.mp3" id="14_1ubry"]
+[ext_resource type="VideoStream" uid="uid://dxwufwvhxpmqy" path="res://assets/videos/jumpscare_umbra.ogv" id="13_h1lm2"]
+[ext_resource type="AudioStream" uid="uid://f4sdwn1cq0j0" path="res://audio/sounds/SFX/jumpscares/nightmare-jumpscare.mp3" id="14_h1lm2"]
 [ext_resource type="AudioStream" uid="uid://ct2gcv17043wf" path="res://audio/sounds/SFX/woman_cry.mp3" id="15_h1lm2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohjwl"]
@@ -3605,7 +3605,7 @@ shape = SubResource("CapsuleShape3D_whhgw")
 
 [node name="JumpscareUI" parent="." instance=ExtResource("12_1ubry")]
 video_resource = ExtResource("13_h1lm2")
-audio_resource = ExtResource("14_1ubry")
+audio_resource = ExtResource("14_h1lm2")
 
 [node name="CrySound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("15_h1lm2")
