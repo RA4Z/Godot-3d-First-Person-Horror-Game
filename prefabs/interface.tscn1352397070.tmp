@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bstva6vvjr5o2"]
+[gd_scene load_steps=8 format=3 uid="uid://bstva6vvjr5o2"]
 
 [ext_resource type="Script" uid="uid://cb7fqume1geuc" path="res://scripts/interface.gd" id="1_3greb"]
 [ext_resource type="Texture2D" uid="uid://cu3epo8umlr70" path="res://assets/icons/battery_icon.png" id="2_6qr8u"]
@@ -8,7 +8,6 @@
 [sub_resource type="LabelSettings" id="LabelSettings_vet5l"]
 font = ExtResource("2_irfrh")
 font_size = 32
-font_color = Color(0.93333334, 0.93333334, 0.93333334, 1)
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
@@ -32,16 +31,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_color = Color(0.27058825, 0.60784316, 0.28235295, 1)
 shadow_size = 6
-
-[sub_resource type="LabelSettings" id="LabelSettings_7spvn"]
-font = ExtResource("2_irfrh")
-font_size = 24
-font_color = Color(0.93333334, 0.93333334, 0.93333334, 1)
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 0.5921569)
-shadow_offset = Vector2(2, 2)
 
 [node name="Interface" type="Control"]
 modulate = Color(1, 1, 1, 0.5882353)
@@ -110,13 +99,9 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Inventory"]
 layout_mode = 2
-theme_override_constants/separation = 15
 
 [node name="ItemName" type="Label" parent="Inventory/VBoxContainer"]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_7spvn")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="hotbar" type="HBoxContainer" parent="Inventory/VBoxContainer"]
 layout_mode = 2

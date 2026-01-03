@@ -64,29 +64,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9062877, 1.4525894, 15.711
 [node name="Collectables" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)
 
-[node name="keys" type="Node3D" parent="Collectables"]
+[node name="Keys" type="Node3D" parent="Collectables"]
 
-[node name="Key0001" parent="Collectables/keys" instance=ExtResource("18_oo54l")]
+[node name="Key0001" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
 transform = Transform3D(-4.371139e-11, 0, 0.001, 0, 0.001, 0, -0.001, 0, -4.371139e-11, -4.460411, 1.634194, 4.229667)
 keyID = "0001"
 
-[node name="Key666" parent="Collectables/keys" instance=ExtResource("18_oo54l")]
+[node name="Key666" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
 transform = Transform3D(0.00070576026, 0, -0.0007084507, 0, 0.0009999999, 0, 0.0007084507, 0, 0.00070576026, -13.418554, 5.7391467, 17.036366)
 keyID = "666"
 
-[node name="batteries" type="Node3D" parent="Collectables"]
+[node name="Batteries" type="Node3D" parent="Collectables"]
 
-[node name="Battery1" parent="Collectables/batteries" instance=ExtResource("8_7r4gi")]
+[node name="Battery1" parent="Collectables/Batteries" instance=ExtResource("8_7r4gi")]
 transform = Transform3D(0.054900825, 0, 0.08358169, 0, 0.1, 0, -0.08358169, 0, 0.054900825, -14.072871, 1.5246439, 15.137541)
 
-[node name="Battery666_room1" parent="Collectables/batteries" instance=ExtResource("8_7r4gi")]
+[node name="Battery666_room1" parent="Collectables/Batteries" instance=ExtResource("8_7r4gi")]
 transform = Transform3D(0.054900825, 0, 0.08358169, 0, 0.1, 0, -0.08358169, 0, 0.054900825, -14.025215, 1.5246438, 22.145866)
 
-[node name="Battery666_room2" parent="Collectables/batteries" instance=ExtResource("8_7r4gi")]
+[node name="Battery666_room2" parent="Collectables/Batteries" instance=ExtResource("8_7r4gi")]
 transform = Transform3D(0.054900825, 0, 0.08358169, 0, 0.1, 0, -0.08358169, 0, 0.054900825, -14.198237, 1.5246438, 22.471317)
 
-[node name="Battery666_room3" parent="Collectables/batteries" instance=ExtResource("8_7r4gi")]
+[node name="Battery666_room3" parent="Collectables/Batteries" instance=ExtResource("8_7r4gi")]
 transform = Transform3D(0.054900825, 0, 0.08358169, 0, 0.1, 0, -0.08358169, 0, 0.054900825, -14.07217, 1.5246438, 22.845457)
+
+[node name="HotbarItems" type="Node3D" parent="Collectables"]
+
+[node name="ExplosiveMonkey" parent="Collectables/HotbarItems" instance=ExtResource("14_o8fc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.393307, 1.0375886, 24.705397)
+
+[node name="ExplosiveMonkey2" parent="Collectables/HotbarItems" instance=ExtResource("14_o8fc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.393307, 1.0375886, 22.038437)
 
 [node name="NPCs" type="Node3D" parent="."]
 
@@ -95,9 +103,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.825501, 1.0909268, 17.912
 
 [node name="Mouse2" parent="NPCs" instance=ExtResource("8_w7kh3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.899523, 1.0141312, 14.88587)
-
-[node name="ExplosiveMonkey" parent="." instance=ExtResource("14_o8fc1")]
-transform = Transform3D(0.9761939, 0, -0.21689965, 0, 1, 0, 0.21689965, 0, 0.9761939, -11.764896, 1.0375886, 14.438923)
-
-[node name="ExplosiveMonkey2" parent="." instance=ExtResource("14_o8fc1")]
-transform = Transform3D(0.9761939, 0, -0.21689965, 0, 1, 0, 0.21689965, 0, 0.9761939, -12.796546, 1.0375886, 14.984569)

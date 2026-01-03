@@ -8,24 +8,41 @@ var is_collected := false
 var exploding := false
 
 func interact():
-	if is_collected: return
+	if is_collected or exploding: return
 	is_collected = true
 	collect_sound.play()
 	
 	var scene_path = self.scene_file_path 
 	inventory.add_hotbar_item("Explosive Monkey", scene_path, preload("uid://b20hfu8kyh4vp"))
 	
-	# Esconde e remove colisão para não interferir enquanto toca o som de coleta
 	self.visible = false
-	self.freeze = true # Congela a física antes de deletar
+	self.freeze = true
 	
 	await collect_sound.finished
 	queue_free()
 
 func use_item():
+	if exploding: return
 	exploding = true
+	
+	var noise_radius = 30.0
+	var total_duration = 30.0
+	var noise_interval = 0.5
+	
 	animation_player.play("Take 001")
-	monkey_sound.play()
+	
+	if not monkey_sound.playing:
+		monkey_sound.play()
+
+	var elapsed_time = 0.0
+	
+	while elapsed_time < total_duration:
+		GameEvents.noise_made.emit(global_position, noise_radius)
+		await get_tree().create_timer(noise_interval).timeout
+		elapsed_time += noise_interval
+
+	print("Macaco parou de funcionar e sumiu")
+	queue_free()
 
 func kick(direction: Vector3, force: float = 5.0):
 	apply_central_impulse(direction * force)

@@ -189,6 +189,21 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="Animation" id="Animation_v6dl3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CymbalsSound:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_nn55p"]
 resource_name = "Take 001"
 length = 3.125
@@ -302,21 +317,6 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, true, true, true, true, true, true, true, true, true, true]
-}
-
-[sub_resource type="Animation" id="Animation_v6dl3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CymbalsSound:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8b4dk"]
@@ -522,12 +522,12 @@ shape = SubResource("BoxShape3D_yux1b")
 [node name="CymbalsSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_v6dl3")
 attenuation_model = 2
-max_distance = 15.0
+max_distance = 30.0
 
 [node name="MonkeySound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_xpcvj")
 attenuation_model = 2
-max_distance = 15.0
+max_distance = 30.0
 parameters/looping = true
 
 [node name="CollectSound" type="AudioStreamPlayer3D" parent="."]

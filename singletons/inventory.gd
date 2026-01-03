@@ -40,17 +40,27 @@ func drop_item(item_data):
 	if current_player == null:
 		return
 
-	var ideal_pos = current_player.global_position + (-current_player.global_transform.basis.z * 1.5)
+	var camera = current_player.get_node_or_null("Head/Camera3D") # Ajuste o caminho se necessário
+	var look_dir: Vector3
+	
+	if camera:
+		look_dir = -camera.global_transform.basis.z
+	else:
+		look_dir = -current_player.global_transform.basis.z
+
+	var horizontal_dir = Vector3(look_dir.x, 0, look_dir.z).normalized()
+	var ideal_pos = current_player.global_position + (horizontal_dir * 1.5)
 	var map_rid = current_player.get_world_3d().get_navigation_map()
 	var final_pos = NavigationServer3D.map_get_closest_point(map_rid, ideal_pos)
-
+	var instance: Node3D
+	
 	if item_data is String:
 		var scene = load(item_data)
-		var instance = scene.instantiate()
+		instance = scene.instantiate()
 		get_tree().current_scene.add_child(instance)
-		instance.global_position = final_pos
-		
 	elif item_data is Node:
-		get_tree().current_scene.add_child(item_data)
-		item_data.visible = true
-		item_data.global_position = final_pos
+		instance = item_data
+		get_tree().current_scene.add_child(instance)
+		instance.visible = true
+
+	instance.global_position = final_pos + Vector3(0, 0.2, 0)

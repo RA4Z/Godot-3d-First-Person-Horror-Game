@@ -2,12 +2,15 @@ extends Control
 
 @onready var battery_bar: ProgressBar = $MarginContainer/VBoxContainer/BatteryBar
 @onready var battery_quantity: Label = $MarginContainer/VBoxContainer/HBoxContainer/BatteryQuantity
-@onready var hotbar: HBoxContainer = $Inventory/hotbar
+@onready var hotbar: HBoxContainer = $Inventory/VBoxContainer/hotbar
+@onready var item_name_label: Label = $Inventory/VBoxContainer/ItemName
 
+var name_tween: Tween
 var total_slots = 4
 
 func _ready() -> void:
 	change_slot(0)
+	item_name_label.modulate.a = 0
 	inventory.hotbar_updated.connect(update_selection_visual)
 
 func _process(_delta):
@@ -48,23 +51,50 @@ func change_slot(amount):
 
 func update_selection_visual():
 	var slots = hotbar.get_children()
+	var current_slot_index = inventory.hotbar_current_slot
 	
+	# --- Parte 1: Atualizar Bordas e Ícones (o que já tínhamos) ---
 	for i in range(slots.size()):
 		var slot_node = slots[i]
 		var border = slot_node.get_node("SelectionBorder")
-		var icon_rect = slot_node.get_node("Icon") # Pegamos o nó de ícone
+		var icon_rect = slot_node.get_node("Icon")
 		
-		border.visible = (i == inventory.hotbar_current_slot)
+		border.visible = (i == current_slot_index)
 		
-		if i < inventory.player_hotbar.size():
-			var item = inventory.player_hotbar[i]
-			
-			if item != null and item.has("icon"):
-				icon_rect.texture = item["icon"]
-				icon_rect.visible = true
-			else:
-				icon_rect.texture = null
-				icon_rect.visible = false
+		if i < inventory.player_hotbar.size() and inventory.player_hotbar[i] != null:
+			icon_rect.texture = inventory.player_hotbar[i]["icon"]
+			icon_rect.visible = true
 		else:
 			icon_rect.texture = null
 			icon_rect.visible = false
+
+	# --- Parte 2: Atualizar o Nome do Item selecionado ---
+	var selected_item = inventory.player_hotbar[current_slot_index]
+	
+	if selected_item != null:
+		animate_item_name(selected_item["name"])
+	else:
+		animate_item_name("") # Ou "Vazio" se preferir
+
+func animate_item_name(new_text: String):
+	if name_tween:
+		name_tween.kill()
+	
+	if new_text == "":
+		item_name_label.modulate.a = 0
+		item_name_label.text = ""
+		return
+
+	item_name_label.text = new_text
+	item_name_label.modulate.a = 1.0
+	
+	name_tween = create_tween()
+	name_tween.tween_property(item_name_label, "scale", Vector2(1.1, 1.1), 0.1)
+	name_tween.tween_property(item_name_label, "scale", Vector2(1.0, 1.0), 0.1)
+	name_tween.tween_interval(2.0)
+	
+	name_tween.tween_property(item_name_label, "modulate:a", 0.0, 1.5)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_IN_OUT)
+		
+	name_tween.tween_callback(func(): item_name_label.text = "")
