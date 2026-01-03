@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cobndci8acmyl"]
+[gd_scene load_steps=16 format=3 uid="uid://cobndci8acmyl"]
 
 [ext_resource type="MeshLibrary" uid="uid://bupwg0ulrwftn" path="res://assets/meshes/buildings.tres" id="1_hq2ei"]
 [ext_resource type="PackedScene" uid="uid://fq2ecdl5fuxj" path="res://prefabs/broken_door.tscn" id="2_5bdbf"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://nj6e4tb5he6q" path="res://audio/musics/horror_music.mp3" id="9_85crk"]
 [ext_resource type="Script" uid="uid://dcc5ktpwbetqo" path="res://scripts/events/sound_event.gd" id="9_tn0w6"]
 [ext_resource type="AudioStream" uid="uid://bakenqgwe530" path="res://audio/sounds/SFX/girl_laugh.mp3" id="10_tn0w6"]
+[ext_resource type="AudioStream" uid="uid://dmvgqbc54vij8" path="res://audio/sounds/SFX/030 - Death Row Cue 03.mp3" id="14_85crk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4qh63"]
 size = Vector3(2.9784546, 2.600647, 1)
@@ -148,4 +149,22 @@ debug_color = Color(0.7706669, 0.5658458, 0.07669132, 0.41960785)
 stream = ExtResource("10_tn0w6")
 volume_db = -15.0
 
+[node name="Enter666Room2" type="Area3D" parent="Events"]
+transform = Transform3D(0.019022888, 0, -0.99981904, 0, 1, 0, 0.99981904, 0, 0.019022888, -10.558366, 5.5630875, 15.931846)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("9_tn0w6")
+activate_utils = "mannequin_active"
+pause_main_music = false
+
+[node name="Collision" type="CollisionShape3D" parent="Events/Enter666Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25967407, 0.8003235, 0)
+shape = SubResource("BoxShape3D_4qh63")
+debug_color = Color(0.7706669, 0.5658458, 0.07669132, 0.41960785)
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="Events/Enter666Room2"]
+stream = ExtResource("14_85crk")
+volume_db = -15.0
+
 [connection signal="body_entered" from="Events/Enter666Room" to="Events/Enter666Room" method="_on_body_entered"]
+[connection signal="body_entered" from="Events/Enter666Room2" to="Events/Enter666Room2" method="_on_body_entered"]

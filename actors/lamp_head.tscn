@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dgmtjao77k173"]
+[gd_scene load_steps=28 format=4 uid="uid://dgmtjao77k173"]
 
 [ext_resource type="Script" uid="uid://bo57m6uy6qk1m" path="res://scripts/hunter.gd" id="1_hopy3"]
 [ext_resource type="Texture2D" uid="uid://tdcroma0m7h4" path="res://assets/objects/shade_walkin/shade_walking_0.png" id="1_u2bqq"]
@@ -10,7 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://3mit2bi1gh6b" path="res://audio/sounds/SFX/jumpscares/jumpscare.mp3" id="9_0vyki"]
 [ext_resource type="VideoStream" uid="uid://debs0ry0uk7bw" path="res://assets/videos/jumpscare.ogv" id="9_wk3i7"]
 [ext_resource type="PackedScene" uid="uid://b6sshq144sm2t" path="res://scenes/jumpscare_ui.tscn" id="10_3os6f"]
-[ext_resource type="AudioStream" uid="uid://dcyl6m5c73es8" path="res://audio/sounds/monster/decayed/decayed_clicks.ogg" id="11_ami33"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_024c4"]
 resource_name = "cloth_MAT"
@@ -624,13 +623,6 @@ audio_resource = ExtResource("9_0vyki")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 script = SubResource("GDScript_wk3i7")
-
-[node name="ClicksSound" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
-stream = ExtResource("11_ami33")
-attenuation_model = 2
-volume_db = 10.0
-max_distance = 100.0
 
 [connection signal="body_entered" from="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/DetectionArea" to="." method="_on_detection_area_body_exited"]

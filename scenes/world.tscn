@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=17 format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://8qgi3wwwyvls" path="res://actors/mouse.tscn" id="8_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://c8152cxr5vhqq" path="res://actors/umbra.tscn" id="9_q5onr"]
 [ext_resource type="PackedScene" uid="uid://btjqgbj1b6ns2" path="res://actors/lume.tscn" id="10_jhx03"]
+[ext_resource type="PackedScene" uid="uid://b77a3qx4scii0" path="res://actors/mannequin.tscn" id="10_o8fc1"]
 [ext_resource type="PackedScene" uid="uid://bcmcmwqg2pfbd" path="res://prefabs/items/explosive_monkey.tscn" id="14_o8fc1"]
 [ext_resource type="PackedScene" uid="uid://brekf1vpriqeu" path="res://prefabs/items/key.tscn" id="18_oo54l"]
 [ext_resource type="PackedScene" uid="uid://cgv03d7qvrnkd" path="res://scenes/world_environment.tscn" id="19_munwf"]
@@ -41,7 +42,7 @@ navigation_mesh = SubResource("NavigationMesh_4mrxx")
 [node name="WorldEnvironment" parent="GameConfigs" instance=ExtResource("19_munwf")]
 
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.232234, 1.569288, 16.444313)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.813006, 1.569288, 16.398602)
 
 [node name="Enemies" type="Node3D" parent="."]
 
@@ -60,6 +61,9 @@ distancia_minima_spawn = 60.0
 
 [node name="Lume" parent="Enemies" instance=ExtResource("10_jhx03")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9062877, 1.4525894, 15.711815)
+
+[node name="Mannequin" parent="Enemies" instance=ExtResource("10_o8fc1")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -6.3908334, 5.0168695, 14.3030405)
 
 [node name="Collectables" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)

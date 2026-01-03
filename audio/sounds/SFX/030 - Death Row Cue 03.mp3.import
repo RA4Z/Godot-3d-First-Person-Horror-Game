@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dmvgqbc54vij8"
+path="res://.godot/imported/030 - Death Row Cue 03.mp3-f8625a7f58bc9c7d285ef6b841617412.mp3str"
+
+[deps]
+
+source_file="res://audio/sounds/SFX/030 - Death Row Cue 03.mp3"
+dest_files=["res://.godot/imported/030 - Death Row Cue 03.mp3-f8625a7f58bc9c7d285ef6b841617412.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

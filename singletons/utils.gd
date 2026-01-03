@@ -2,6 +2,7 @@ extends Node
 
 var being_jumpscared := false
 var umbra_active := false
+var mannequin_active := false
 
 func jumpscare_video(jumpscareUI):
 	being_jumpscared = true
@@ -16,3 +17,4 @@ func jumpscare_video(jumpscareUI):
 func reset_utils():
 	being_jumpscared = false
 	umbra_active = false
+	mannequin_active = false
