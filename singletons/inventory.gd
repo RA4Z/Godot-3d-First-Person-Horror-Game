@@ -10,4 +10,4 @@ func _ready():
 func set_default_values():
 	player_items = {"Battery": 0}
 	player_battery = 100
-	player_keys = ["664", "666"]
+	player_keys = ["664"]

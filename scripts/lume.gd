@@ -158,7 +158,7 @@ func _set_random_wander_target() -> void:
 
 
 func _on_killzone_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player") and state == EnemyState.CHASING:
+	if body.is_in_group("player") and state == EnemyState.CHASING and player.get("lights_on") == true:
 		_set_state(EnemyState.CATCHING)
 		velocity = Vector3.ZERO
 		utils.jumpscare_video(jumpscare_ui)

@@ -40,7 +40,7 @@ navigation_mesh = SubResource("NavigationMesh_4mrxx")
 [node name="WorldEnvironment" parent="GameConfigs" instance=ExtResource("19_munwf")]
 
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1465096, 1.569288, 19.33878)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.232234, 1.569288, 16.444313)
 
 [node name="Enemies" type="Node3D" parent="."]
 
@@ -58,7 +58,7 @@ player = NodePath("../../Player")
 distancia_minima_spawn = 60.0
 
 [node name="Lume" parent="Enemies" instance=ExtResource("10_jhx03")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9062877, 5.6616445, 15.711815)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9062877, 1.4525894, 15.711815)
 
 [node name="Collectables" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)
