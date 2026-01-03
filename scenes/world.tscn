@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=18 format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://btjqgbj1b6ns2" path="res://actors/lume.tscn" id="10_jhx03"]
 [ext_resource type="PackedScene" uid="uid://b77a3qx4scii0" path="res://actors/mannequin.tscn" id="10_o8fc1"]
 [ext_resource type="PackedScene" uid="uid://bcmcmwqg2pfbd" path="res://prefabs/items/explosive_monkey.tscn" id="14_o8fc1"]
+[ext_resource type="PackedScene" uid="uid://ktuodl02jqi5" path="res://prefabs/items/wooden_mannequin.tscn" id="15_dss4m"]
 [ext_resource type="PackedScene" uid="uid://brekf1vpriqeu" path="res://prefabs/items/key.tscn" id="18_oo54l"]
 [ext_resource type="PackedScene" uid="uid://cgv03d7qvrnkd" path="res://scenes/world_environment.tscn" id="19_munwf"]
 [ext_resource type="PackedScene" uid="uid://bngdn8mkeb6v1" path="res://actors/decayed.tscn" id="23_xgqkh"]
@@ -46,8 +47,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.813006, 1.569288, 16.3986
 
 [node name="Enemies" type="Node3D" parent="."]
 
-[node name="LampHead" parent="Enemies" instance=ExtResource("8_4mrxx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0168924, 0.9570825, -5.282306)
+[node name="LampHead" parent="Enemies" groups=["fake_player"] instance=ExtResource("8_4mrxx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4425244, 0.95708275, 0.08370924)
 walk_anim_speed = 3.0
 chase_anim_speed = 4.0
 
@@ -97,8 +98,8 @@ transform = Transform3D(0.054900825, 0, 0.08358169, 0, 0.1, 0, -0.08358169, 0, 0
 [node name="ExplosiveMonkey" parent="Collectables/HotbarItems" instance=ExtResource("14_o8fc1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.393307, 1.0375886, 24.705397)
 
-[node name="ExplosiveMonkey2" parent="Collectables/HotbarItems" instance=ExtResource("14_o8fc1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.393307, 1.0375886, 22.038437)
+[node name="WoodenMannequin" parent="Collectables/HotbarItems" instance=ExtResource("15_dss4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.249375, 1.0086821, 21.750345)
 
 [node name="NPCs" type="Node3D" parent="."]
 

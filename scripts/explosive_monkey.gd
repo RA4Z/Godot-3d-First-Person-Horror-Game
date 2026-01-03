@@ -13,6 +13,7 @@ func interact():
 	collect_sound.play()
 	
 	var scene_path = self.scene_file_path 
+	print(scene_path)
 	inventory.add_hotbar_item("Explosive Monkey", scene_path, preload("uid://b20hfu8kyh4vp"))
 	
 	self.visible = false

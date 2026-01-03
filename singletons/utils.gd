@@ -4,6 +4,11 @@ var being_jumpscared := false
 var umbra_active := false
 var mannequin_active := false
 
+var item_cache = {
+	"res://prefabs/items/explosive_monkey.tscn": preload("res://prefabs/items/explosive_monkey.tscn"),
+	"res://prefabs/items/wooden_mannequin.tscn": preload("res://prefabs/items/wooden_mannequin.tscn")
+}
+
 func jumpscare_video(jumpscareUI):
 	being_jumpscared = true
 	get_tree().paused = true

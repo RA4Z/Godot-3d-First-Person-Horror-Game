@@ -134,27 +134,23 @@ func actions(delta):
 		var item_data = inventory.player_hotbar[slot_index]
 		
 		if item_data != null:
-			# 1. Pegar a direção da câmera (ajuste o nome para o seu nó de câmera)
 			var look_dir = -camera.global_transform.basis.z
-			# Forçamos o vetor para o plano horizontal (Y = 0) para o item sair no chão
 			var horizontal_dir = Vector3(look_dir.x, 0, look_dir.z).normalized()
 			
-			# 2. Calcular a posição ideal (1.5m na frente de onde você olha)
 			var ideal_pos = global_position + (horizontal_dir * 1.5)
 			
-			# 3. Validar no NavigationMesh para não atravessar paredes
 			var map_rid = get_world_3d().get_navigation_map()
 			var final_pos = NavigationServer3D.map_get_closest_point(map_rid, ideal_pos)
 			
-			# 4. Instanciar o item
-			var item_scene = load(item_data["id"])
+			# Instantiate Item
+			var item_path = item_data["id"]
+			if not utils.item_cache.has(item_path):
+				utils.item_cache[item_path] = load(item_path)
+			var item_scene = utils.item_cache[item_path]
 			var item_instance = item_scene.instantiate()
 			get_tree().current_scene.add_child(item_instance)
 			
-			# 5. Posicionar o item (um pouco acima do ponto da navegação)
 			item_instance.global_position = final_pos + Vector3(0, 0.2, 0)
-			
-			# 6. Executar a função do item e remover da hotbar
 			if item_instance.has_method("use_item"):
 				item_instance.use_item()
 			

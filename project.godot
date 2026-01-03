@@ -26,6 +26,7 @@ GameEvents="*res://singletons/game_events.gd"
 
 player=""
 enemy=""
+fake_player=""
 
 [input]
 
@@ -91,3 +92,4 @@ drop={
 3d_physics/layer_2="interactives"
 3d_physics/layer_3="creatures"
 3d_physics/layer_4="player"
+3d_physics/layer_5="fake_player"

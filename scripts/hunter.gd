@@ -74,6 +74,16 @@ func _physics_process(delta: float) -> void:
 		_process_navigation_link(delta)
 		return
 
+	# --- LÓGICA DE FAKE PLAYER ---
+	# Se estiver caçando e o alvo for o fake_player, fica parado apenas olhando
+	if state == EnemyState.CHASING and is_instance_valid(player):
+		if player.is_in_group("fake_player"):
+			_look_at_target(player.global_position, delta)
+			velocity = Vector3.ZERO
+			move_and_slide() # Necessário para aplicar gravidade se houver
+			# Não executamos o resto do pathfinding para não sair do lugar
+			return 
+			
 	# --- LÓGICA DE TIMERS (Roda todo frame) ---
 	if state == EnemyState.CHASING:
 		if _has_line_of_sight():
@@ -96,7 +106,15 @@ func _physics_process(delta: float) -> void:
 		path_update_timer = 0.0
 
 	_move_and_rotate(delta)
-	
+
+
+func _look_at_target(target_pos: Vector3, delta: float) -> void:
+	var look_dir := target_pos - global_position
+	look_dir.y = 0
+	if look_dir.length() > 0.1:
+		var target_yaw := atan2(-look_dir.x, -look_dir.z)
+		target_yaw += deg_to_rad(model_y_rotation_fix_deg)
+		rotation.y = lerp_angle(rotation.y, target_yaw, rotation_speed * delta)
 # =========================
 # STATES
 # =========================
@@ -156,22 +174,14 @@ func _move_and_rotate(delta: float) -> void:
 	direction.y = 0
 
 	if direction.length() < 0.05:
-		# Força olhar para o target se travar em corredor
-		var look_dir := nav_agent.target_position - global_position
-		look_dir.y = 0
-		if look_dir.length() > 0.1:
-			var yaw := atan2(-look_dir.x, -look_dir.z)
-			yaw += deg_to_rad(model_y_rotation_fix_deg)
-			rotation.y = lerp_angle(rotation.y, yaw, rotation_speed * delta)
+		_look_at_target(nav_agent.target_position, delta)
 		velocity = Vector3.ZERO
 		return
 
 	direction = direction.normalized()
 	velocity = direction * current_speed
 
-	var target_yaw := atan2(-direction.x, -direction.z)
-	target_yaw += deg_to_rad(model_y_rotation_fix_deg)
-	rotation.y = lerp_angle(rotation.y, target_yaw, rotation_speed * delta)
+	_look_at_target(next_pos, delta) # Usa a função auxiliar aqui também
 
 	move_and_slide()
 
@@ -201,7 +211,7 @@ func _set_random_wander_target() -> void:
 # SIGNALS
 # =========================
 func _on_vision_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") or body.is_in_group("fake_player"):
 		player = body
 		last_known_player_position = body.global_position
 		last_seen_timer = 0.0
