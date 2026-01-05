@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var playerSpeed = 2.5
 @export var playerSneak = 1.0
-@export var playerAcceleration = 5.0
+@export var playerAcceleration = 7.0
 @export var cameraSensitivity = 0.25
 @export var jumpForce = 5.0
 @export var gravity = 10.0
@@ -21,7 +21,7 @@ extends CharacterBody3D
 var battery_timer := 0.0
 var step_timer = 0.0
 var step_interval = 0.5
-
+var mesh_rotation_target = 0.0
 var reloading := false
 var is_sneaking := false
 var lights_on := true
@@ -29,6 +29,9 @@ var head_y_axis = 0.0
 var camera_x_axis = 0.0
 var sway_amount = 0.01
 var sway_lerp_speed = 5.0
+var smoothed_input := Vector2.ZERO
+var last_head_y = 0.0
+var rotation_velocity = 0.0
 
 func _ready():
 	inventory.current_player = self
@@ -192,28 +195,54 @@ func play_footstep():
 	GameEvents.noise_made.emit(global_position, noise_radius)
 
 func update_animations(input_vector: Vector2):
+	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
+	
+	# Calcula o quanto a camera girou desde o último frame
+	# Usamos lerp para suavizar esse valor e evitar que a animação "pisque"
+	var current_rot_diff = head_y_axis - last_head_y
+	rotation_velocity = lerp(rotation_velocity, current_rot_diff, 0.1)
+	last_head_y = head_y_axis
+	
+	smoothed_input = smoothed_input.lerp(input_vector, 0.3)
+	
 	if is_on_floor():
-		if input_vector.length() > 0.1:
+		if horizontal_speed > 0.2:
+			# --- LÓGICA DE CAMINHADA (Igual à anterior) ---
 			var anim_name = ""
+			mesh_rotation_target = 0.0
 			
-			# Lógica para escolher a direção dominante
-			if abs(input_vector.y) >= abs(input_vector.x):
-				# Prioriza Frente ou Trás
-				if input_vector.y < 0:
-					anim_name = "Player/forward"
+			if abs(smoothed_input.x) > 0.4 and abs(smoothed_input.y) > 0.4:
+				anim_name = "Player/forward" if smoothed_input.y < 0 else "Player/backward"
+				var angle = deg_to_rad(30)
+				if smoothed_input.x > 0:
+					mesh_rotation_target = -angle if smoothed_input.y < 0 else angle
 				else:
-					anim_name = "Player/backward"
+					mesh_rotation_target = angle if smoothed_input.y < 0 else -angle
+			elif abs(smoothed_input.x) > 0.5:
+				anim_name = "Player/left" if smoothed_input.x < 0 else "Player/right"
+			elif abs(smoothed_input.y) > 0.1:
+				anim_name = "Player/forward" if smoothed_input.y < 0 else "Player/backward"
+			
+			if anim_name != "":
+				anim_player.speed_scale = 0.7 if is_sneaking else 1.0
+				anim_player.play(anim_name, 0.6)
+				
+		elif abs(rotation_velocity) > 1.0: 
+			# --- LÓGICA DE GIRAR PARADO ---
+			# Se o mouse está se movendo rápido o suficiente para os lados
+			if rotation_velocity > 0:
+				anim_player.play("Player/right_turn", 0.4)
 			else:
-				# Prioriza Lados
-				if input_vector.x < 0:
-					anim_name = "Player/left"
-				else:
-					anim_name = "Player/right"
-			
-			# Ajusta a velocidade se estiver agachado
-			anim_player.speed_scale = 0.7 if is_sneaking else 1.0
-			anim_player.play(anim_name, 0.3) # 0.3 é a suavização da transição
-		else:
-			anim_player.play("Player/idle", 0.3)
+				anim_player.play("Player/left_turn", 0.4)
 			anim_player.speed_scale = 1.0
+			mesh_rotation_target = 0.0
 			
+		else:
+			# --- IDLE ---
+			anim_player.play("Player/idle", 0.6)
+			anim_player.speed_scale = 1.0
+			mesh_rotation_target = 0.0
+
+	# Rotação do modelo (PlayerSkin)
+	var rotation_offset = deg_to_rad(180)
+	player_skin.rotation.y = lerp_angle(player_skin.rotation.y, mesh_rotation_target + rotation_offset, 0.1)
