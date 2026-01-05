@@ -37,6 +37,7 @@ _data = {
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 8
+collision_mask = 33
 floor_constant_speed = true
 floor_max_angle = 1.0471976
 script = ExtResource("1_mvpqy")
