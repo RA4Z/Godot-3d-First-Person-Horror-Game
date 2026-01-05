@@ -21,6 +21,7 @@ enum EnemyState {
 @export_category("AI")
 @export var wander_radius := 12.0
 @export var lose_sight_time := 5.0
+@export var max_chase_duration := 30.0
 
 @export_category("Animation")
 @export var base_animation_name := "Take 001"
@@ -44,7 +45,7 @@ var state := EnemyState.WANDERING
 var player: Node3D
 var last_seen_timer := 0.0
 var current_speed := 1.0
-
+var current_chase_time := 0.0
 var last_known_player_position: Vector3 = Vector3.ZERO
 var path_update_timer := 0.0
 var using_link := false
@@ -86,6 +87,10 @@ func _physics_process(delta: float) -> void:
 			
 	# --- LÓGICA DE TIMERS (Roda todo frame) ---
 	if state == EnemyState.CHASING:
+		current_chase_time += delta
+		if current_chase_time >= max_chase_duration:
+			_set_state(EnemyState.WANDERING)
+			return
 		if _has_line_of_sight():
 			last_seen_timer = 0.0
 			last_known_player_position = player.global_position
@@ -135,6 +140,7 @@ func _set_state(new_state: EnemyState) -> void:
 			_set_random_wander_target()
 
 		EnemyState.CHASING:
+			current_chase_time = 0.0
 			current_speed = chase_speed
 			anim_player.speed_scale = chase_anim_speed
 			nav_agent.navigation_layers = 1 | 2
