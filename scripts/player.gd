@@ -8,6 +8,11 @@ extends CharacterBody3D
 @export var gravity = 10.0
 @export var battery_consumption = 2
 
+@export_group("Head Bobbing")
+@export var bob_freq = 2.4     # Frequência do balanço (velocidade)
+@export var bob_amp = 0.06     # Amplitude do balanço (distância)
+var t_bob = 0.0                # Contador para a função seno
+
 @onready var interaction_ray: RayCast3D = $Head/Camera3D/InteractionRay
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
@@ -107,6 +112,9 @@ func _process(delta):
 	hand.rotation.y = lerp_angle(hand.rotation.y, 0.0, sway_lerp_speed * delta)
 	hand.rotation.x = clamp(hand.rotation.x, deg_to_rad(-15), deg_to_rad(15))
 	hand.rotation.y = clamp(hand.rotation.y, deg_to_rad(-15), deg_to_rad(15))
+	
+	# Aplica o balanço da cabeça
+	_head_bob(delta)
 	
 	# Ações de inventário e lanterna
 	actions(delta)
@@ -246,3 +254,30 @@ func update_animations(input_vector: Vector2):
 	# Rotação do modelo (PlayerSkin)
 	var rotation_offset = deg_to_rad(180)
 	player_skin.rotation.y = lerp_angle(player_skin.rotation.y, mesh_rotation_target + rotation_offset, 0.1)
+
+func _head_bob(delta):
+	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
+	var pos = Vector3.ZERO
+	
+	if is_on_floor() and horizontal_speed > 0.1:
+		# Aumenta o contador baseado na velocidade (caminhar vs sneak)
+		# Se estiver agachado, o balanço é mais lento
+		var speed_factor = 0.7 if is_sneaking else 1.0
+		t_bob += delta * horizontal_speed * speed_factor
+		
+		# Movimento vertical (Seno)
+		pos.y = sin(t_bob * bob_freq) * bob_amp
+		# Movimento horizontal (Cosseno - faz um movimento em "8")
+		pos.x = cos(t_bob * bob_freq * 0.5) * bob_amp
+		
+		# --- Lógica extra: Sincronizar Som de Passo com o balanço ---
+		# Quando o seno atinge o ponto mais baixo, emitimos o som do passo
+		if sin(t_bob * bob_freq) < -0.98: # Ponto próximo ao chão
+			if not footstep_sound.playing:
+				play_footstep()
+	else:
+		# Reseta o balanço suavemente quando parado
+		t_bob = 0.0
+		pos = pos.lerp(Vector3.ZERO, delta * 10.0)
+		
+	camera.transform.origin = pos
