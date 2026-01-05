@@ -548,18 +548,22 @@ bones/20/rotation = Quaternion(-1.8626451e-09, 1.8626447e-09, -2.4286125e-17, 1)
 bones/20/scale = Vector3(1.0000001, 0.99999994, 1.0000001)
 
 [node name="Object_7" type="MeshInstance3D" parent="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_abu8e")
 skin = SubResource("Skin_2n0jq")
 
 [node name="Object_8" type="MeshInstance3D" parent="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_ahyl5")
 skin = SubResource("Skin_2n0jq")
 
 [node name="Object_9" type="MeshInstance3D" parent="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_shyju")
 skin = SubResource("Skin_2n0jq")
 
 [node name="Object_10" type="MeshInstance3D" parent="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_ddgya")
 skin = SubResource("Skin_2n0jq")
 

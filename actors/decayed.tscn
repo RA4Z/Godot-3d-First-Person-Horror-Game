@@ -6928,6 +6928,7 @@ bones/63/rotation = Quaternion(-0.0040344684, -0.004037866, -0.12348983, 0.99232
 bones/63/scale = Vector3(0.11779052, 0.0994848, 0.11778939)
 
 [node name="Object_7" type="MeshInstance3D" parent="Sketchfab_model/33359e32ec194569a96d3b01807389a8_fbx/Object_2/RootNode/Object_4/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_irpl3")
 skin = SubResource("Skin_6ng84")
 

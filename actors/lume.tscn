@@ -4591,6 +4591,7 @@ bone_idx = 43
 transform = Transform3D(0.9998184, 0.015653972, 0.010869214, -0.015655387, 0.9998776, 4.5360943e-05, -0.01086717, -0.00021551448, 0.99994105, 6.9208145, -4.7683716e-07, 0)
 
 [node name="Object_8" type="MeshInstance3D" parent="Sketchfab_model/7a33ae9c58fe4ba88f25aed83229d601_fbx/Object_2/RootNode/krasue/Object_5/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_3gmre")
 skin = SubResource("Skin_1ej5r")
 

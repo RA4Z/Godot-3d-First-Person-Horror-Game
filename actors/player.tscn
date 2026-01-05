@@ -144,6 +144,9 @@ bones/61/rotation = Quaternion(-0.24767497, -0.04270601, 0.028099518, 0.9674936)
 bones/62/rotation = Quaternion(0.5337328, -0.016342236, -0.054639056, 0.843728)
 bones/63/rotation = Quaternion(0.3640647, 0.076918796, -0.023437345, 0.927896)
 
+[node name="Ch18" parent="PlayerSkin/Skeleton3D" index="0"]
+layers = 2
+
 [node name="AnimationPlayer" parent="PlayerSkin" index="1"]
 libraries = {
 &"": SubResource("AnimationLibrary_er1rk"),

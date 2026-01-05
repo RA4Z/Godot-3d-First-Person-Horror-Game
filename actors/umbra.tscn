@@ -3511,38 +3511,47 @@ bone_idx = 44
 transform = Transform3D(1.0000002, 4.4703484e-08, -1.490116e-08, -4.470348e-08, 1.0000004, 1.4901163e-08, 1.4901159e-08, -1.4901163e-08, 1.0000004, -0.024429517, 4.3408203e-05, -2.7416496)
 
 [node name="Object_70" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/GLTF_created_0/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_76ceo")
 skin = SubResource("Skin_gckif")
 
 [node name="Object_73" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/GLTF_created_0/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_cxf1x")
 skin = SubResource("Skin_gckif")
 
 [node name="Object_76" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/GLTF_created_0/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_2rjc4")
 skin = SubResource("Skin_gckif")
 
 [node name="Object_79" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/GLTF_created_0/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_vvddr")
 skin = SubResource("Skin_gckif")
 
 [node name="Object_82" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/GLTF_created_0/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_m8jik")
 skin = SubResource("Skin_gckif")
 
 [node name="Object_85" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/GLTF_created_0/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_q1thr")
 skin = SubResource("Skin_gckif")
 
 [node name="Object_88" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/GLTF_created_0/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_kwxrk")
 skin = SubResource("Skin_gckif")
 
 [node name="Object_91" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/GLTF_created_0/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_s4cbe")
 skin = SubResource("Skin_gckif")
 
 [node name="Object_94" type="MeshInstance3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/GLTF_created_0/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_p6gkb")
 skin = SubResource("Skin_gckif")
 
