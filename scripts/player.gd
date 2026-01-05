@@ -15,6 +15,8 @@ extends CharacterBody3D
 @onready var flashlight: SpotLight3D = $Head/Camera3D/Hand/Flashlight
 @onready var footstep_sound: AudioStreamPlayer3D = $FootstepSound
 @onready var flashlight_sound: AudioStreamPlayer3D = $FlashlightSound
+@onready var player_skin: Node3D = $PlayerSkin
+@onready var anim_player: AnimationPlayer = $PlayerSkin/AnimationPlayer
 
 var battery_timer := 0.0
 var step_timer = 0.0
@@ -57,18 +59,18 @@ func _physics_process(delta):
 			
 	# 2. Pulo
 	var current_snap = 0.5 
-	if is_on_floor():
-		if Input.is_action_just_pressed("jump"):
-			velocity.y = jumpForce
-			current_snap = 0.0 # Desativa o snap para permitir a subida do pulo
-		else:
-			current_snap = 0.5 # Mantém o snap se estiver apenas andando
-	else:
-		current_snap = 0.0
+	#if is_on_floor():
+		#if Input.is_action_just_pressed("jump"):
+			#velocity.y = jumpForce
+			#current_snap = 0.0 # Desativa o snap para permitir a subida do pulo
+		#else:
+			#current_snap = 0.5 # Mantém o snap se estiver apenas andando
+	#else:
+		#current_snap = 0.0
 
 	# 3. Direção e Velocidade
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
-	var direction = (head.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	is_sneaking = Input.is_action_pressed("sneak")
 	var target_speed = playerSneak if is_sneaking else playerSpeed
@@ -85,20 +87,17 @@ func _physics_process(delta):
 	floor_snap_length = current_snap
 	
 	move_and_slide()
-	
-	# 5. Sons de passos
-	if is_on_floor() and velocity.length() > 0.1:
-		step_timer += delta
-		if step_timer >= step_interval:
-			play_footstep()
-			step_timer = 0.0
-	else:
-		step_timer = 0.0
+	update_animations(input_dir)
 
 func _process(delta):
 	# Rotação da Câmera (Visual)
-	head.rotation.y = lerp_angle(head.rotation.y, -deg_to_rad(head_y_axis), 0.5) # Suavizado
+	self.rotation.y = lerp_angle(self.rotation.y, -deg_to_rad(head_y_axis), 0.5)
+	
+	# 2. Rotação Vertical (Gira apenas a cabeça/câmera para cima e para baixo)
 	camera.rotation.x = -deg_to_rad(camera_x_axis)
+	
+	# Resetar a rotação Y da Head para 0 (já que o corpo todo está girando)
+	head.rotation.y = 0 
 	
 	# Hand Sway (Visual)
 	hand.rotation.x = lerp_angle(hand.rotation.x, 0.0, sway_lerp_speed * delta)
@@ -191,3 +190,30 @@ func play_footstep():
 	footstep_sound.volume_db = -15.0 if is_sneaking else 0.0
 	footstep_sound.play()
 	GameEvents.noise_made.emit(global_position, noise_radius)
+
+func update_animations(input_vector: Vector2):
+	if is_on_floor():
+		if input_vector.length() > 0.1:
+			var anim_name = ""
+			
+			# Lógica para escolher a direção dominante
+			if abs(input_vector.y) >= abs(input_vector.x):
+				# Prioriza Frente ou Trás
+				if input_vector.y < 0:
+					anim_name = "Player/forward"
+				else:
+					anim_name = "Player/backward"
+			else:
+				# Prioriza Lados
+				if input_vector.x < 0:
+					anim_name = "Player/left"
+				else:
+					anim_name = "Player/right"
+			
+			# Ajusta a velocidade se estiver agachado
+			anim_player.speed_scale = 0.7 if is_sneaking else 1.0
+			anim_player.play(anim_name, 0.3) # 0.3 é a suavização da transição
+		else:
+			anim_player.play("Player/idle", 0.3)
+			anim_player.speed_scale = 1.0
+			
