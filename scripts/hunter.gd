@@ -61,7 +61,6 @@ func _ready() -> void:
 	nav_agent.navigation_layers = 1
 	nav_agent.link_reached.connect(_on_navigation_link_reached)
 	vision_area.body_entered.connect(_on_vision_body_entered)
-	kill_zone.body_entered.connect(_on_killzone_body_entered)
 
 	anim_player.play(base_animation_name)
 	anim_player.speed_scale = walk_anim_speed

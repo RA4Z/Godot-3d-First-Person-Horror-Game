@@ -51,7 +51,6 @@ func _ready() -> void:
 	
 	nav_agent.navigation_layers = 1 | 2 
 	nav_agent.link_reached.connect(_on_navigation_link_reached)
-	kill_zone.body_entered.connect(_on_killzone_body_entered)
 	
 	_set_state(EnemyState.IDLE)
 
@@ -210,5 +209,5 @@ func _trigger_death() -> void:
 	state = EnemyState.CATCHING
 	velocity = Vector3.ZERO
 	anim_player.stop()
-	kill_zone.monitoring = false
+	kill_zone.set_deferred("monitoring", false)
 	utils.jumpscare_video(jumpscare_ui)

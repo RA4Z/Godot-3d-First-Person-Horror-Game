@@ -24,8 +24,8 @@ func remove_hotbar_item(position: int):
 	player_hotbar[position] = null
 	hotbar_updated.emit()
 
-func add_hotbar_item(name: String, id, icon: CompressedTexture2D):
-	var item = {"name": name, "id": id, "icon": icon}
+func add_hotbar_item(nome: String, id, icon: CompressedTexture2D):
+	var item = {"name": nome, "id": id, "icon": icon}
 	
 	var old_item = player_hotbar[hotbar_current_slot]
 	

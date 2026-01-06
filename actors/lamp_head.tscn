@@ -364,22 +364,6 @@ stream_2/stream = ExtResource("8_7yjlb")
 size = Vector3(1, 1.5430908, 0.6361084)
 
 [sub_resource type="GDScript" id="GDScript_wk3i7"]
-script/source = "extends NavigationAgent3D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_link_reached(details: Dictionary) -> void:
-	pass # Replace with function body.
-"
 
 [node name="LampHead" type="CharacterBody3D" groups=["enemy"]]
 collision_layer = 4
