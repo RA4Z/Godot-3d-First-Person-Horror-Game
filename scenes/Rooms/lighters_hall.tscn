@@ -3943,10 +3943,6 @@ skeleton = NodePath("")
 transform = Transform3D(0.9999998, 0, 5.968559e-12, 0, 1, 0, 7.1054274e-15, 0, 0.99999976, -70.61084, 9.004944, 55.839233)
 shape = SubResource("BoxShape3D_a48og")
 
-[node name="NavigationLink3D" type="NavigationLink3D" parent="Decorations/DecayedSpawn"]
-transform = Transform3D(0.0034906603, 0, 0.999994, 0, 1, 0, -0.999994, 0, 0.0034906603, -3.4753184, 0, -0.30593586)
-end_position = Vector3(0, 0, 5)
-
 [node name="LampHeadSpawn" type="Node3D" parent="Decorations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.933276, 0, -6.0283103)
 
@@ -4382,12 +4378,22 @@ skeleton = NodePath("")
 transform = Transform3D(0.9999998, 0, 5.968559e-12, 0, 1, 0, 7.1054274e-15, 0, 0.99999976, -70.61084, 9.004944, 55.839233)
 shape = SubResource("BoxShape3D_a48og")
 
-[node name="NavigationLink3D" type="NavigationLink3D" parent="Decorations/LampHeadSpawn"]
-transform = Transform3D(0.0034906603, 0, 0.999994, 0, 1, 0, -0.999994, 0, 0.0034906603, -3.4753184, 0, -0.30593586)
-end_position = Vector3(0, 0, 5)
-
 [node name="DeadBody" parent="Decorations/LampHeadSpawn" instance=ExtResource("35_gxwsl")]
 transform = Transform3D(-0.009808546, 0, -0.9999519, 0, 1, 0, 0.9999519, 0, -0.009808546, 1.5327768, 0.42132115, 1.3376021)
+
+[node name="Navigation" type="Node3D" parent="."]
+
+[node name="NavigationLink3D1" type="NavigationLink3D" parent="Navigation"]
+transform = Transform3D(0.0034906603, 0, 0.999994, 0, 1, 0, -0.999994, 0, 0.0034906603, 1.5495667, 1, -12.283137)
+end_position = Vector3(0, 0, 5)
+
+[node name="NavigationLink3D2" type="NavigationLink3D" parent="Navigation"]
+transform = Transform3D(0.0034906603, 0, 0.999994, 0, 1, 0, -0.999994, 0, 0.0034906603, 1.5495667, 1, -7.2842784)
+end_position = Vector3(0, 0, 5)
+
+[node name="NavigationLinkKitchen" type="NavigationLink3D" parent="Navigation"]
+transform = Transform3D(0.0034906603, 0, 0.999994, 0, 1, 0, -0.999994, 0, 0.0034906603, -4.9648814, 1, -12.899041)
+end_position = Vector3(5, 0, 0)
 
 [connection signal="body_entered" from="Events/ReachSirenPlace" to="Events/ReachSirenPlace" method="_on_body_entered"]
 

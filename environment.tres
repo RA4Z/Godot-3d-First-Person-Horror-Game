@@ -8,10 +8,13 @@ ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 sky_material = SubResource("ProceduralSkyMaterial_nnsk1")
 
 [resource]
-background_mode = 2
+background_mode = 1
 background_energy_multiplier = 0.0
 sky = SubResource("Sky_rwgxs")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.1
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.16
