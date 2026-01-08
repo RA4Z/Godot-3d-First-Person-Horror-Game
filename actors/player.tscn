@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cd741hln44elx"]
+[gd_scene load_steps=12 format=3 uid="uid://cd741hln44elx"]
 
 [ext_resource type="Script" uid="uid://m7op7i3x5s66" path="res://scripts/player.gd" id="1_mvpqy"]
-[ext_resource type="AudioStream" uid="uid://dsfiekdm3j3se" path="res://audio/sounds/player/player_footstep.mp3" id="2_mvpqy"]
+[ext_resource type="AudioStream" uid="uid://bfph6lqt073oh" path="res://audio/sounds/player/footstep2.mp3" id="2_tue77"]
 [ext_resource type="AudioStream" uid="uid://ds5mqw8pxb5f1" path="res://audio/sounds/player/flashlight.mp3" id="3_1yqc4"]
 [ext_resource type="AudioStream" uid="uid://dyil843avx5b5" path="res://audio/sounds/SFX/insert_battery.mp3" id="4_esgq3"]
 [ext_resource type="PackedScene" uid="uid://wgnjsdv323ps" path="res://actors/player_skin.tscn" id="5_kjkj0"]
@@ -14,6 +14,10 @@ height = 1.8
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_nnsk1"]
 radius = 0.25
 height = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_33vod"]
+streams_count = 2
+stream_0/stream = ExtResource("2_tue77")
 
 [sub_resource type="Animation" id="Animation_33vod"]
 length = 0.001
@@ -76,7 +80,7 @@ hit_from_inside = true
 collide_with_areas = true
 
 [node name="FootstepSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_mvpqy")
+stream = SubResource("AudioStreamRandomizer_33vod")
 volume_db = -35.0
 
 [node name="FlashlightSound" type="AudioStreamPlayer3D" parent="."]

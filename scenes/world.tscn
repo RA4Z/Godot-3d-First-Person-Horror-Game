@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=23 format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dwkvc74nqugyc" path="res://scenes/Rooms/lighters_hall.tscn" id="2_71j4m"]
 [ext_resource type="PackedScene" uid="uid://cobndci8acmyl" path="res://scenes/Rooms/prision_cells.tscn" id="3_qfnet"]
 [ext_resource type="PackedScene" uid="uid://hmt66ltb7rk8" path="res://scenes/Rooms/kitchen_tables.tscn" id="5_7t5mc"]
+[ext_resource type="PackedScene" uid="uid://dcwlib4skk1ce" path="res://scenes/Rooms/inifity_maze.tscn" id="5_lakw3"]
+[ext_resource type="PackedScene" uid="uid://cgv03d7qvrnkd" path="res://scenes/world_environment.tscn" id="6_lakw3"]
 [ext_resource type="PackedScene" uid="uid://dgmtjao77k173" path="res://actors/lamp_head.tscn" id="8_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://2v5lrlgdnvmh" path="res://prefabs/items/battery.tscn" id="8_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://8qgi3wwwyvls" path="res://actors/mouse.tscn" id="8_w7kh3"]
@@ -28,6 +30,42 @@ agent_max_slope = 60.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_lakw3"]
 size = Vector3(40.68873, 1, 47.558044)
 
+[sub_resource type="GDScript" id="GDScript_7t5mc"]
+script/source = "extends Area3D
+
+# Arraste o arquivo .tscn da sala para cá no Inspetor
+@export var sala_cena: PackedScene 
+@export var posicao_spawn: Marker3D
+
+var sala_instanciada = null
+
+func _ready():
+	body_entered.connect(_on_player_entered)
+	body_exited.connect(_on_player_exited)
+
+func _on_player_entered(body):
+	if body.is_in_group(\"player\"): # Certifique-se que seu player está no grupo \"player\"
+		if sala_instanciada == null:
+			print('sala adicionada')
+			# Carrega e adiciona a sala na cena
+			sala_instanciada = sala_cena.instantiate()
+			get_parent().add_child(sala_instanciada)
+			
+			# Posiciona a sala no lugar correto
+			sala_instanciada.global_transform = posicao_spawn.global_transform
+			print(\"Sala do segundo andar carregada!\")
+
+func _on_player_exited(body):
+	if body.is_in_group(\"player\"):
+		if sala_instanciada != null:
+			sala_instanciada.queue_free()
+			sala_instanciada = null
+			print(\"Sala descarregada para poupar memória.\")
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pm21f"]
+size = Vector3(89.138565, 1, 90.54123)
+
 [node name="World" type="Node3D"]
 
 [node name="GameConfigs" type="Node3D" parent="."]
@@ -43,6 +81,8 @@ navigation_mesh = SubResource("NavigationMesh_4mrxx")
 [node name="LightersHall" parent="GameConfigs/NavigationRegion3D" instance=ExtResource("2_71j4m")]
 
 [node name="PrisionCells" parent="GameConfigs/NavigationRegion3D" instance=ExtResource("3_qfnet")]
+
+[node name="WorldEnvironment" parent="GameConfigs" instance=ExtResource("6_lakw3")]
 
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.166893, 1.569288, 16.864128)
@@ -77,6 +117,10 @@ keyID = "0001"
 [node name="Key666" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
 transform = Transform3D(0.00070576026, 0, -0.0007084507, 0, 0.0009999999, 0, 0.0007084507, 0, 0.00070576026, -13.418554, 5.7391467, 17.036366)
 keyID = "666"
+
+[node name="Key671" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
+transform = Transform3D(0.0001849634, 0, -0.0009827453, 0, 0.0009999998, 0, 0.0009827453, 0, 0.0001849634, -2.9303544, 1.8793976, -37.83223)
+keyID = "671"
 
 [node name="Batteries" type="Node3D" parent="Collectables"]
 
@@ -115,6 +159,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.899523, 1.0141312, 14.885
 [node name="KitchenMarker" type="Marker3D" parent="Optimization/Markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
 
+[node name="InfinityMazeMarker" type="Marker3D" parent="Optimization/Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 0)
+
 [node name="Loaders" type="Node3D" parent="Optimization"]
 
 [node name="KitchenLoader" type="Area3D" parent="Optimization/Loaders" node_paths=PackedStringArray("posicao_spawn")]
@@ -128,4 +175,17 @@ posicao_spawn = NodePath("../../Markers/KitchenMarker")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Optimization/Loaders/KitchenLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.239384, 0, -16.753326)
 shape = SubResource("BoxShape3D_lakw3")
+debug_color = Color(0, 1, 0.25882354, 0.41960785)
+
+[node name="InfinityMazeLoader" type="Area3D" parent="Optimization/Loaders" node_paths=PackedStringArray("posicao_spawn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.745495, 1.5045092, 5.331117)
+collision_layer = 0
+collision_mask = 8
+script = SubResource("GDScript_7t5mc")
+sala_cena = ExtResource("5_lakw3")
+posicao_spawn = NodePath("../../Markers/InfinityMazeMarker")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Optimization/Loaders/InfinityMazeLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.687386, 0, -23.115974)
+shape = SubResource("BoxShape3D_pm21f")
 debug_color = Color(0, 1, 0.25882354, 0.41960785)

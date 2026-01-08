@@ -4395,6 +4395,10 @@ end_position = Vector3(0, 0, 5)
 transform = Transform3D(0.0034906603, 0, 0.999994, 0, 1, 0, -0.999994, 0, 0.0034906603, -4.9648814, 1, -12.899041)
 end_position = Vector3(5, 0, 0)
 
+[node name="NavigationLinkMaze" type="NavigationLink3D" parent="Navigation"]
+transform = Transform3D(-0.99995726, 0, -0.009250096, 0, 1, 0, 0.009250096, 0, -0.99995726, -7.3952365, 1, -0.23749733)
+end_position = Vector3(5, 0, 0)
+
 [connection signal="body_entered" from="Events/ReachSirenPlace" to="Events/ReachSirenPlace" method="_on_body_entered"]
 
 [editable path="Decorations/OldFurnitures"]

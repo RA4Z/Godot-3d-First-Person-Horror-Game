@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://hmt66ltb7rk8"]
+[gd_scene load_steps=11 format=3 uid="uid://hmt66ltb7rk8"]
 
 [ext_resource type="MeshLibrary" uid="uid://bupwg0ulrwftn" path="res://assets/meshes/buildings.tres" id="1_4h1fh"]
 [ext_resource type="PackedScene" uid="uid://trffj0u1nk0l" path="res://prefabs/decorations/prison_dinner_table.tscn" id="2_p1gb7"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dpsdl51hs551w" path="res://assets/objects/buffet/buffets_food_warmer_foods_and_plates.glb" id="6_ha48b"]
 [ext_resource type="PackedScene" uid="uid://fq2ecdl5fuxj" path="res://prefabs/broken_door.tscn" id="7_xt7yy"]
 [ext_resource type="PackedScene" uid="uid://bngdn8mkeb6v1" path="res://actors/decayed.tscn" id="8_xt7yy"]
-[ext_resource type="PackedScene" uid="uid://brekf1vpriqeu" path="res://prefabs/items/key.tscn" id="9_ab0wi"]
 [ext_resource type="PackedScene" uid="uid://8qgi3wwwyvls" path="res://actors/mouse.tscn" id="10_57yy3"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ha48b"]
@@ -352,11 +351,11 @@ end_position = Vector3(4, 0, 0)
 [node name="Decayed" parent="NavigationRegion3D/Enemies" instance=ExtResource("8_xt7yy")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 3.895012, 0.9920902, -12.223518)
 
-[node name="Keys" type="Node3D" parent="NavigationRegion3D"]
+[node name="Decayed2" parent="NavigationRegion3D/Enemies" instance=ExtResource("8_xt7yy")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 19.256104, 0.9920902, -9.238818)
 
-[node name="Key671" parent="NavigationRegion3D/Keys" instance=ExtResource("9_ab0wi")]
-transform = Transform3D(0.0001849634, 0, -0.0009827453, 0, 0.0009999998, 0, 0.0009827453, 0, 0.0001849634, -2.9303544, 1.8793976, -16.772217)
-keyID = "671"
+[node name="Decayed3" parent="NavigationRegion3D/Enemies" instance=ExtResource("8_xt7yy")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 7.536464, 0.9920902, 0.4906106)
 
 [node name="NPCs" type="Node3D" parent="NavigationRegion3D"]
 
