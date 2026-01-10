@@ -42,6 +42,7 @@ mesh = SubResource("BoxMesh_soo1d")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Brick"]
 visible = false
+collision_mask = 12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Brick/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_g2w8g")
@@ -50,6 +51,7 @@ shape = SubResource("ConvexPolygonShape3D_g2w8g")
 mesh = SubResource("BoxMesh_pcong")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+collision_mask = 12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_mib21")
@@ -59,6 +61,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1110718, 0, 0)
 mesh = SubResource("BoxMesh_jbc6c")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="BrickGray"]
+collision_mask = 12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BrickGray/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_jo043")

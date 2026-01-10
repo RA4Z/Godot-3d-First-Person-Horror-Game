@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=22 format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cobndci8acmyl" path="res://scenes/Rooms/prision_cells.tscn" id="3_qfnet"]
 [ext_resource type="PackedScene" uid="uid://hmt66ltb7rk8" path="res://scenes/Rooms/kitchen_tables.tscn" id="5_7t5mc"]
 [ext_resource type="PackedScene" uid="uid://dcwlib4skk1ce" path="res://scenes/Rooms/inifity_maze.tscn" id="5_lakw3"]
-[ext_resource type="PackedScene" uid="uid://cgv03d7qvrnkd" path="res://scenes/world_environment.tscn" id="6_lakw3"]
 [ext_resource type="PackedScene" uid="uid://dgmtjao77k173" path="res://actors/lamp_head.tscn" id="8_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://2v5lrlgdnvmh" path="res://prefabs/items/battery.tscn" id="8_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://8qgi3wwwyvls" path="res://actors/mouse.tscn" id="8_w7kh3"]
@@ -64,7 +63,7 @@ func _on_player_exited(body):
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pm21f"]
-size = Vector3(89.138565, 1, 90.54123)
+size = Vector3(89.138565, 8.224731, 101.92894)
 
 [node name="World" type="Node3D"]
 
@@ -81,8 +80,6 @@ navigation_mesh = SubResource("NavigationMesh_4mrxx")
 [node name="LightersHall" parent="GameConfigs/NavigationRegion3D" instance=ExtResource("2_71j4m")]
 
 [node name="PrisionCells" parent="GameConfigs/NavigationRegion3D" instance=ExtResource("3_qfnet")]
-
-[node name="WorldEnvironment" parent="GameConfigs" instance=ExtResource("6_lakw3")]
 
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.166893, 1.569288, 16.864128)
@@ -186,6 +183,6 @@ sala_cena = ExtResource("5_lakw3")
 posicao_spawn = NodePath("../../Markers/InfinityMazeMarker")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Optimization/Loaders/InfinityMazeLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.687386, 0, -23.115974)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.687386, 3.6123655, -17.42212)
 shape = SubResource("BoxShape3D_pm21f")
 debug_color = Color(0, 1, 0.25882354, 0.41960785)
