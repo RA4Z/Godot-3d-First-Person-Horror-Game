@@ -1,13 +1,15 @@
-[gd_scene load_steps=28 format=4 uid="uid://cd24wdnkas2ad"]
+[gd_scene load_steps=33 format=4 uid="uid://cd24wdnkas2ad"]
 
 [ext_resource type="Script" uid="uid://bmcas6mntm1q2" path="res://scripts/psycho_zombie.gd" id="1_hjlab"]
 [ext_resource type="Texture2D" uid="uid://cyqgjsih4o0dq" path="res://assets/objects/psycho_zombie/terror_engine_-_psycho_zombie_0.png" id="1_k8rbm"]
 [ext_resource type="Texture2D" uid="uid://s1p3sepd5m1g" path="res://assets/objects/psycho_zombie/terror_engine_-_psycho_zombie_1.png" id="2_hjlab"]
+[ext_resource type="AudioStream" uid="uid://ddc8npxnbmppc" path="res://audio/sounds/player/footstep1.mp3" id="4_3xuny"]
 [ext_resource type="PackedScene" uid="uid://b6sshq144sm2t" path="res://scenes/jumpscare_ui.tscn" id="4_aw3h4"]
 [ext_resource type="VideoStream" uid="uid://bgt6oygg3ld4o" path="res://assets/videos/jumpscare_zombie.ogv" id="5_cdrnr"]
 [ext_resource type="AudioStream" uid="uid://dmgh8qiu6egwl" path="res://audio/sounds/SFX/jumpscares/harold-screamer.mp3" id="6_ufixs"]
 [ext_resource type="AudioStream" uid="uid://hhhacxmp06fh" path="res://audio/sounds/SFX/zombie_grunt.mp3" id="7_cdrnr"]
 [ext_resource type="AudioStream" uid="uid://c7lsq5aytrwgy" path="res://audio/sounds/SFX/zombie-sound.mp3" id="8_ufixs"]
+[ext_resource type="AudioStream" uid="uid://bfph6lqt073oh" path="res://audio/sounds/player/footstep2.mp3" id="9_ris5p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtg00"]
 resource_name = "texture"
@@ -154,6 +156,9 @@ bind/36/pose = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, 0, 0, 0)
 bind/37/name = &"retopo_036"
 bind/37/bone = -1
 bind/37/pose = Transform3D(2.6, 0, 0, 0, 2.6, 0, 0, 0, 2.6, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_ufixs"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_uqstv"]
 resource_name = "attack"
@@ -1292,6 +1297,25 @@ tracks/39/path = NodePath("Sketchfab_model/3846e98f280548bfac1908ba19ad3468_fbx/
 tracks/39/interp = 1
 tracks/39/loop_wrap = true
 tracks/39/keys = PackedFloat32Array(0, 1, 1.0612074, 1.0612072, 1.0612073)
+tracks/40/type = "audio"
+tracks/40/imported = false
+tracks/40/enabled = true
+tracks/40/path = NodePath("FootstepSound")
+tracks/40/interp = 1
+tracks/40/loop_wrap = true
+tracks/40/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_3xuny")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_ris5p")
+}],
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/40/use_blend = true
 
 [sub_resource type="Animation" id="Animation_2hpjy"]
 resource_name = "walk"
@@ -1577,9 +1601,37 @@ tracks/39/path = NodePath("Sketchfab_model/3846e98f280548bfac1908ba19ad3468_fbx/
 tracks/39/interp = 1
 tracks/39/loop_wrap = true
 tracks/39/keys = PackedFloat32Array(0, 1, 0.49999952, 0.5, 0.5, 0.5000005)
+tracks/40/type = "audio"
+tracks/40/imported = false
+tracks/40/enabled = true
+tracks/40/path = NodePath("FootstepSound")
+tracks/40/interp = 1
+tracks/40/loop_wrap = true
+tracks/40/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_3xuny")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_ris5p")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_3xuny")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_ris5p")
+}],
+"times": PackedFloat32Array(0.26666668, 0.8, 1.2666667, 1.7666667)
+}
+tracks/40/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g7q1a"]
 _data = {
+&"RESET": SubResource("Animation_ufixs"),
 &"attack": SubResource("Animation_uqstv"),
 &"death": SubResource("Animation_so1ww"),
 &"idle": SubResource("Animation_5f33e"),
@@ -1587,11 +1639,21 @@ _data = {
 &"walk": SubResource("Animation_2hpjy")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ufixs"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ris5p"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3xuny"]
+nodes/output/position = Vector2(620, 140)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ufixs")
+nodes/Animation/position = Vector2(260, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ris5p")
+nodes/TimeScale/position = Vector2(440, 120)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_62u0t"]
 animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5nnud"]
-animation = &"run"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aw3h4"]
 animation = &"walk"
@@ -1600,29 +1662,30 @@ animation = &"walk"
 advance_mode = 2
 advance_expression = "state == EnemyState.WANDERING"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_62u0t"]
-advance_mode = 2
-advance_expression = "state == EnemyState.CHASING"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5nnud"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aw3h4"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ufixs"]
+advance_mode = 2
+advance_expression = "state == EnemyState.CHASING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ris5p"]
 advance_mode = 2
 advance_expression = "state == EnemyState.IDLE"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cdrnr"]
+states/RunTree/node = SubResource("AnimationNodeBlendTree_3xuny")
+states/RunTree/position = Vector2(727, 100)
+states/Start/position = Vector2(198, 100)
 states/idle/node = SubResource("AnimationNodeAnimation_62u0t")
-states/idle/position = Vector2(364, 110)
-states/run/node = SubResource("AnimationNodeAnimation_5nnud")
-states/run/position = Vector2(755, 100)
+states/idle/position = Vector2(366, 100)
 states/walk/node = SubResource("AnimationNodeAnimation_aw3h4")
-states/walk/position = Vector2(558, 191)
-transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_hjlab"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_62u0t"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_5nnud"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_aw3h4")]
-graph_offset = Vector2(107, 15)
+states/walk/position = Vector2(531, 190)
+transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_hjlab"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_5nnud"), "walk", "RunTree", SubResource("AnimationNodeStateMachineTransition_ufixs"), "RunTree", "idle", SubResource("AnimationNodeStateMachineTransition_ris5p")]
+graph_offset = Vector2(155, -38)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hjlab"]
-radius = 0.26708984
+radius = 0.14111328
 height = 1.6994629
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aw3h4"]
@@ -1688,7 +1751,7 @@ bones/5/parent = 3
 bones/5/rest = Transform3D(0.99984235, -1.4346664e-06, -0.017763888, 1.3605436e-06, 0.99999994, -4.184767e-06, 0.01776389, 4.1599374e-06, 0.9998422, 5.521641, 7.664203e-06, -0.0049044485)
 bones/5/enabled = true
 bones/5/position = Vector3(5.522314, 7.390974e-06, -0.004847405)
-bones/5/rotation = Quaternion(2.1622534e-06, -0.11874059, 8.075842e-07, 0.9929254)
+bones/5/rotation = Quaternion(1.7871089e-06, -0.1052818, 3.580527e-07, 0.9944425)
 bones/5/scale = Vector3(1.0000001, 0.99999994, 1)
 bones/6/name = "_no_name_2_07"
 bones/6/parent = 5
@@ -1701,8 +1764,8 @@ bones/7/name = "Bip01_L_Thigh_06"
 bones/7/parent = 5
 bones/7/rest = Transform3D(-0.99114376, -0.12696625, 0.038908705, 0.13269228, -0.9583988, 0.25271413, 0.0052038925, 0.25563887, 0.9667584, -5.5206833, 4.7244864, 0.10297787)
 bones/7/enabled = true
-bones/7/position = Vector3(-5.362059, 4.7244906, 1.3106756)
-bones/7/rotation = Quaternion(0.47961938, -0.10602319, 0.86003816, 0.13805304)
+bones/7/position = Vector3(-5.3851166, 4.7244854, 1.1849189)
+bones/7/rotation = Quaternion(0.46810958, -0.10760553, 0.8664522, 0.136217)
 bones/7/scale = Vector3(1.0000001, 1, 1)
 bones/8/name = "_no_name_8_08"
 bones/8/parent = 7
@@ -1771,8 +1834,8 @@ bones/17/name = "Bip01_R_Thigh_017"
 bones/17/parent = 5
 bones/17/rest = Transform3D(-0.99114364, 0.12696603, 0.03890691, -0.13269158, -0.9584001, -0.25270897, 0.005202934, -0.25563347, 0.9667597, -5.5206833, -4.7244864, 0.10300409)
 bones/17/enabled = true
-bones/17/position = Vector3(-5.3620586, -4.7244864, 1.3107034)
-bones/17/rotation = Quaternion(0.56724435, -0.028053738, 0.79319865, -0.21973325)
+bones/17/position = Vector3(-5.3851194, -4.7244782, 1.1849446)
+bones/17/rotation = Quaternion(0.55637896, -0.02596651, 0.80113786, -0.21896642)
 bones/17/scale = Vector3(0.9999999, 0.99999976, 0.9999999)
 bones/18/name = "_no_name_13_018"
 bones/18/parent = 17
@@ -1884,7 +1947,7 @@ bones/33/parent = 31
 bones/33/rest = Transform3D(0.9944729, -2.3383585e-07, 0.10499338, 2.3312501e-07, 0.99999994, 1.9042627e-08, -0.10499338, 5.5392064e-09, 0.9944729, 4.7921715, -4.5474735e-13, -1.7763568e-15)
 bones/33/enabled = true
 bones/33/position = Vector3(4.7921715, -4.5474735e-13, -1.7763568e-15)
-bones/33/rotation = Quaternion(8.895068e-08, -0.2279007, 8.3165713e-07, 0.97368443)
+bones/33/rotation = Quaternion(5.380587e-07, -0.24152698, 1.1022978e-06, 0.97039413)
 bones/33/scale = Vector3(1, 0.99999994, 1)
 bones/34/name = "_no_name_6_034"
 bones/34/parent = 33
@@ -1926,6 +1989,7 @@ transform = Transform3D(-2.6, -3.1840816e-16, -3.1840816e-16, -3.1840816e-16, 2.
 transform = Transform3D(1, 0, -2.4651903e-32, 0, 1, 0, 2.4651903e-32, 0, 1, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_discrete = 0
 libraries = {
 &"": SubResource("AnimationLibrary_g7q1a")
 }
@@ -1935,6 +1999,7 @@ autoplay = "idle"
 tree_root = SubResource("AnimationNodeStateMachine_cdrnr")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+parameters/RunTree/TimeScale/scale = 0.7000000000000028
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
@@ -1960,13 +2025,15 @@ debug_color = Color(0.743277, 0, 0.11989739, 0.41960785)
 [node name="GruntSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_cdrnr")
 attenuation_model = 2
-volume_db = -15.0
+volume_db = -30.0
 max_distance = 30.0
 
 [node name="WalkSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_ufixs")
 attenuation_model = 2
-volume_db = -15.0
 max_distance = 30.0
+
+[node name="FootstepSound" type="AudioStreamPlayer3D" parent="."]
+volume_db = -10.0
 
 [connection signal="body_entered" from="Killzone" to="." method="_on_killzone_body_entered"]

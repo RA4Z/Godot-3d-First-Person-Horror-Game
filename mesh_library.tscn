@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://fjuakmmwl5ea"]
+[gd_scene load_steps=16 format=3 uid="uid://fjuakmmwl5ea"]
 
 [ext_resource type="Texture2D" uid="uid://ceoj1a15q13q2" path="res://assets/textures/brick_white_texture_128.jpg" id="1_g2w8g"]
 [ext_resource type="Texture2D" uid="uid://bkb42pr5edrdk" path="res://assets/textures/floor_texture_128.jpg" id="2_g2w8g"]
 [ext_resource type="Texture2D" uid="uid://dxmibfnhvp0yi" path="res://assets/textures/brick_gray_texture_128.jpg" id="3_jo043"]
+[ext_resource type="Texture2D" uid="uid://dylmyaguffq1q" path="res://assets/textures/twigs.jpg" id="4_pcong"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jo043"]
 albedo_texture = ExtResource("1_g2w8g")
@@ -28,11 +29,18 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 albedo_texture = ExtResource("3_jo043")
 uv1_triplanar = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_jbc6c"]
+[sub_resource type="BoxMesh" id="BoxMesh_qob4b"]
 material = SubResource("StandardMaterial3D_qob4b")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jo043"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbc6c"]
+albedo_texture = ExtResource("4_pcong")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_o8uuo"]
+material = SubResource("StandardMaterial3D_jbc6c")
 
 [node name="MeshLibrary" type="Node3D"]
 
@@ -58,10 +66,20 @@ shape = SubResource("ConvexPolygonShape3D_mib21")
 
 [node name="BrickGray" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1110718, 0, 0)
-mesh = SubResource("BoxMesh_jbc6c")
+mesh = SubResource("BoxMesh_qob4b")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="BrickGray"]
 collision_mask = 12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BrickGray/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_jo043")
+
+[node name="Victory" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0600543, 0, 0)
+mesh = SubResource("BoxMesh_o8uuo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Victory"]
+collision_mask = 12
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Victory/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_jo043")
