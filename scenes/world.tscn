@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene load_steps=26 format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c8152cxr5vhqq" path="res://actors/umbra.tscn" id="9_q5onr"]
 [ext_resource type="PackedScene" uid="uid://btjqgbj1b6ns2" path="res://actors/lume.tscn" id="10_jhx03"]
 [ext_resource type="PackedScene" uid="uid://b77a3qx4scii0" path="res://actors/mannequin.tscn" id="10_o8fc1"]
+[ext_resource type="PackedScene" uid="uid://dbv0js7hxw5xj" path="res://actors/skinless.tscn" id="10_pm21f"]
 [ext_resource type="PackedScene" uid="uid://bcmcmwqg2pfbd" path="res://prefabs/items/explosive_monkey.tscn" id="14_o8fc1"]
 [ext_resource type="PackedScene" uid="uid://ktuodl02jqi5" path="res://prefabs/items/wooden_mannequin.tscn" id="15_dss4m"]
 [ext_resource type="Script" uid="uid://b2a1x8hwbhlrm" path="res://scripts/optimization/optimize_room.gd" id="17_7t5mc"]
@@ -118,11 +119,8 @@ navigation_mesh = SubResource("NavigationMesh_4mrxx")
 
 [node name="PrisionCells" parent="GameConfigs/NavigationRegion3D" instance=ExtResource("3_qfnet")]
 
-[node name="WarRoom" parent="GameConfigs/NavigationRegion3D" instance=ExtResource("5_pm21f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -6.5)
-
 [node name="Player" parent="." instance=ExtResource("1_nnsk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.979555, 5.769161, -13.891884)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.266739, 1.6446536, 16.216547)
 
 [node name="Enemies" type="Node3D" parent="."]
 
@@ -142,6 +140,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0572834, 1.4525894, -5.630
 [node name="Mannequin" parent="Enemies" instance=ExtResource("10_o8fc1")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -6.3908334, 5.0168695, 14.3030405)
 
+[node name="Skinless" parent="Enemies" instance=ExtResource("10_pm21f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2845464, 1.0178499, 17.488348)
+
+[node name="Skinless2" parent="Enemies" instance=ExtResource("10_pm21f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.672398, 1.0178499, -2.83644)
+
+[node name="Skinless3" parent="Enemies" instance=ExtResource("10_pm21f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7865496, 5.0115256, 1.173974)
+
+[node name="Skinless4" parent="Enemies" instance=ExtResource("10_pm21f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.925085, 5.0115256, 22.152332)
+
 [node name="Collectables" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)
 
@@ -158,6 +168,10 @@ keyID = "666"
 [node name="Key667" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
 transform = Transform3D(0.00070576026, 0, -0.0007084507, 0, 0.0009999999, 0, 0.0007084507, 0, 0.00070576026, 20.38318, 2.3532746, 5.0165887)
 keyID = "667"
+
+[node name="Key668" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
+transform = Transform3D(0.0009921014, 0, -0.0001254371, 0, 0.0009999998, 0, 0.0001254371, 0, 0.0009921014, -14.641209, 1.602144, 22.455698)
+keyID = "668"
 
 [node name="Key671" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
 transform = Transform3D(0.0001849634, 0, -0.0009827453, 0, 0.0009999998, 0, 0.0009827453, 0, 0.0001849634, -2.9303544, 1.8793976, -37.83223)

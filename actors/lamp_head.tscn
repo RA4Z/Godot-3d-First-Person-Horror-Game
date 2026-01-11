@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://dgmtjao77k173"]
+[gd_scene load_steps=27 format=4 uid="uid://dgmtjao77k173"]
 
 [ext_resource type="Script" uid="uid://bo57m6uy6qk1m" path="res://scripts/hunter.gd" id="1_hopy3"]
 [ext_resource type="Texture2D" uid="uid://tdcroma0m7h4" path="res://assets/objects/shade_walkin/shade_walking_0.png" id="1_u2bqq"]
@@ -363,8 +363,6 @@ stream_2/stream = ExtResource("8_7yjlb")
 [sub_resource type="BoxShape3D" id="BoxShape3D_7yjlb"]
 size = Vector3(1, 1.5430908, 0.6361084)
 
-[sub_resource type="GDScript" id="GDScript_wk3i7"]
-
 [node name="LampHead" type="CharacterBody3D" groups=["enemy"]]
 collision_layer = 4
 floor_max_angle = 1.0471976
@@ -610,7 +608,6 @@ video_resource = ExtResource("9_wk3i7")
 audio_resource = ExtResource("9_0vyki")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-script = SubResource("GDScript_wk3i7")
 
 [connection signal="body_entered" from="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Sketchfab_model/Shade_FBX/Object_2/RootNode/Object_4/Skeleton3D/Object_10/Flashlight/DetectionArea" to="." method="_on_detection_area_body_exited"]
