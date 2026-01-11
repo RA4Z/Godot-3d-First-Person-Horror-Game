@@ -49,7 +49,6 @@ func _ready() -> void:
 	
 	# Conexões
 	nav_agent.link_reached.connect(_on_navigation_link_reached)
-	kill_zone.body_entered.connect(_on_killzone_body_entered)
 	
 # =========================
 # PHYSICS PROCESS
