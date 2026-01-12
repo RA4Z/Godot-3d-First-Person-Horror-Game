@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 	# --- LÓGICA DE FAKE PLAYER ---
 	# Se estiver caçando e o alvo for o fake_player, fica parado apenas olhando
 	if state == EnemyState.CHASING and is_instance_valid(player):
-		if player.is_in_group("fake_player"):
+		if player.is_in_group("fake_player") and player.exploding:
 			_look_at_target(player.global_position, delta)
 			velocity = Vector3.ZERO
 			move_and_slide() # Necessário para aplicar gravidade se houver
@@ -216,7 +216,7 @@ func _set_random_wander_target() -> void:
 # SIGNALS
 # =========================
 func _on_vision_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player") or body.is_in_group("fake_player"):
+	if body.is_in_group("player") or (body.is_in_group("fake_player") and body.exploding):
 		player = body
 		last_known_player_position = body.global_position
 		last_seen_timer = 0.0

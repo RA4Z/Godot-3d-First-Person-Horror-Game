@@ -132,6 +132,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4425244, 0.95708275, 0.083
 walk_anim_speed = 3.0
 chase_anim_speed = 4.0
 
+[node name="LampHead2" parent="Enemies" groups=["fake_player"] instance=ExtResource("8_4mrxx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4425244, 0.95708275, 11.519148)
+walk_anim_speed = 3.0
+chase_anim_speed = 4.0
+
 [node name="Umbra" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("9_q5onr")]
 transform = Transform3D(0.19120304, 0, 0.9815505, 0, 1, 0, -0.9815505, 0, 0.19120304, -24.869452, 1.0000594, 25.862753)
 player = NodePath("../../Player")
@@ -209,6 +214,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.393307, 1.0375886, 24.705
 
 [node name="WoodenMannequin" parent="Collectables/HotbarItems" instance=ExtResource("15_dss4m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.249375, 1.0086821, 21.750345)
+
+[node name="WoodenMannequin2" parent="Collectables/HotbarItems" instance=ExtResource("15_dss4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4427915, 1.0086821, 14.446903)
 
 [node name="NPCs" type="Node3D" parent="."]
 
