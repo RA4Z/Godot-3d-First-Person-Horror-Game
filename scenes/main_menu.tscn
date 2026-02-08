@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://hs4s44f7sp42"]
+
+[ext_resource type="Script" uid="uid://4lnw72a2objj" path="res://scripts/main_menu.gd" id="1_rtw2f"]
+[ext_resource type="Theme" uid="uid://d0iabbh4bcopt" path="res://horror_theme.tres" id="2_oa1go"]
+[ext_resource type="FontFile" uid="uid://2skucwyidu7h" path="res://assets/fonts/shlop rg.otf" id="4_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://bp18pcjls4gqd" path="res://assets/menu/itch.io-logo_brandlogos.net_bhtjr.png" id="4_tbmy8"]
+[ext_resource type="AudioStream" uid="uid://d3ckforh82ciq" path="res://audio/sounds/SFX/menu_selection.mp3" id="5_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://d1h0obnqxv0nf" path="res://assets/menu/github.png" id="5_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://c58ab4e607kv8" path="res://assets/menu/linkedin.png" id="6_5dd4i"]
+[ext_resource type="AudioStream" uid="uid://dsql7wqmbk7eq" path="res://audio/musics/menu_background.mp3" id="6_lgwnu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ntkjb"]
+
+[sub_resource type="Animation" id="Animation_atv5q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuContent:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ntkjb"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuContent:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cpmee"]
+_data = {
+&"RESET": SubResource("Animation_atv5q"),
+&"open": SubResource("Animation_ntkjb")
+}
+
+[node name="MainMenu" type="CanvasLayer" unique_id=1896256974]
+process_mode = 3
+script = ExtResource("1_rtw2f")
+
+[node name="MenuContent" type="Control" parent="." unique_id=351828520]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_oa1go")
+
+[node name="ColorRect" type="ColorRect" parent="MenuContent" unique_id=2053533625]
+material = SubResource("ShaderMaterial_ntkjb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.1764706)
+
+[node name="CenterContainer" type="CenterContainer" parent="MenuContent" unique_id=113104149]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContent/CenterContainer" unique_id=1536220774]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MenuContent/CenterContainer/VBoxContainer" unique_id=2005886343]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6862745, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jk1qb")
+theme_override_font_sizes/font_size = 80
+text = "Prison hell"
+
+[node name="ButtonPlay" type="Button" parent="MenuContent/CenterContainer/VBoxContainer" unique_id=2017864477]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jk1qb")
+theme_override_font_sizes/font_size = 40
+text = "Start Game
+"
+flat = true
+
+[node name="ButtonQuit" type="Button" parent="MenuContent/CenterContainer/VBoxContainer" unique_id=605803701]
+layout_mode = 2
+text = "Quit Game"
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContent" unique_id=1473467017]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContent/MarginContainer" unique_id=1106850724]
+layout_mode = 2
+alignment = 2
+
+[node name="ItchButton" type="TextureButton" parent="MenuContent/MarginContainer/HBoxContainer" unique_id=1613700556]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture_normal = ExtResource("4_tbmy8")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="GithubButton" type="TextureButton" parent="MenuContent/MarginContainer/HBoxContainer" unique_id=914238015]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture_normal = ExtResource("5_jk1qb")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="LinkedinButton" type="TextureButton" parent="MenuContent/MarginContainer/HBoxContainer" unique_id=1214007755]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture_normal = ExtResource("6_5dd4i")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=979109089]
+libraries/ = SubResource("AnimationLibrary_cpmee")
+
+[node name="SfxHover" type="AudioStreamPlayer" parent="." unique_id=2065645577]
+stream = ExtResource("5_5dd4i")
+
+[node name="BGSong" type="AudioStreamPlayer" parent="." unique_id=127006510]
+stream = ExtResource("6_lgwnu")
+volume_db = -20.0
+
+[connection signal="pressed" from="MenuContent/CenterContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_resume_pressed"]
+[connection signal="pressed" from="MenuContent/CenterContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="button_down" from="MenuContent/CenterContainer/VBoxContainer/ButtonQuit" to="." method="_on_button_quit_button_down"]
+[connection signal="pressed" from="MenuContent/CenterContainer/VBoxContainer/ButtonQuit" to="." method="_on_button_quit_pressed"]
+[connection signal="pressed" from="MenuContent/MarginContainer/HBoxContainer/ItchButton" to="." method="_on_itch_button_pressed"]
+[connection signal="pressed" from="MenuContent/MarginContainer/HBoxContainer/GithubButton" to="." method="_on_github_button_pressed"]
+[connection signal="pressed" from="MenuContent/MarginContainer/HBoxContainer/GithubButton" to="." method="_on_git_hub_button_pressed"]
+[connection signal="pressed" from="MenuContent/MarginContainer/HBoxContainer/LinkedinButton" to="." method="_on_linkedin_button_pressed"]

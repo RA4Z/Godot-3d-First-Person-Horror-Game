@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://bet8ts07plrjt"]
+[gd_resource type="AudioBusLayout" format=3 uid="uid://bet8ts07plrjt"]
 
 [sub_resource type="AudioEffectBandPassFilter" id="AudioEffectBandPassFilter_j3pel"]
 resource_name = "BandPassFilter"

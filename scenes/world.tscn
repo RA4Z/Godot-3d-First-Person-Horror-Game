@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://5kcn3lrub1xc"]
+[gd_scene format=3 uid="uid://5kcn3lrub1xc"]
 
 [ext_resource type="PackedScene" uid="uid://bstva6vvjr5o2" path="res://prefabs/interface.tscn" id="1_7iits"]
 [ext_resource type="PackedScene" uid="uid://cd741hln44elx" path="res://actors/player.tscn" id="1_nnsk1"]
+[ext_resource type="Script" uid="uid://7bbnr7mayelv" path="res://scripts/world.gd" id="1_oo54l"]
 [ext_resource type="PackedScene" uid="uid://chao73ltmt631" path="res://prefabs/pause_menu.tscn" id="2_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://dwkvc74nqugyc" path="res://scenes/Rooms/lighters_hall.tscn" id="2_71j4m"]
 [ext_resource type="PackedScene" uid="uid://cobndci8acmyl" path="res://scenes/Rooms/prision_cells.tscn" id="3_qfnet"]
@@ -105,158 +106,154 @@ func _on_player_exited(body):
 [sub_resource type="BoxShape3D" id="BoxShape3D_pm21f"]
 size = Vector3(89.138565, 8.224731, 101.92894)
 
-[node name="World" type="Node3D"]
+[node name="World" type="Node3D" unique_id=1558200784]
+script = ExtResource("1_oo54l")
 
-[node name="GameConfigs" type="Node3D" parent="."]
+[node name="GameConfigs" type="Node3D" parent="." unique_id=1254495963]
 
-[node name="Interface" parent="GameConfigs" instance=ExtResource("1_7iits")]
+[node name="Interface" parent="GameConfigs" unique_id=1490323038 instance=ExtResource("1_7iits")]
 
-[node name="PauseMenu" parent="GameConfigs" instance=ExtResource("2_7r4gi")]
+[node name="PauseMenu" parent="GameConfigs" unique_id=555626863 instance=ExtResource("2_7r4gi")]
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="GameConfigs"]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="GameConfigs" unique_id=279573624]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)
 navigation_mesh = SubResource("NavigationMesh_4mrxx")
 
-[node name="LightersHall" parent="GameConfigs/NavigationRegion3D" instance=ExtResource("2_71j4m")]
+[node name="LightersHall" parent="GameConfigs/NavigationRegion3D" unique_id=1247344668 instance=ExtResource("2_71j4m")]
 
-[node name="PrisionCells" parent="GameConfigs/NavigationRegion3D" instance=ExtResource("3_qfnet")]
+[node name="PrisionCells" parent="GameConfigs/NavigationRegion3D" unique_id=1526486827 instance=ExtResource("3_qfnet")]
 
-[node name="WorldEnvironment" parent="GameConfigs" instance=ExtResource("5_7iits")]
+[node name="WorldEnvironment" parent="GameConfigs" unique_id=1691236354 instance=ExtResource("5_7iits")]
 
-[node name="Player" parent="." instance=ExtResource("1_nnsk1")]
+[node name="Player" parent="." unique_id=530032717 instance=ExtResource("1_nnsk1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.266739, 1.6446536, 16.216547)
 
-[node name="Enemies" type="Node3D" parent="."]
+[node name="Enemies" type="Node3D" parent="." unique_id=1299786933]
 
-[node name="LampHead" parent="Enemies" groups=["fake_player"] instance=ExtResource("8_4mrxx")]
+[node name="LampHead" parent="Enemies" unique_id=1698309025 groups=["fake_player"] instance=ExtResource("8_4mrxx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4425244, 0.95708275, 0.08370924)
 walk_anim_speed = 3.0
 chase_anim_speed = 4.0
 
-[node name="LampHead2" parent="Enemies" groups=["fake_player"] instance=ExtResource("8_4mrxx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4425244, 0.95708275, 11.519148)
-walk_anim_speed = 3.0
-chase_anim_speed = 4.0
-
-[node name="Umbra" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("9_q5onr")]
+[node name="Umbra" parent="Enemies" unique_id=1355459048 node_paths=PackedStringArray("player") instance=ExtResource("9_q5onr")]
 transform = Transform3D(0.19120304, 0, 0.9815505, 0, 1, 0, -0.9815505, 0, 0.19120304, -24.869452, 1.0000594, 25.862753)
 player = NodePath("../../Player")
 distancia_minima_spawn = 60.0
 
-[node name="Lume" parent="Enemies" instance=ExtResource("10_jhx03")]
+[node name="Lume" parent="Enemies" unique_id=997367421 instance=ExtResource("10_jhx03")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0572834, 1.4525894, -5.630648)
 
-[node name="Mannequin" parent="Enemies" instance=ExtResource("10_o8fc1")]
+[node name="Mannequin" parent="Enemies" unique_id=105010506 instance=ExtResource("10_o8fc1")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -6.3908334, 5.0168695, 14.3030405)
 
-[node name="Skinless" parent="Enemies" instance=ExtResource("10_pm21f")]
+[node name="Skinless" parent="Enemies" unique_id=396516320 instance=ExtResource("10_pm21f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2845464, 1.0178499, 17.488348)
 
-[node name="Skinless7" parent="Enemies" instance=ExtResource("10_pm21f")]
+[node name="Skinless7" parent="Enemies" unique_id=1994054531 instance=ExtResource("10_pm21f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8636987, 1.0178499, 1.1749041)
 
-[node name="Skinless2" parent="Enemies" instance=ExtResource("10_pm21f")]
+[node name="Skinless2" parent="Enemies" unique_id=2088339952 instance=ExtResource("10_pm21f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.672398, 1.0178499, -2.83644)
 
-[node name="Skinless3" parent="Enemies" instance=ExtResource("10_pm21f")]
+[node name="Skinless3" parent="Enemies" unique_id=948900120 instance=ExtResource("10_pm21f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7865496, 5.0115256, 1.173974)
 
-[node name="Skinless5" parent="Enemies" instance=ExtResource("10_pm21f")]
+[node name="Skinless5" parent="Enemies" unique_id=1012655010 instance=ExtResource("10_pm21f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.634287, 9.010674, 32.738686)
 
-[node name="Skinless6" parent="Enemies" instance=ExtResource("10_pm21f")]
+[node name="Skinless6" parent="Enemies" unique_id=497559831 instance=ExtResource("10_pm21f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.594408, 9.010674, 32.738686)
 
-[node name="Skinless4" parent="Enemies" instance=ExtResource("10_pm21f")]
+[node name="Skinless4" parent="Enemies" unique_id=1859027544 instance=ExtResource("10_pm21f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.925085, 5.0115256, 22.152332)
 
-[node name="PsychoZombie" parent="Enemies" instance=ExtResource("11_2lf6f")]
+[node name="PsychoZombie" parent="Enemies" unique_id=1601149077 instance=ExtResource("11_2lf6f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.516363, 9, 36.959175)
 slide_on_ceiling = false
 
-[node name="Collectables" type="Node3D" parent="."]
+[node name="Collectables" type="Node3D" parent="." unique_id=140854349]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01026535, 0, -0.01743126)
 
-[node name="Keys" type="Node3D" parent="Collectables"]
+[node name="Keys" type="Node3D" parent="Collectables" unique_id=1728504976]
 
-[node name="Key0001" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
+[node name="Key0001" parent="Collectables/Keys" unique_id=1200567964 instance=ExtResource("18_oo54l")]
 transform = Transform3D(-4.371139e-11, 0, 0.001, 0, 0.001, 0, -0.001, 0, -4.371139e-11, -4.460411, 1.634194, 4.229667)
 keyID = "0001"
 
-[node name="Key0002" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
+[node name="Key0002" parent="Collectables/Keys" unique_id=733060830 instance=ExtResource("18_oo54l")]
 transform = Transform3D(-0.001, 7.642742e-18, 8.742278e-11, 0, -0.001, 8.742278e-11, 8.742278e-11, 8.742278e-11, 0.001, 2.8418987, 1.041147, 3.0734696)
 keyID = "435"
 
-[node name="Key666" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
+[node name="Key666" parent="Collectables/Keys" unique_id=1909875438 instance=ExtResource("18_oo54l")]
 transform = Transform3D(0.00070576026, 0, -0.0007084507, 0, 0.0009999999, 0, 0.0007084507, 0, 0.00070576026, -13.418554, 5.7391467, 17.036366)
 keyID = "666"
 
-[node name="Key667" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
+[node name="Key667" parent="Collectables/Keys" unique_id=1837663838 instance=ExtResource("18_oo54l")]
 transform = Transform3D(0.00070576026, 0, -0.0007084507, 0, 0.0009999999, 0, 0.0007084507, 0, 0.00070576026, 20.38318, 2.3532746, 5.0165887)
 keyID = "667"
 
-[node name="Key668" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
+[node name="Key668" parent="Collectables/Keys" unique_id=1824591712 instance=ExtResource("18_oo54l")]
 transform = Transform3D(0.0009921014, 0, -0.0001254371, 0, 0.0009999998, 0, 0.0001254371, 0, 0.0009921014, -14.641209, 1.602144, 22.455698)
 keyID = "668"
 
-[node name="Key671" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
+[node name="Key671" parent="Collectables/Keys" unique_id=1338983408 instance=ExtResource("18_oo54l")]
 transform = Transform3D(0.0001849634, 0, -0.0009827453, 0, 0.0009999998, 0, 0.0009827453, 0, 0.0001849634, -2.9303544, 1.8793976, -37.83223)
 keyID = "671"
 
-[node name="Key1000" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
+[node name="Key1000" parent="Collectables/Keys" unique_id=487802080 instance=ExtResource("18_oo54l")]
 transform = Transform3D(-0.00048078992, 0, 0.0008768359, 0, 0.0009999998, 0, -0.0008768359, 0, -0.00048078992, -55.80406, 5.6004324, 3.2166584)
 keyID = "1000"
 
-[node name="Key007" parent="Collectables/Keys" instance=ExtResource("18_oo54l")]
+[node name="Key007" parent="Collectables/Keys" unique_id=1975120472 instance=ExtResource("18_oo54l")]
 transform = Transform3D(-0.0007018672, 0, -0.00071230787, 0, 0.0009999998, 0, 0.00071230787, 0, -0.0007018672, -2.7901373, 5.035407, 14.698094)
 keyID = "007"
 
-[node name="Batteries" type="Node3D" parent="Collectables"]
+[node name="Batteries" type="Node3D" parent="Collectables" unique_id=347747646]
 
-[node name="Battery1" parent="Collectables/Batteries" instance=ExtResource("8_7r4gi")]
+[node name="Battery1" parent="Collectables/Batteries" unique_id=43405716 instance=ExtResource("8_7r4gi")]
 transform = Transform3D(0.054900825, 0, 0.08358169, 0, 0.1, 0, -0.08358169, 0, 0.054900825, -14.072871, 1.5246439, 15.137541)
 
-[node name="Battery666_room1" parent="Collectables/Batteries" instance=ExtResource("8_7r4gi")]
+[node name="Battery666_room1" parent="Collectables/Batteries" unique_id=1850268140 instance=ExtResource("8_7r4gi")]
 transform = Transform3D(0.054900825, 0, 0.08358169, 0, 0.1, 0, -0.08358169, 0, 0.054900825, -14.025215, 1.5246438, 22.145866)
 
-[node name="Battery666_room2" parent="Collectables/Batteries" instance=ExtResource("8_7r4gi")]
+[node name="Battery666_room2" parent="Collectables/Batteries" unique_id=1213642435 instance=ExtResource("8_7r4gi")]
 transform = Transform3D(0.054900825, 0, 0.08358169, 0, 0.1, 0, -0.08358169, 0, 0.054900825, -14.198237, 1.5246438, 22.471317)
 
-[node name="Battery666_room3" parent="Collectables/Batteries" instance=ExtResource("8_7r4gi")]
+[node name="Battery666_room3" parent="Collectables/Batteries" unique_id=1869818472 instance=ExtResource("8_7r4gi")]
 transform = Transform3D(0.054900825, 0, 0.08358169, 0, 0.1, 0, -0.08358169, 0, 0.054900825, -14.07217, 1.5246438, 22.845457)
 
-[node name="HotbarItems" type="Node3D" parent="Collectables"]
+[node name="HotbarItems" type="Node3D" parent="Collectables" unique_id=1646489984]
 
-[node name="ExplosiveMonkey" parent="Collectables/HotbarItems" instance=ExtResource("14_o8fc1")]
+[node name="ExplosiveMonkey" parent="Collectables/HotbarItems" unique_id=1676366016 instance=ExtResource("14_o8fc1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.393307, 1.0375886, 24.705397)
 
-[node name="WoodenMannequin" parent="Collectables/HotbarItems" instance=ExtResource("15_dss4m")]
+[node name="WoodenMannequin" parent="Collectables/HotbarItems" unique_id=1202988517 instance=ExtResource("15_dss4m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.249375, 1.0086821, 21.750345)
 
-[node name="NPCs" type="Node3D" parent="."]
+[node name="NPCs" type="Node3D" parent="." unique_id=1525067038]
 
-[node name="Mouse" parent="NPCs" instance=ExtResource("8_w7kh3")]
+[node name="Mouse" parent="NPCs" unique_id=23167583 instance=ExtResource("8_w7kh3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.825501, 1.0909268, 17.912403)
 
-[node name="Mouse2" parent="NPCs" instance=ExtResource("8_w7kh3")]
+[node name="Mouse2" parent="NPCs" unique_id=1883572373 instance=ExtResource("8_w7kh3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.899523, 1.0141312, 14.88587)
 
-[node name="Optimization" type="Node3D" parent="."]
+[node name="Optimization" type="Node3D" parent="." unique_id=1465997318]
 
-[node name="Markers" type="Node3D" parent="Optimization"]
+[node name="Markers" type="Node3D" parent="Optimization" unique_id=784543788]
 
-[node name="KitchenMarker" type="Marker3D" parent="Optimization/Markers"]
+[node name="KitchenMarker" type="Marker3D" parent="Optimization/Markers" unique_id=279771133]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
 
-[node name="InfinityMazeMarker" type="Marker3D" parent="Optimization/Markers"]
+[node name="InfinityMazeMarker" type="Marker3D" parent="Optimization/Markers" unique_id=933906203]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 0)
 
-[node name="WarRoomMarker" type="Marker3D" parent="Optimization/Markers"]
+[node name="WarRoomMarker" type="Marker3D" parent="Optimization/Markers" unique_id=2103567016]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -6.5)
 
-[node name="Loaders" type="Node3D" parent="Optimization"]
+[node name="Loaders" type="Node3D" parent="Optimization" unique_id=57724296]
 
-[node name="KitchenLoader" type="Area3D" parent="Optimization/Loaders" node_paths=PackedStringArray("posicao_spawn")]
+[node name="KitchenLoader" type="Area3D" parent="Optimization/Loaders" unique_id=19496987 node_paths=PackedStringArray("posicao_spawn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.885097, 1.5045092, -6.3015285)
 collision_layer = 0
 collision_mask = 8
@@ -264,12 +261,12 @@ script = ExtResource("17_7t5mc")
 sala_cena = ExtResource("5_7t5mc")
 posicao_spawn = NodePath("../../Markers/KitchenMarker")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Optimization/Loaders/KitchenLoader"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Optimization/Loaders/KitchenLoader" unique_id=1790103442]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.239384, 0, -16.753326)
 shape = SubResource("BoxShape3D_lakw3")
 debug_color = Color(0, 1, 0.25882354, 0.41960785)
 
-[node name="WarRoomLoader" type="Area3D" parent="Optimization/Loaders" node_paths=PackedStringArray("posicao_spawn")]
+[node name="WarRoomLoader" type="Area3D" parent="Optimization/Loaders" unique_id=851371121 node_paths=PackedStringArray("posicao_spawn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.642149, 1.5045092, 10.851734)
 collision_layer = 0
 collision_mask = 8
@@ -277,12 +274,12 @@ script = SubResource("GDScript_lakw3")
 sala_cena = ExtResource("5_pm21f")
 posicao_spawn = NodePath("../../Markers/WarRoomMarker")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Optimization/Loaders/WarRoomLoader"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Optimization/Loaders/WarRoomLoader" unique_id=1927473958]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.1116085, 3.052307, -10.219475)
 shape = SubResource("BoxShape3D_2lf6f")
 debug_color = Color(0, 1, 0.25882354, 0.41960785)
 
-[node name="InfinityMazeLoader" type="Area3D" parent="Optimization/Loaders" node_paths=PackedStringArray("posicao_spawn")]
+[node name="InfinityMazeLoader" type="Area3D" parent="Optimization/Loaders" unique_id=661115805 node_paths=PackedStringArray("posicao_spawn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.745495, 1.5045092, 5.331117)
 collision_layer = 0
 collision_mask = 8
@@ -290,7 +287,7 @@ script = SubResource("GDScript_7t5mc")
 sala_cena = ExtResource("5_lakw3")
 posicao_spawn = NodePath("../../Markers/InfinityMazeMarker")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Optimization/Loaders/InfinityMazeLoader"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Optimization/Loaders/InfinityMazeLoader" unique_id=56530459]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.687386, 3.6123655, -17.42212)
 shape = SubResource("BoxShape3D_pm21f")
 debug_color = Color(0, 1, 0.25882354, 0.41960785)
